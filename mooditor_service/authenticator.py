@@ -5,7 +5,7 @@ from queries.users import UsersRepo, UsersOut, UsersOutWithPassword
 
 
 class MyAuthenticator(Authenticator):
-    async def get_users_data(
+    async def get_account_data(
         self,
         username: str,
         users: UsersRepo,
@@ -14,7 +14,7 @@ class MyAuthenticator(Authenticator):
         # username (which could be an email)
         return users.get(username)
 
-    def get_users_getter(
+    def get_account_getter(
         self,
         users: UsersRepo = Depends(),
     ):
@@ -26,7 +26,7 @@ class MyAuthenticator(Authenticator):
         # users object
         return users.hashed_password
 
-    def get_users_data_for_cookie(self, users: UsersOut):
+    def get_account_data_for_cookie(self, users: UsersOut):
         # Return the username and the data for the cookie.
         # You must return TWO values from this method.
         return users.username, UsersOut(**users.dict())
