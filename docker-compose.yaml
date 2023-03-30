@@ -1,6 +1,6 @@
 volumes:
-    postgres-data:
-        external: true
+  postgres-data:
+    external: true
 services:
   mooditor:
     build:
