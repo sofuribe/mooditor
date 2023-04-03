@@ -8,9 +8,7 @@ from fastapi import (
 )
 from jwtdown_fastapi.authentication import Token
 from authenticator import authenticator
-
 from pydantic import BaseModel
-
 from queries.users import (
     UsersIn,
     UsersOut,
@@ -18,35 +16,47 @@ from queries.users import (
     DuplicateUsersError,
 )
 
-class UsersForm(BaseModel):
+class AccountForm(BaseModel):
     username: str
     password: str
-    email: str
 
-class UsersToken(Token):
-    users: UsersOut
+class AccountToken(Token):
+    account: UsersOut
 
 class HttpError(BaseModel):
     detail: str
 
 router = APIRouter()
 
+@router.get("/token", response_model=AccountToken | None)
+async def get_token(
+    request: Request,
+    account: UsersOut = Depends(authenticator.try_get_current_account_data)
+) -> AccountToken | None:
+    if authenticator.cookie_name in request.cookies:
+        return {
+            "access_token": request.cookies[authenticator.cookie_name],
+            "type": "Bearer",
+            "account": account,
+        }
 
-@router.post("/api/users", response_model=UsersToken | HttpError)
-async def create_users(
+@router.post("/api/users", response_model=AccountToken | HttpError)
+async def create_user(
     info: UsersIn,
     request: Request,
     response: Response,
-    repo: UsersRepo = Depends(),
+    accounts: UsersRepo = Depends(),
 ):
     hashed_password = authenticator.hash_password(info.password)
     try:
-        users = repo.create(info, hashed_password)
+        account = accounts.create(info, hashed_password)
     except DuplicateUsersError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
-    form = UsersForm(username=info.email, password=info.password)
-    token = await authenticator.login(response, request, form, repo)
-    return UsersToken(users=users, **token.dict())
+    form = AccountForm(username=info.username, password=info.password)
+    token = await authenticator.login(response, request, form, accounts)
+    return AccountToken(account=account, **token.dict())
+
+# @router.get("/api/users", )
