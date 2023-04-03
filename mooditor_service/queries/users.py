@@ -29,9 +29,9 @@ class UsersRepo:
                     result = db.execute(
                         """
                         INSERT INTO users
-                            (username, password, email, hashed_password)
+                            (username, email, hashed_password)
                         VALUES
-                            (%s, %s, %s, %s);
+                            (%s, %s, %s)
                         RETURNING id;
                         """,
                         [
@@ -41,11 +41,39 @@ class UsersRepo:
                         ]
                     )
                     id = result.fetchone()[0]
-                    old_data = users.dict()
                     return UsersOutWithPassword(
                         id=id,
-                        **old_data,
+                        username=users.username,
+                        email=users.email,
                         hashed_password=hashed_password
                     )
         except Exception as e:
-            return {"message": "Cannot create user"}
+            return {"message": "Could not create user"}
+
+    def get(self, username: str) -> UsersOutWithPassword:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id
+                            , username
+                            , email
+                            , hashed_password
+                        FROM users
+                        WHERE username = %s
+                        """,
+                        [username]
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    user = UsersOutWithPassword (
+                        id=record[0],
+                        username=record[1],
+                        email=record[2],
+                        hashed_password=record[3]
+                    )
+                    return user
+        except Exception as e:
+            return {"message": "Could not get user"}
