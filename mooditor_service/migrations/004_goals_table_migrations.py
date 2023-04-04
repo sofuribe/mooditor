@@ -5,7 +5,7 @@ steps = [
         CREATE TABLE goals (
             id SERIAL PRIMARY KEY NOT NULL,
             user_id INT NOT NULL REFERENCES users(id),
-            goals TEXT,
+            goal TEXT,
             is_completed BOOLEAN DEFAULT false
         );
         """,
