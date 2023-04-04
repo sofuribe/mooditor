@@ -14,4 +14,7 @@ Today we decided to work on our back end auth as a team. Jackie did the followin
 -created post method for users
 -created an account
 
-Sofia shared her screen and we all helped her work on the signup endpoints. Ultimately, we got stuck trying to get 
+Sofia shared her screen and we all helped her work on the signup endpoints. Ultimately, we got stuck trying to get
+
+## April 3, 2023
+
