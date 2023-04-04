@@ -19,7 +19,8 @@ class GoalOut(BaseModel):
     id: int
     user_id: int
     goal: str
-
+    created_on: datetime.date
+    is_completed: Optional[bool] = False
 
 class GoalRepository:
     def create(self, goal: GoalIn) -> Union[GoalOut, Error]:
@@ -49,7 +50,7 @@ class GoalRepository:
                     id = result.fetchone()[0]
                     return self.goal_in_to_out(id, goal)
         except Exception:
-            return {"message": "Create goal did not work"}
+            return {"message": "Create goal did not work1"}
 
     def get_all(self) -> Union[Error, List[GoalOut]]:
         try:
