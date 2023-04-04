@@ -13,8 +13,6 @@ class GoalIn(BaseModel):
     goal: str
     created_on: datetime.date
     is_completed: Optional[bool] = False
-    created_on: datetime.date
-    is_completed: Optional[bool] = False
 
 
 class GoalOut(BaseModel):
@@ -38,21 +36,14 @@ class GoalRepository:
                                 goal,
                                 created_on,
                                 is_completed
-                                goal,
-                                created_on,
-                                is_completed
                             )
                         VALUES
-                            (%s, %s, %s, %s)
-                        RETURNING id, created_on;
                             (%s, %s, %s, %s)
                         RETURNING id, created_on;
                         """,
                         [
                             goal.user_id,
                             goal.goal,
-                            goal.created_on,
-                            goal.is_completed,
                             goal.created_on,
                             goal.is_completed,
                         ]
