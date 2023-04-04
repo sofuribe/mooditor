@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Union, Optional
+from typing import Union, Optional, List
 from queries.pool import pool
 import datetime
 
@@ -21,6 +21,7 @@ class GoalOut(BaseModel):
     goal: str
     created_on: datetime.date
     is_completed: Optional[bool] = False
+
 
 class GoalRepository:
     def create(self, goal: GoalIn) -> Union[GoalOut, Error]:
@@ -65,14 +66,25 @@ class GoalRepository:
             is_completed=record[4],
         )
 
-
-
-
-
-
-
-
-
-
-
-
+    def get_all(self) -> Union[Error, List[GoalOut]]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT
+                            id,
+                            user_id,
+                            goal,
+                            created_on,
+                            is_completed
+                        FROM goals
+                        ORDER BY created_on;
+                        """
+                    )
+                    return [
+                        self.record_to_goal_out(record)
+                        for record in db
+                    ]
+        except Exception:
+            return {"message": "Could not get all goals"}
