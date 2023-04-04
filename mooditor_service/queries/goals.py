@@ -8,8 +8,8 @@ class Error(BaseModel):
 
 
 class GoalIn(BaseModel):
-    goal: str
     user_id: int
+    goal: str
 
 
 class GoalOut(BaseModel):
