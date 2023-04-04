@@ -39,10 +39,10 @@ class GoalRepository:
                             goal.goal,
                         ]
                     )
-                    id = result.fetchtone()[0]
+                    id = result.fetchone()[0]
                     return self.goal_in_to_out(id, goal)
         except Exception:
-            return {"message": "Create goal did not work1"}
+            return {"message": "Create goal did not work"}
 
     def goal_in_to_out(self, id: int, goal: GoalIn):
         old_data = goal.dict()
