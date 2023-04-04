@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Union, Optional
+from typing import Union, Optional, List
 from queries.pool import pool
 import datetime
 
@@ -19,8 +19,7 @@ class GoalOut(BaseModel):
     id: int
     user_id: int
     goal: str
-    created_on: datetime.date
-    is_completed: Optional[bool] = False
+
 
 class GoalRepository:
     def create(self, goal: GoalIn) -> Union[GoalOut, Error]:
@@ -64,15 +63,3 @@ class GoalRepository:
             created_on=record[3],
             is_completed=record[4],
         )
-
-
-
-
-
-
-
-
-
-
-
-
