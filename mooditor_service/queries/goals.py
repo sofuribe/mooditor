@@ -64,3 +64,15 @@ class GoalRepository:
             created_on=record[3],
             is_completed=record[4],
         )
+
+
+
+
+
+
+
+
+
+
+
+
