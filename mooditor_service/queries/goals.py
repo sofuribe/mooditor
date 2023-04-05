@@ -52,23 +52,25 @@ class GoalRepository:
         except Exception:
             return {"message": "Create goal did not work"}
 
-    def get_all(self) -> Union[Error, List[GoalOut]]:
+    def get_all(self, account_data: dict) -> Union[Error, List[GoalOut]]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     db.execute(
                         """
                         SELECT
-                            id,
-                            user_id,
-                            goal,
-                            created_on,
-                            is_completed
-                        FROM goals g
-                        INNER JOIN users u
-                            ON g.user_id = users.id
+                            goals.id,
+                            goals.user_id,
+                            goals.goal,
+                            goals.created_on,
+                            goals.is_completed
+                        FROM goals
+                        JOIN users
+                        ON goals.user_id = users.id
+                        WHERE users.id = %s
                         ORDER BY created_on;
-                        """
+                        """,
+                        [account_data["id"]]
                     )
                     return [
                         self.record_to_goal_out(record)
@@ -84,13 +86,15 @@ class GoalRepository:
                     result = db.execute(
                         """
                         SELECT
-                            id,
-                            user_id,
-                            goal,
-                            created_on,
-                            is_completed
+                            goals.id,
+                            goals.user_id,
+                            goals.goal,
+                            goals.created_on,
+                            goals.is_completed
                         FROM goals
-                        WHERE id = %s
+                        INNER JOIN users
+                        ON goals.user_id = users.id
+                        WHERE goals.id = %s
                         """,
                         [id],
                     )

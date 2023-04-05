@@ -36,7 +36,9 @@ def get_all_goals(
         authenticator.get_current_account_data)
 ):
     if account_data is not None:
-        return repo.get_all()
+        goals = repo.get_all(account_data)
+        print(goals, "++++++++++++++++")
+        return goals
     else:
         raise HTTPException(status_code=401, detail="Invalid Token")
 
