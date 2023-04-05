@@ -39,3 +39,20 @@ def get_all_goals(
         return repo.get_all()
     else:
         raise HTTPException(status_code=401, detail="Invalid Token")
+
+
+@router.get("/goal/{id}", response_model=Union[Error, GoalOut])
+def get_one_goal(
+    id: int,
+    response: Response,
+    repo: GoalRepository = Depends(),
+    account_data: dict = Depends(
+        authenticator.try_get_current_account_data
+    ),
+) -> GoalOut:
+    goal = repo.get_one(id)
+    if account_data is not None and goal is not None:
+        return goal
+    if goal is None:
+        raise HTTPException(status_code=404, detail="Goal not found")
+    raise HTTPException(status_code=401, detail="Invalid Token")
