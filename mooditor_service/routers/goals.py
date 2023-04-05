@@ -37,7 +37,7 @@ def get_all_goals(
 ):
     if account_data is not None:
         goals = repo.get_all(account_data)
-        print(goals, "++++++++++++++++")
+
         return goals
     else:
         raise HTTPException(status_code=401, detail="Invalid Token")
@@ -58,3 +58,20 @@ def get_one_goal(
     if goal is None:
         raise HTTPException(status_code=404, detail="Goal not found")
     raise HTTPException(status_code=401, detail="Invalid Token")
+
+
+@router.put("/goal/{id}", response_model=Union[GoalOut, Error])
+def update_goal(
+    id: int,
+    goal: GoalIn,
+    response: Response,
+    repo: GoalRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> Union[GoalOut, Error]:
+    existing_goal = repo.get_one(id)
+    if existing_goal is None:
+        raise HTTPException(status_code=404, detail="Goal not found")
+    if existing_goal is not None:
+        return repo.update(id, goal)
+    else:
+        raise HTTPException(status_code=401, detail="Unauthorized to update goal")
