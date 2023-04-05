@@ -40,7 +40,7 @@ class EntryIn(BaseModel):
 class EntryOut(BaseModel):
     id: int
     user_id: int
-    activity_name: List[ActivityEnum]
+    activity_name: ActivityEnum
     mood: MoodEnum
     journal: Optional[str]
     created: datetime.date
@@ -87,3 +87,38 @@ class EntriesRepo:
                     )
         except Exception as e:
             return {"message": "Could not create an entry: " + e}
+
+    def get_entries(self, account_data: dict) -> Union[Error, List[EntryOut]]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT entries.id, entries.user_id, entries.activity_name,
+                        entries.mood, entries.journal, entries.created
+                        FROM entries
+                        JOIN users
+                        ON entries.user_id = users.id
+                        WHERE users.id = %s
+                        ORDER BY entries.created
+                        """,
+                        [account_data["id"]]
+                    )
+
+                    return [
+                        self.record_to_entries_out(record)
+                        for record in db
+                    ]
+        except Exception as e:
+            return {"message": "Could not get the entries" + e}
+
+    def record_to_entries_out(self, record):
+        test = EntryOut(
+            id = record[0],
+            user_id = record[1],
+            activity_name = record[2],
+            mood = record[3],
+            journal = record[4],
+            created = record[5],
+        )
+        return test
