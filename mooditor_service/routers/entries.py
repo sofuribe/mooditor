@@ -18,3 +18,15 @@ def create_entries(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return repo.create(entry, account_data)
+
+@router.get("/entries", response_model = Union[List[EntryOut], Error])
+def get_all_entries(
+    repo: EntriesRepo = Depends(),
+    account_data: dict = Depends(
+        authenticator.get_current_account_data)
+):
+    if account_data is not None:
+        entries = repo.get_entries(account_data)
+        return entries
+    else:
+        print("Could not get all available entries")
