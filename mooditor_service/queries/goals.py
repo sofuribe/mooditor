@@ -64,7 +64,9 @@ class GoalRepository:
                             goal,
                             created_on,
                             is_completed
-                        FROM goals
+                        FROM goals g
+                        INNER JOIN users u
+                            ON g.user_id = users.id
                         ORDER BY created_on;
                         """
                     )
@@ -111,26 +113,3 @@ class GoalRepository:
             created_on=record[3],
             is_completed=record[4],
         )
-
-    def get_all(self) -> Union[Error, List[GoalOut]]:
-        try:
-            with pool.connection() as conn:
-                with conn.cursor() as db:
-                    db.execute(
-                        """
-                        SELECT
-                            id,
-                            user_id,
-                            goal,
-                            created_on,
-                            is_completed
-                        FROM goals
-                        ORDER BY created_on;
-                        """
-                    )
-                    return [
-                        self.record_to_goal_out(record)
-                        for record in db
-                    ]
-        except Exception:
-            return {"message": "Could not get all goals"}
