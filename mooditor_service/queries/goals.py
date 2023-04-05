@@ -105,6 +105,29 @@ class GoalRepository:
         except Exception:
             return {"message": "Could not get that goal"}
 
+    def update(self, id: int, goal: GoalIn) -> Union[GoalOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE goals
+                        SET goal = %s,
+                            created_on = %s,
+                            is_completed = %s
+                        WHERE id = %s
+                        """,
+                        [
+                            goal.goal,
+                            goal.created_on,
+                            goal.is_completed,
+                            id,
+                        ],
+                    )
+                    return self.goal_in_to_out(id, goal)
+        except Exception:
+            return {"message": "Could not update that goal"}
+
     def goal_in_to_out(self, id: int, goal: GoalIn):
         old_data = goal.dict()
         return GoalOut(id=id, **old_data)
