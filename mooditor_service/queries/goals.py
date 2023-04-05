@@ -50,7 +50,54 @@ class GoalRepository:
                     id = result.fetchone()[0]
                     return self.goal_in_to_out(id, goal)
         except Exception:
-            return {"message": "Create goal did not work1"}
+            return {"message": "Create goal did not work"}
+
+    def get_all(self) -> Union[Error, List[GoalOut]]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT
+                            id,
+                            user_id,
+                            goal,
+                            created_on,
+                            is_completed
+                        FROM goals
+                        ORDER BY created_on;
+                        """
+                    )
+                    return [
+                        self.record_to_goal_out(record)
+                        for record in db
+                    ]
+        except Exception:
+            return {"message": "Could not get all goals"}
+
+    def get_one(self, id: int) -> Optional[GoalOut]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT
+                            id,
+                            user_id,
+                            goal,
+                            created_on,
+                            is_completed
+                        FROM goals
+                        WHERE id = %s
+                        """,
+                        [id],
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return self.record_to_goal_out(record)
+        except Exception:
+            return {"message": "Could not get that goal"}
 
     def goal_in_to_out(self, id: int, goal: GoalIn):
         old_data = goal.dict()
