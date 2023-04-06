@@ -75,3 +75,11 @@ def update_goal(
         return repo.update(id, goal)
     else:
         raise HTTPException(status_code=401, detail="Unauthorized to update goal")
+
+
+@router.delete("/goal/{id}", response_model=bool)
+def delete_goal(
+    id: int,
+    repo: GoalRepository = Depends(),
+) -> bool:
+    return repo.delete(id)
