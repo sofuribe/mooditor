@@ -45,6 +45,14 @@ class EntryOut(BaseModel):
     journal: Optional[str]
     created: datetime.date
 
+class EntryGet(BaseModel):
+    id: int
+    user_id: int
+    activity_name: List[ActivityEnum]
+    mood: MoodEnum
+    journal: Optional[str]
+    created: datetime.date
+
 class ActivityIn(BaseModel):
     name: ActivityEnum
     entry_id: int
@@ -55,7 +63,7 @@ class ActivityOut(BaseModel):
     name: ActivityEnum
 
 class EntriesRepo:
-    def create(self, entries: EntryIn, account_data:dict) -> Union[EntryOut, Error]:
+    def create(self, entries: EntryIn, account_data:dict) -> Union[EntryGet, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -77,7 +85,7 @@ class EntriesRepo:
                             ]
                         )
                     id = result.fetchone()[0]
-                    return EntryOut(
+                    return EntryGet(
                         id = id,
                         user_id = account_data["id"],
                         activity_name = entries.activity_name,
@@ -113,7 +121,7 @@ class EntriesRepo:
             return {"message": "Could not get the entries" + e}
 
     def record_to_entries_out(self, record):
-        test = EntryOut(
+        return EntryOut(
             id = record[0],
             user_id = record[1],
             activity_name = record[2],
@@ -121,4 +129,36 @@ class EntriesRepo:
             journal = record[4],
             created = record[5],
         )
-        return test
+
+    def get_one(self, id: int) -> Optional[EntryOut]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT entries.id,
+                            entries.user_id,
+                            entries.activity_name,
+                            entries.mood,
+                            entries.journal,
+                            entries.created
+                        FROM entries
+                        INNER JOIN users
+                        ON entries.user_id = users.id
+                        WHERE entries.id = %s
+                        """,
+                        [id],
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return EntryOut(
+                        id=record[0],
+                        user_id=record[1],
+                        activity_name=record[2],
+                        mood=record[3],
+                        journal=record[4],
+                        created=record[5],
+                    )
+        except Exception as e:
+            return {"message": "Could not get that entry"}
