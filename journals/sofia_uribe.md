@@ -1,5 +1,16 @@
-March 28th: Worked as a group on docker yaml file & connected database to Beekeeper Studio
+## March 28th:
+Worked as a group on docker yaml file & connected database to Beekeeper Studio.
 
-March 29th: I got my entries table along with the enum type migrated and into main. The table was also rendered on Beekeeper studio.
+## March 29th:
+I got my entries table along with the enum type migrated and into main. The table was also rendered on Beekeeper studio.
 
-March 30th:
+## March 30th:
+Pair programmed with our group on authenication files. The login, logout, and signup endpoints all work.
+
+## April 3rd:
+Pair programmed with Terence on entry endpoints. Also worked as a group to fix bugs in create goals endpoint.
+
+## April 4th:
+Continued to pair program with Terence on entry endpoints. We got assistance from Rosheen and were able to get our POST goal endpoint to work. Had to change our entries table around. We are not using the activities table anymore, just using a list.
+
+## April 5th
