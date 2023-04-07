@@ -20,7 +20,6 @@ steps = [
         CREATE TABLE entries (
             id serial NOT NULL PRIMARY KEY,
             user_id INT NOT NULL,
-            activity_name VARCHAR(50),
             mood MOOD_TYPE NOT NULL,
             journal TEXT,
             created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
