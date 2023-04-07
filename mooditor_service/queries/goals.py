@@ -19,6 +19,8 @@ class GoalOut(BaseModel):
     id: int
     user_id: int
     goal: str
+    created_on: datetime.date
+    is_completed: Optional[bool] = False
 
 
 
