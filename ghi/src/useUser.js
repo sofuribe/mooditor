@@ -10,7 +10,7 @@ const useUser = (token) => {
 
     const getUser = async () => {
       const result = await fetch(
-        `${process.env.REACT_APP_MOODITOR_SERVICE_API_HOST}/token`,
+        `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`,
         {
           method: "get",
           credentials: "include",

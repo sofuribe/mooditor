@@ -13,7 +13,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter basename="/">
       <AuthProvider
-        tokenUrl={`${process.env.REACT_APP_MOODITOR_SERVICE_API_HOST}/token`}
+        tokenUrl={`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`}
       >
         <App />
       </AuthProvider>

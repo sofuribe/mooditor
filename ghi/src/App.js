@@ -12,6 +12,7 @@ import "./App.css";
 
 function App() {
   const { token } = useContext(AuthContext);
+  console.log(token)
   const user = useUser(token);
   const { logout } = useToken();
 
