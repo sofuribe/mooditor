@@ -1,5 +1,5 @@
-import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import useToken, { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -13,35 +13,24 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="card text-bg-light mb-3">
-      <h5 className="card-header">Login</h5>
-      <div className="card-body">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="mb-3">
-            <label className="form-label">Username:</label>
-            <input
-              name="username"
-              type="text"
-              className="form-control"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Password:</label>
-            <input
-              name="password"
-              type="password"
-              className="form-control"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div>
-            <input className="btn btn-primary" type="submit" value="Login" />
-          </div>
-        </form>
-      </div>
+    <div>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 };
-
 export default LoginForm;
