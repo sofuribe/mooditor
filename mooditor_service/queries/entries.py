@@ -32,6 +32,7 @@ class MoodEnum(str, Enum):
     Great = "great"
 
 class EntryIn(BaseModel):
+    entry_id: int
     activity_name: List[ActivityEnum]
     mood: MoodEnum
     journal: Optional[str]
@@ -40,6 +41,7 @@ class EntryIn(BaseModel):
 class EntryOut(BaseModel):
     id: int
     user_id: int
+    entry_id: int
     activity_name: ActivityEnum
     mood: MoodEnum
     journal: Optional[str]
@@ -48,6 +50,7 @@ class EntryOut(BaseModel):
 class EntryGet(BaseModel):
     id: int
     user_id: int
+    entry_id: int
     activity_name: List[ActivityEnum]
     mood: MoodEnum
     journal: Optional[str]
@@ -71,13 +74,14 @@ class EntriesRepo:
                         result = db.execute(
                             """
                             INSERT INTO entries
-                                (user_id, activity_name, mood, journal, created)
+                                (user_id, entry_id, activity_name, mood, journal, created)
                             VALUES
-                                (%s, %s, %s, %s, %s)
+                                (%s, %s, %s, %s, %s, %s)
                             RETURNING id;
                             """,
                             [
                                 account_data["id"],
+                                entries.entry_id,
                                 activity,
                                 entries.mood,
                                 entries.journal,
@@ -88,6 +92,7 @@ class EntriesRepo:
                     return EntryGet(
                         id = id,
                         user_id = account_data["id"],
+                        entry_id = entries.entry_id,
                         activity_name = entries.activity_name,
                         mood = entries.mood,
                         journal = entries.journal,
@@ -102,7 +107,7 @@ class EntriesRepo:
                 with conn.cursor() as db:
                     db.execute(
                         """
-                        SELECT entries.id, entries.user_id, entries.activity_name,
+                        SELECT entries.id, entries.user_id, entries.entry_id, entries.activity_name,
                         entries.mood, entries.journal, entries.created
                         FROM entries
                         JOIN users
@@ -124,13 +129,14 @@ class EntriesRepo:
         return EntryOut(
             id = record[0],
             user_id = record[1],
-            activity_name = record[2],
-            mood = record[3],
-            journal = record[4],
-            created = record[5],
+            entry_id = record[2],
+            activity_name = record[3],
+            mood = record[4],
+            journal = record[5],
+            created = record[6],
         )
 
-    def get_one(self, id: int) -> Optional[EntryOut]:
+    def get_one(self, entry_id: int) -> Optional[EntryOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -138,6 +144,7 @@ class EntriesRepo:
                         """
                         SELECT entries.id,
                             entries.user_id,
+                            entries.entry_id,
                             entries.activity_name,
                             entries.mood,
                             entries.journal,
@@ -145,9 +152,9 @@ class EntriesRepo:
                         FROM entries
                         INNER JOIN users
                         ON entries.user_id = users.id
-                        WHERE entries.id = %s
+                        WHERE entries.entry_id = %s
                         """,
-                        [id],
+                        [entry_id],
                     )
                     record = result.fetchone()
                     if record is None:
@@ -155,10 +162,11 @@ class EntriesRepo:
                     return EntryOut(
                         id=record[0],
                         user_id=record[1],
-                        activity_name=record[2],
-                        mood=record[3],
-                        journal=record[4],
-                        created=record[5],
+                        entry_id = record[2],
+                        activity_name=record[3],
+                        mood=record[4],
+                        journal=record[5],
+                        created=record[6],
                     )
         except Exception as e:
             return {"message": "Could not get that entry"}
