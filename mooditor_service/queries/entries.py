@@ -155,35 +155,34 @@ class EntriesRepo:
             created = entry[4],
         )
 
-    def get_one(self, id: int) -> Optional[EntryOut]:
+    def get_one(self, entry_id: int) -> Optional[EntryOut]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT entries.id,
-                            entries.user_id,
-                            entries.activity_name,
-                            entries.mood,
-                            entries.journal,
-                            entries.created
+                        SELECT *
                         FROM entries
-                        INNER JOIN users
-                        ON entries.user_id = users.id
+                        INNER JOIN activities
+                        ON entries.id = activities.entry_id
                         WHERE entries.id = %s
                         """,
-                        [id],
+                        [entry_id],
                     )
-                    record = result.fetchone()
-                    if record is None:
-                        return None
-                    return EntryOut(
-                        id=record[0],
-                        user_id=record[1],
-                        activity_name=record[2],
-                        mood=record[3],
-                        journal=record[4],
-                        created=record[5],
-                    )
+                    records = result.fetchall()
+
+                    entries = {}
+                    for row in records:
+                        activity = row[7]
+                        if not entries.get(row[0]):
+                            entries[row[0]] = { 'id': row[0], 'user_id': row[1], 'mood': row[2], 'journal': row[3], 'created': row[4], 'activity_name': [activity]}
+                        else:
+                            entries[row[0]]['activity_name'].append(activity)
+
+                    entries = list(entries.values())
+
+                    return EntryOut(**entries[0])
+
         except Exception as e:
+            print (e)
             return {"message": "Could not get that entry"}
