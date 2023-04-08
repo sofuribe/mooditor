@@ -13,4 +13,8 @@ Pair programmed with Terence on entry endpoints. Also worked as a group to fix b
 ## April 4th:
 Continued to pair program with Terence on entry endpoints. We got assistance from Rosheen and were able to get our POST goal endpoint to work. Had to change our entries table around. We are not using the activities table anymore, just using a list.
 
-## April 5th
+## April 5th:
+Continued to pair program with Terence on entry endpoints. Most of our endpoints are working now, but not sure if it is the best way to access our data. One entry now has multiple rows if the user chooses more than one acivity (which also means multiple ids) so grabbing one entry or updating one entry is the challenge. Going to work on clarifying this tomorrow.
+
+## April 6th:
+Ran into issues with entry endpoints so we moved onto front-end auth for now. We got login and sign up to work.
