@@ -37,6 +37,17 @@ class EntryIn(BaseModel):
     journal: Optional[str]
     created: datetime.date
 
+class EntryUpdateIn(BaseModel):
+    mood: MoodEnum
+    journal: Optional[str]
+    created: datetime.date
+
+class EntryUpdateOut(BaseModel):
+    id: int
+    mood: MoodEnum
+    journal: Optional[str]
+    created: datetime.date
+
 class EntryOut(BaseModel): # GET METHOD
     id: int
     user_id: int
@@ -186,3 +197,31 @@ class EntriesRepo:
         except Exception as e:
             print (e)
             return {"message": "Could not get that entry"}
+
+    def update(self, id: int, entry: EntryUpdateIn) -> Union[EntryUpdateOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE entries
+                        SET mood = %s,
+                            journal = %s,
+                            created= %s
+                        WHERE id = %s
+                        """,
+                        [
+                            entry.mood,
+                            entry.journal,
+                            entry.created,
+                            id,
+                        ]
+                    )
+                    return self.entry_in_to_out(id, entry)
+        except Exception as e:
+            print (e)
+            return {"message": "Could not update that entry"}
+
+    def entry_in_to_out(self, id:int, entry: EntryUpdateIn):
+        old_data = entry.dict()
+        return EntryUpdateOut(id=id, **old_data)
