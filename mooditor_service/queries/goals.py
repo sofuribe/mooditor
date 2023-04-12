@@ -130,7 +130,7 @@ class GoalRepository:
         except Exception:
             return {"message": "Could not update goal"}
 
-    def delete(self, id: int, user_id: int) -> bool:
+    def delete(self, id: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
