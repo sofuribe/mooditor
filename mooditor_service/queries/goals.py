@@ -128,9 +128,9 @@ class GoalRepository:
                     )
                     return self.goal_in_to_out(id, goal)
         except Exception:
-            return {"message": "Could not update that goal"}
+            return {"message": "Could not update goal"}
 
-    def delete(self, id: int) -> bool:
+    def delete(self, id: int, user_id: int) -> bool:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -143,7 +143,7 @@ class GoalRepository:
                     )
                     return True
         except Exception:
-            return False
+            return {"message": "Could not delete goal"}
 
     def goal_in_to_out(self, id: int, goal: GoalIn):
         old_data = goal.dict()
