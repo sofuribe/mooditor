@@ -9,7 +9,7 @@ function Nav() {
   const handleLogout = async (event) => {
     event.preventDefault();
     await logout();
-    navigate("/login");
+    navigate("/");
   };
 
   if (!token) {
@@ -20,7 +20,9 @@ function Nav() {
             <img className="w-32 p-2 pl-4" src="img/mooditor.png" alt="logo" />
           </h1>
           <ul className="flex text-lg">
-            <li className="p-2 hover:text-blue-900">main page</li>
+            <li className="p-2 hover:text-blue-900">
+            <Link to="/">main page</Link>
+            </li>
             <li className="p-2 hover:text-blue-900">
               <Link to="login">login</Link>
             </li>
