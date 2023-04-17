@@ -56,7 +56,7 @@ function MainPage(){
                             <div className="mt-10 font-bold text-center">Terence Wong</div>
                             <div className="mt-2 text-center text-base">Software Engineer</div>
                         </div>
-                        <div className="flex items-center flex-col mx-4 md:mx-10 md:my-0 my-4hover:-translate-y-5">
+                        <div className="flex items-center flex-col mx-4 md:mx-10 md:my-0 my-4 hover:-translate-y-5">
                             <div className="w-52 h-52 bg-teal-700 rounded-full border-2 border-black"></div>
                             <div className="mt-10 font-bold text-center">Brooke Crockett</div>
                             <div className="mt-2 text-center text-base">Software Engineer</div>
