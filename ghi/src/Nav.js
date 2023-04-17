@@ -14,19 +14,19 @@ function Nav() {
 
   if (!token) {
     return (
-      <nav className="px-3 py-3 text-2xl">
-        <div className="rounded-full border border-black flex justify-between items-center h-15 mx-auto bg-stone-50 ">
+      <nav className="px-4 py-4 text-2xl">
+        <div className="rounded-full border border-black flex justify-between items-center h-16 mx-auto bg-stone-50 ">
           <h1>
             <img className="w-32 p-2 pl-4" src="img/mooditor.png" alt="logo" />
           </h1>
-          <ul className="flex text-lg">
-            <li className="p-2 hover:text-blue-900">
+          <ul className="flex text-xlg">
+            <li className="p-2 hover:text-emerald-800">
             <Link to="/">main page</Link>
             </li>
-            <li className="p-2 hover:text-blue-900">
+            <li className="p-2 hover:text-emerald-800">
               <Link to="login">login</Link>
             </li>
-            <li className="p-2 pr-4 hover:text-blue-900">
+            <li className="p-2 pr-4 hover:text-emerald-800">
               <Link to="signup">sign up</Link>
             </li>
           </ul>

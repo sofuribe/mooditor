@@ -7,6 +7,7 @@ import MainPage from './MainPage';
 import Nav from './Nav';
 import SignupForm from "./SignupForm.js";
 import LoginForm from "./LoginForm.js";
+import Footer from './Footer';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="signup" element={<SignupForm />} />
           <Route path="login" element={<LoginForm />} />
         </Routes>
+        <Footer />
       </AuthProvider>
     </BrowserRouter>
   );
