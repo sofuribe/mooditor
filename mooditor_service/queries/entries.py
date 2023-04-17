@@ -38,15 +38,7 @@ class EntryIn(BaseModel):
     journal: Optional[str]
     created: datetime.date
 
-<<<<<<< HEAD
-class EntryOut(BaseModel):
-    id: int
-    user_id: int
-    entry_id: int
-    activity_name: ActivityEnum
-=======
 class EntryUpdateIn(BaseModel):
->>>>>>> main
     mood: MoodEnum
     journal: Optional[str]
     created: datetime.date
@@ -68,11 +60,6 @@ class EntryOut(BaseModel): # GET METHOD
 class EntryGet(BaseModel): # POST METHOD
     id: int
     user_id: int
-<<<<<<< HEAD
-    entry_id: int
-    activity_name: List[ActivityEnum]
-=======
->>>>>>> main
     mood: MoodEnum
     journal: Optional[str]
     created: datetime.date
@@ -90,36 +77,6 @@ class EntriesRepo:
     def create(self, entries: EntryIn, account_data:dict) -> Union[EntryGet, Error]:
         try:
             with pool.connection() as conn:
-<<<<<<< HEAD
-                with conn.cursor() as db:
-                    for activity in entries.activity_name:
-                        result = db.execute(
-                            """
-                            INSERT INTO entries
-                                (user_id, entry_id, activity_name, mood, journal, created)
-                            VALUES
-                                (%s, %s, %s, %s, %s, %s)
-                            RETURNING id;
-                            """,
-                            [
-                                account_data["id"],
-                                entries.entry_id,
-                                activity,
-                                entries.mood,
-                                entries.journal,
-                                entries.created,
-                            ]
-                        )
-                    id = result.fetchone()[0]
-                    return EntryGet(
-                        id = id,
-                        user_id = account_data["id"],
-                        entry_id = entries.entry_id,
-                        activity_name = entries.activity_name,
-                        mood = entries.mood,
-                        journal = entries.journal,
-                        created = entries.created,
-=======
                 db = conn.cursor()
                 db.execute(
                     """
@@ -151,7 +108,6 @@ class EntriesRepo:
                             entry_id,
                             activity,
                         ]
->>>>>>> main
                     )
                     activity_id = result.fetchone()[0]
                     activities.append(ActivityOut(
@@ -177,19 +133,9 @@ class EntriesRepo:
                 with conn.cursor() as db:
                     db.execute(
                         """
-<<<<<<< HEAD
-                        SELECT entries.id, entries.user_id, entries.entry_id, entries.activity_name,
-                        entries.mood, entries.journal, entries.created
-                        FROM entries
-                        JOIN users
-                        ON entries.user_id = users.id
-                        WHERE users.id = %s
-                        ORDER BY entries.created
-=======
                         select *
                         from entries
                         where entries.user_id = %s
->>>>>>> main
                         """,
                         [account_data["id"]]
                     )
@@ -213,22 +159,12 @@ class EntriesRepo:
 
     def record_to_entries_out(self, entry, activities):
         return EntryOut(
-<<<<<<< HEAD
-            id = record[0],
-            user_id = record[1],
-            entry_id = record[2],
-            activity_name = record[3],
-            mood = record[4],
-            journal = record[5],
-            created = record[6],
-=======
             id = entry[0],
             user_id = entry[1],
             activity_name = activities,
             mood = entry[2],
             journal = entry[3],
             created = entry[4],
->>>>>>> main
         )
 
     def get_one(self, entry_id: int) -> Optional[EntryOut]:
@@ -237,33 +173,6 @@ class EntriesRepo:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-<<<<<<< HEAD
-                        SELECT entries.id,
-                            entries.user_id,
-                            entries.entry_id,
-                            entries.activity_name,
-                            entries.mood,
-                            entries.journal,
-                            entries.created
-                        FROM entries
-                        INNER JOIN users
-                        ON entries.user_id = users.id
-                        WHERE entries.entry_id = %s
-                        """,
-                        [entry_id],
-                    )
-                    record = result.fetchone()
-                    if record is None:
-                        return None
-                    return EntryOut(
-                        id=record[0],
-                        user_id=record[1],
-                        entry_id = record[2],
-                        activity_name=record[3],
-                        mood=record[4],
-                        journal=record[5],
-                        created=record[6],
-=======
                         SELECT *
                         FROM entries
                         INNER JOIN activities
@@ -271,7 +180,6 @@ class EntriesRepo:
                         WHERE entries.id = %s
                         """,
                         [entry_id],
->>>>>>> main
                     )
                     records = result.fetchall()
 
