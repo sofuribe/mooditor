@@ -17,7 +17,7 @@ function EntriesList(){
     }, []);
 
     return (
-        <table className="table-auto">
+        <table>
             <thead>
                 <tr>
                     <th>Date</th>

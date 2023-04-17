@@ -19,7 +19,6 @@ steps = [
         """
         CREATE TABLE entries (
             id serial NOT NULL PRIMARY KEY,
-            entry_id INT NOT NULL,
             user_id INT NOT NULL,
             mood MOOD_TYPE NOT NULL,
             journal TEXT,
