@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
+import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 
 function GoalForm () {
-    const [goals, setGoals] = useState([])
+    // const [goals, setGoals] = useState([])
 
-    const [goal, setGoal] = useState('')
+    const [goal, setGoal] = useState("")
 
     const handleGoalChange = (event) => {
         const value = event.targe.value;
@@ -13,11 +14,11 @@ function GoalForm () {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-        const data = {}
+        const data = {};
 
-        data.goal = goal
+        data.goal = goal;
 
-        const goalUrl = `${process.env.REACT_APP_SWOOP_SERVICE_API_HOST}/goals`;
+        const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goals`;
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -28,11 +29,13 @@ function GoalForm () {
 
         const response = await fetch(goalUrl, fetchConfig);
         if (response.ok) {
-            const newGoal = await response.json();
+            // const newGoal = await response.json();
 
             setGoal('');
+        } else {
+            console.error("Could not create goal");
         }
-    }
+    };
 
     return (
         <div className="row">
@@ -41,7 +44,7 @@ function GoalForm () {
                     <h1>New Goal</h1>
                     <form onSubmit={handleSubmit} id="create-goal-form">
                     <div className="form-floating mb-3">
-                        <textarea onChange={handleGoalChange} value={goal} placeholder="Goal" required type="text" name="goal" id="goal" className="form-control"></textarea>
+                        <textarea onChange={handleGoalChange} value={goal} placeholder="Goal" required type="text" name="goal" id="goal" className="form-control" />
                         <label htmlFor="goal">Goal</label>
                     </div>
                     <button className="btn btn-primary">Create</button>

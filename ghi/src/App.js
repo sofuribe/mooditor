@@ -6,6 +6,7 @@ import "./App.css";
 import Nav from './Nav';
 import SignupForm from "./SignupForm.js";
 import LoginForm from "./LoginForm.js";
+import GoalForm from "./GoalForm";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="signup" element={<SignupForm />} />
           <Route path="login" element={<LoginForm />} />
+          <Route path="goal" element={<GoalForm />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
