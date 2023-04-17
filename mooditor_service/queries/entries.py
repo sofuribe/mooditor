@@ -38,20 +38,41 @@ class EntryIn(BaseModel):
     journal: Optional[str]
     created: datetime.date
 
+<<<<<<< HEAD
 class EntryOut(BaseModel):
     id: int
     user_id: int
     entry_id: int
     activity_name: ActivityEnum
+=======
+class EntryUpdateIn(BaseModel):
+>>>>>>> main
     mood: MoodEnum
     journal: Optional[str]
     created: datetime.date
 
-class EntryGet(BaseModel):
+class EntryUpdateOut(BaseModel):
+    id: int
+    mood: MoodEnum
+    journal: Optional[str]
+    created: datetime.date
+
+class EntryOut(BaseModel): # GET METHOD
     id: int
     user_id: int
+    activity_name: List[str]
+    mood: MoodEnum
+    journal: Optional[str]
+    created: datetime.date
+
+class EntryGet(BaseModel): # POST METHOD
+    id: int
+    user_id: int
+<<<<<<< HEAD
     entry_id: int
     activity_name: List[ActivityEnum]
+=======
+>>>>>>> main
     mood: MoodEnum
     journal: Optional[str]
     created: datetime.date
@@ -69,6 +90,7 @@ class EntriesRepo:
     def create(self, entries: EntryIn, account_data:dict) -> Union[EntryGet, Error]:
         try:
             with pool.connection() as conn:
+<<<<<<< HEAD
                 with conn.cursor() as db:
                     for activity in entries.activity_name:
                         result = db.execute(
@@ -97,7 +119,55 @@ class EntriesRepo:
                         mood = entries.mood,
                         journal = entries.journal,
                         created = entries.created,
+=======
+                db = conn.cursor()
+                db.execute(
+                    """
+                    INSERT INTO entries
+                        (user_id, mood, journal, created)
+                    VALUES
+                        (%s, %s, %s, %s)
+                    RETURNING id;
+                    """,
+                    [
+                        account_data["id"],
+                        entries.mood,
+                        entries.journal,
+                        entries.created,
+                    ]
+                )
+                entry_id = db.fetchone()[0]
+                activities = []
+                for activity in entries.activity_name:
+                    result = db.execute(
+                        """
+                        INSERT INTO activities
+                            (entry_id, name)
+                        VALUES
+                            (%s, %s)
+                        RETURNING id;
+                        """,
+                        [
+                            entry_id,
+                            activity,
+                        ]
+>>>>>>> main
                     )
+                    activity_id = result.fetchone()[0]
+                    activities.append(ActivityOut(
+                        id = activity_id,
+                        entry_id = entry_id,
+                        name = activity,
+                    ))
+                db.close()
+                return EntryGet(
+                    id = entry_id,
+                    user_id = account_data["id"],
+                    mood = entries.mood,
+                    journal = entries.journal,
+                    created = entries.created,
+                    activities = activities
+                )
         except Exception as e:
             return {"message": "Could not create an entry: " + e}
 
@@ -107,6 +177,7 @@ class EntriesRepo:
                 with conn.cursor() as db:
                     db.execute(
                         """
+<<<<<<< HEAD
                         SELECT entries.id, entries.user_id, entries.entry_id, entries.activity_name,
                         entries.mood, entries.journal, entries.created
                         FROM entries
@@ -114,19 +185,35 @@ class EntriesRepo:
                         ON entries.user_id = users.id
                         WHERE users.id = %s
                         ORDER BY entries.created
+=======
+                        select *
+                        from entries
+                        where entries.user_id = %s
+>>>>>>> main
                         """,
                         [account_data["id"]]
                     )
-
-                    return [
-                        self.record_to_entries_out(record)
-                        for record in db
-                    ]
+                    entries = db.fetchall()
+                    entries_return = []
+                    for entry in entries:
+                        db.execute(
+                            """
+                                select activities.name
+                                from activities
+                                where entry_id = %s
+                            """,
+                            [entry[0]]
+                        )
+                        activities = [activity[0] for activity in db.fetchall()]
+                        entry_with_activities = self.record_to_entries_out(entry, activities)
+                        entries_return.append(entry_with_activities)
+                    return entries_return
         except Exception as e:
             return {"message": "Could not get the entries" + e}
 
-    def record_to_entries_out(self, record):
+    def record_to_entries_out(self, entry, activities):
         return EntryOut(
+<<<<<<< HEAD
             id = record[0],
             user_id = record[1],
             entry_id = record[2],
@@ -134,6 +221,14 @@ class EntriesRepo:
             mood = record[4],
             journal = record[5],
             created = record[6],
+=======
+            id = entry[0],
+            user_id = entry[1],
+            activity_name = activities,
+            mood = entry[2],
+            journal = entry[3],
+            created = entry[4],
+>>>>>>> main
         )
 
     def get_one(self, entry_id: int) -> Optional[EntryOut]:
@@ -142,6 +237,7 @@ class EntriesRepo:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
+<<<<<<< HEAD
                         SELECT entries.id,
                             entries.user_id,
                             entries.entry_id,
@@ -167,6 +263,58 @@ class EntriesRepo:
                         mood=record[4],
                         journal=record[5],
                         created=record[6],
+=======
+                        SELECT *
+                        FROM entries
+                        INNER JOIN activities
+                        ON entries.id = activities.entry_id
+                        WHERE entries.id = %s
+                        """,
+                        [entry_id],
+>>>>>>> main
                     )
+                    records = result.fetchall()
+
+                    entries = {}
+                    for row in records:
+                        activity = row[7]
+                        if not entries.get(row[0]):
+                            entries[row[0]] = { 'id': row[0], 'user_id': row[1], 'mood': row[2], 'journal': row[3], 'created': row[4], 'activity_name': [activity]}
+                        else:
+                            entries[row[0]]['activity_name'].append(activity)
+
+                    entries = list(entries.values())
+
+                    return EntryOut(**entries[0])
+
         except Exception as e:
+            print (e)
             return {"message": "Could not get that entry"}
+
+    def update(self, id: int, entry: EntryUpdateIn) -> Union[EntryUpdateOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE entries
+                        SET mood = %s,
+                            journal = %s,
+                            created= %s
+                        WHERE id = %s
+                        """,
+                        [
+                            entry.mood,
+                            entry.journal,
+                            entry.created,
+                            id,
+                        ]
+                    )
+                    return self.entry_in_to_out(id, entry)
+        except Exception as e:
+            print (e)
+            return {"message": "Could not update that entry"}
+
+    def entry_in_to_out(self, id:int, entry: EntryUpdateIn):
+        old_data = entry.dict()
+        return EntryUpdateOut(id=id, **old_data)

@@ -17,4 +17,23 @@ Continued to pair program with Terence on entry endpoints. We got assistance fro
 Continued to pair program with Terence on entry endpoints. Most of our endpoints are working now, but not sure if it is the best way to access our data. One entry now has multiple rows if the user chooses more than one acivity (which also means multiple ids) so grabbing one entry or updating one entry is the challenge. Going to work on clarifying this tomorrow.
 
 ## April 6th:
+Ran into issues with entry endpoints so we moved onto front-end auth for now. We got login and sign up to work.:
+Continued to pair program with Terence on entry endpoints. Most of our endpoints are working now, but not sure if it is the best way to access our data. One entry now has multiple rows if the user chooses more than one acivity (which also means multiple ids) so grabbing one entry or updating one entry is the challenge. Going to work on clarifying this tomorrow.
+
+## April 6th:
+Ran into issues with entry endpoints so we moved onto front-end auth for now. We got login and sign up to work.
+
+## April 11th
+Watched some Tailwind CSS videos, got that installed and started working on the navigation bar. Wasn't able to get logged in/logged out view, but links to signup and login work.
+
+## April 12th
+Was able to ge thre logged in/logged out view to work. I had to change the conditional I had.:
+Continued to pair program with Terence on entry endpoints. Most of our endpoints are working now, but not sure if it is the best way to access our data. One entry now has multiple rows if the user chooses more than one acivity (which also means multiple ids) so grabbing one entry or updating one entry is the challenge. Going to work on clarifying this tomorrow.
+
+## April 6th:
+Ran into issues with entry endpoints so we moved onto front-end auth for now. We got login and sign up to work.
+## April 5th:
+Continued to pair program with Terence on entry endpoints. Most of our endpoints are working now, but not sure if it is the best way to access our data. One entry now has multiple rows if the user chooses more than one acivity (which also means multiple ids) so grabbing one entry or updating one entry is the challenge. Going to work on clarifying this tomorrow.
+
+## April 6th:
 Ran into issues with entry endpoints so we moved onto front-end auth for now. We got login and sign up to work.

@@ -79,6 +79,11 @@ def update_goal(
 @router.delete("/goal/{id}", response_model=bool)
 def delete_goal(
     id: int,
+    response: Response,
     repo: GoalRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
-    return repo.delete(id)
+    if account_data is not None:
+        return repo.delete(id)
+    else:
+        raise HTTPException(status_code=401, detail="Unauthorized to delete goal")
