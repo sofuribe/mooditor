@@ -17,6 +17,8 @@ api-unit-test-job:
   stage: test
   needs:
     - lint-test-job
+  before_script:
+    - export DATABASE_URL=os.environ["DATABASE_URL"]
   script:
     - cd mooditor_service
     - pip install -r requirements.txt
