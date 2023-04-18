@@ -9,9 +9,9 @@ class Error(BaseModel):
 
 
 class GoalIn(BaseModel):
-    user_id: int
+    user_id: Optional[int]
     goal: str
-    created_on: datetime.date
+    created_on: Optional[datetime.date]
     is_completed: Optional[bool] = False
 
 
@@ -29,6 +29,8 @@ class GoalRepository:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
+                    if goal.created_on is None:
+                        goal.created_on = datetime.date.today()
                     result = db.execute(
                         """
                         INSERT INTO goals
@@ -128,7 +130,7 @@ class GoalRepository:
                     )
                     return self.goal_in_to_out(id, goal)
         except Exception:
-            return {"message": "Could not update goal"}
+            return {"message": "Could not update that goal"}
 
     def delete(self, id: int) -> bool:
         try:
@@ -143,7 +145,7 @@ class GoalRepository:
                     )
                     return True
         except Exception:
-            return {"message": "Could not delete goal"}
+            return False
 
     def goal_in_to_out(self, id: int, goal: GoalIn):
         old_data = goal.dict()

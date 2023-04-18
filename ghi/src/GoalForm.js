@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
+import React, {useState} from 'react';
+import useToken from '@galvanize-inc/jwtdown-for-react';
+
 
 function GoalForm () {
-    // const [goals, setGoals] = useState([])
+    const { token } = useToken();
 
     const [goal, setGoal] = useState("")
 
     const handleGoalChange = (event) => {
-        const value = event.targe.value;
-        setGoal(value)
+        const value = event.target.value;
+        setGoal(value);
     }
 
     const handleSubmit = async (event) => {
@@ -24,14 +25,14 @@ function GoalForm () {
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
-            }
-        }
-
+                Authorization: `Bearer ${token}`,
+            },
+        };
         const response = await fetch(goalUrl, fetchConfig);
-        if (response.ok) {
-            // const newGoal = await response.json();
 
-            setGoal('');
+        if (response.ok) {
+            await response.json();
+            setGoal("");
         } else {
             console.error("Could not create goal");
         }
@@ -44,7 +45,16 @@ function GoalForm () {
                     <h1>New Goal</h1>
                     <form onSubmit={handleSubmit} id="create-goal-form">
                     <div className="form-floating mb-3">
-                        <textarea onChange={handleGoalChange} value={goal} placeholder="Goal" required type="text" name="goal" id="goal" className="form-control" />
+                        <textarea
+                            onChange={handleGoalChange}
+                            value={goal}
+                            placeholder="Goal"
+                            required
+                            type="text"
+                            name="goal"
+                            id="goal"
+                            className="form-control"
+                        />
                         <label htmlFor="goal">Goal</label>
                     </div>
                     <button className="btn btn-primary">Create</button>
