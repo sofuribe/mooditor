@@ -22,7 +22,7 @@ api-unit-test-job:
   script:
     - cd mooditor_service
     - pip install -r requirements.txt
-    - export SIGNING_KEY = "H&B7G$40W^sl"
+    - export SIGNING_KEY "H&B7G$40W^sl"
     - python -m pytest
 
 # Build the React/JavaScript front-end
