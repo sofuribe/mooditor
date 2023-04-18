@@ -43,8 +43,7 @@ function Nav() {
           <ul className="flex text-xlg">
             <li className="p-2 hover:text-blue-900">home</li>
             <li className="p-2 hover:text-blue-900">
-              {/* <Link to="entries">all entries</Link> */}
-              all entries
+              <Link to="entries">all entries</Link>
             </li>
             <li className="p-2 pr-4 hover:text-blue-900">
               <button onClick={handleLogout}>logout</button>
