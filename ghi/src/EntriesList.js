@@ -28,6 +28,38 @@ function EntriesList(){
     }, [token]);
 
     return (
+        <>
+        <div className="min-h-screen">
+            <div className="p-4">
+                <div className="group relative">
+                    <button className="bg-gray-800 text-white px-6 h-10 rounded">Month</button>
+                    <nav tabIndex="0" className="border-2 bg-white invisible border-gray-800 rounded w-60 absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1">
+                        <ul className="py-1">
+                            <li>
+                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                                    January
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                                    February
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                                    March
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                                    April
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
         <table className="table-fixed w-full">
             <thead>
                 <tr className="bg-gray-100">
@@ -44,6 +76,8 @@ function EntriesList(){
                 })}
             </tbody>
         </table>
+        </div>
+        </>
     )
 }
 export default EntriesList;
