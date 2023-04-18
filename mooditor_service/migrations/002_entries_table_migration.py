@@ -12,7 +12,7 @@ steps = [
         # "Down" SQL statement
         """
         DROP TYPE mood_type;
-        """
+        """,
     ],
     [
         # "Up" SQL statement
@@ -28,6 +28,6 @@ steps = [
         # "Down" SQL statement
         """
         DROP TABLE entries;
-        """
+        """,
     ],
 ]

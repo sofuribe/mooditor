@@ -3,13 +3,14 @@ steps = [
         # "Up" SQL statement
         """
         CREATE TYPE activities_name AS ENUM (
-            'walking', 'gym', 'running', 'video games', 'snowboarding', 'biking', 'reading', 'sports', 'swimming',
+            'walking', 'gym', 'running', 'video games',
+            'snowboarding', 'biking', 'reading', 'sports', 'swimming',
             'hiking', 'meditate', 'yoga', 'skiing', 'cooking', 'sleeping'
         );
         """,
         """
         DROP TYPE activities_name;
-        """
+        """,
     ],
     [
         """
@@ -19,11 +20,9 @@ steps = [
             name VARCHAR(50)
         );
         """,
-
         # "Down" SQL statement
         """
         DROP TABLE activities;
         """,
     ],
-
 ]

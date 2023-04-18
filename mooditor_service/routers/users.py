@@ -16,22 +16,27 @@ from queries.users import (
     DuplicateUsersError,
 )
 
+
 class AccountForm(BaseModel):
     username: str
     password: str
 
+
 class AccountToken(Token):
     account: UsersOut
+
 
 class HttpError(BaseModel):
     detail: str
 
+
 router = APIRouter()
+
 
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
-    account: UsersOut = Depends(authenticator.try_get_current_account_data)
+    account: UsersOut = Depends(authenticator.try_get_current_account_data),
 ) -> AccountToken | None:
     if authenticator.cookie_name in request.cookies:
         return {
@@ -39,6 +44,7 @@ async def get_token(
             "type": "Bearer",
             "account": account,
         }
+
 
 @router.post("/api/users", response_model=AccountToken | HttpError)
 async def create_user(
@@ -58,5 +64,3 @@ async def create_user(
     form = AccountForm(username=info.username, password=info.password)
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
-
-
