@@ -39,7 +39,7 @@ function GoalForm () {
     };
 
     return (
-        <div className="row">
+        <div className="row min-h-screen">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1>New Goal</h1>

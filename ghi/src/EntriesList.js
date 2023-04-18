@@ -30,7 +30,7 @@ function EntriesList(){
     return (
         <>
         <div className="min-h-screen">
-            <div className="p-4">
+            {/* <div className="p-4">
                 <div className="group relative">
                     <button className="bg-gray-800 text-white px-6 h-10 rounded">Month</button>
                     <nav tabIndex="0" className="border-2 bg-white invisible border-gray-800 rounded w-60 absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1">
@@ -58,24 +58,23 @@ function EntriesList(){
                         </ul>
                     </nav>
                 </div>
-            </div>
-
-        <table className="table-fixed w-full">
-            <thead>
-                <tr className="bg-gray-100">
-                    <th className="px-4 py-2">All Entries</th>
-                </tr>
-            </thead>
-            <tbody>
-                {entries.map((entry, id) => {
-                    return (
-                        <tr key={id}>
-                            <td className="border px-4 py-2">{ new Date(entry.created).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) } {entry.mood}</td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+            </div> */}
+            <table className="table-fixed w-1/2 ml-auto mr-auto">
+                <thead>
+                    <tr className="bg-gray-100">
+                        <th className="px-4 py-2">All Entries</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {entries.map((entry, id) => {
+                        return (
+                            <tr key={id}>
+                                <td className="border px-4 py-2">{ new Date(entry.created).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) } {entry.mood}</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
         </div>
         </>
     )
