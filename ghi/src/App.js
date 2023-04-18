@@ -8,6 +8,7 @@ import Nav from './Nav';
 import SignupForm from "./SignupForm.js";
 import LoginForm from "./LoginForm.js";
 import Footer from './Footer';
+import GoalForm from "./GoalForm";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="signup" element={<SignupForm />} />
           <Route path="login" element={<LoginForm />} />
+          <Route path="goal" element={<GoalForm />} />
         </Routes>
         <Footer />
       </AuthProvider>
