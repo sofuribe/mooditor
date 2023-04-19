@@ -35,7 +35,6 @@ class MoodEnum(str, Enum):
 
 
 class EntryIn(BaseModel):
-    entry_id: int
     activity_name: List[ActivityEnum]
     mood: MoodEnum
     journal: Optional[str]
