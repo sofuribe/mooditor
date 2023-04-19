@@ -33,7 +33,7 @@ build-front-end-job:
     - lint-test-job
   variables:
     PUBLIC_URL: https://mooditor.gitlab.io/mooditor
-    REACT_APP_USER_SERVICE_API_HOST: https://mooditor.dec-pt-4.mod3projects.com
+    REACT_APP_USER_SERVICE_API_HOST: https://mooditor-service.dec-pt-4.mod3projects.com
   script:
     - cd ghi
     - npm install
@@ -46,8 +46,8 @@ build-front-end-job:
 # Deploy the React/JavaScript front-end to GitLab pages
 pages:
   stage: deploy
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  # rules:
+  #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   dependencies:
     - build-front-end-job
   needs:
