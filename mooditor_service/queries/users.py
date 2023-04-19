@@ -17,12 +17,15 @@ class UsersOut(BaseModel):
     username: str
     email: str
 
+
 class UsersOutWithPassword(UsersOut):
     hashed_password: str
 
 
 class UsersRepo:
-    def create (self, users: UsersIn, hashed_password: str) -> UsersOutWithPassword:
+    def create(
+        self, users: UsersIn, hashed_password: str
+    ) -> UsersOutWithPassword:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -34,20 +37,16 @@ class UsersRepo:
                             (%s, %s, %s)
                         RETURNING id;
                         """,
-                        [
-                            users.username,
-                            users.email,
-                            hashed_password
-                        ]
+                        [users.username, users.email, hashed_password],
                     )
                     id = result.fetchone()[0]
                     return UsersOutWithPassword(
                         id=id,
                         username=users.username,
                         email=users.email,
-                        hashed_password=hashed_password
+                        hashed_password=hashed_password,
                     )
-        except Exception as e:
+        except Exception:
             return {"message": "Could not create user"}
 
     def get(self, username: str) -> UsersOutWithPassword:
@@ -63,17 +62,17 @@ class UsersRepo:
                         FROM users
                         WHERE username = %s
                         """,
-                        [username]
+                        [username],
                     )
                     record = result.fetchone()
                     if record is None:
                         return None
-                    user = UsersOutWithPassword (
+                    user = UsersOutWithPassword(
                         id=record[0],
                         username=record[1],
                         email=record[2],
-                        hashed_password=record[3]
+                        hashed_password=record[3],
                     )
                     return user
-        except Exception as e:
+        except Exception:
             return {"message": "Could not get user"}

@@ -68,9 +68,3 @@ function MainPage(){
 }
 
 export default MainPage;
-
-            {/* <div className="my-28">
-                <div className="bg-orange-200 h-20 border-t-4 border-b-4 border-black">
-                    <div className="text-center text-4xl"></div>
-                </div>
-            </div> */}

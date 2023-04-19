@@ -17,12 +17,12 @@ api-unit-test-job:
   stage: test
   needs:
     - lint-test-job
-  variable:
-    DATABASE_URL = "postgresql://mooditor:mooditor@postgres/mooditor"
-    SIGNING_KEY = "H&B7G$40W^sl"
+  before_script:
+    - export DATABASE_URL=os.environ["DATABASE_URL"]
   script:
     - cd mooditor_service
     - pip install -r requirements.txt
+    - export SIGNING_KEY="H&B7G$40W^sl"
     - python -m pytest
 
 # Build the React/JavaScript front-end
