@@ -11,7 +11,7 @@ function SignupForm() {
     data.username = username;
     data.email = email;
     data.password = password;
-    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/users`;
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/api/users`;
     // const url = "http://localhost:8000/api/users";
     const fetchConfig = {
       method: "POST",
