@@ -35,7 +35,7 @@ class EntryIn(BaseModel):
     activity_name: List[ActivityEnum]
     mood: MoodEnum
     journal: Optional[str]
-    created: datetime.date
+    created: Optional[datetime.date]
 
 class EntryUpdateIn(BaseModel):
     mood: MoodEnum
@@ -73,10 +73,12 @@ class ActivityOut(BaseModel):
     name: ActivityEnum
 
 class EntriesRepo:
-    def create(self, entries: EntryIn, account_data:dict) -> Union[EntryGet, Error]:
+    def create(self, entries: EntryIn, account_data: dict) -> Union[EntryGet, Error]:
         try:
             with pool.connection() as conn:
                 db = conn.cursor()
+                if entries.created is None:
+                    entries.created = datetime.date.today()
                 db.execute(
                     """
                     INSERT INTO entries

@@ -15,7 +15,7 @@ steps = [
         """
         CREATE TABLE activities (
             id SERIAL PRIMARY KEY NOT NULL,
-            entry_id INT NOT NULL,
+            entry_id INT,
             name VARCHAR(50)
         );
         """,

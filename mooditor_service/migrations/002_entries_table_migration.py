@@ -19,10 +19,10 @@ steps = [
         """
         CREATE TABLE entries (
             id serial NOT NULL PRIMARY KEY,
-            user_id INT NOT NULL,
+            user_id INT,
             mood MOOD_TYPE NOT NULL,
             journal TEXT,
-            created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+            created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         """,
         # "Down" SQL statement
