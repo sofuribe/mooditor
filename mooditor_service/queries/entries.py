@@ -1,35 +1,38 @@
 from pydantic import BaseModel
-from queries.users import UsersOut
 from typing import Optional, Union, List
 from enum import Enum
 import datetime
 from queries.pool import pool
 
+
 class ActivityEnum(str, Enum):
-    Walking = 'Walking'
-    Gym = 'Gym'
-    Running = 'Running'
-    Video_games = 'Video Games'
-    Snowboarding = 'Snowboarding'
-    Biking = 'Biking'
-    Reading = 'Reading'
-    Sports = 'Sports'
-    Swimming = 'Swimming'
-    Hiking = 'Hiking'
-    Meditate = 'Meditate'
-    Yoga = 'Yoga'
-    Skiing = 'Skiing'
-    Cooking = 'Cooking'
-    Sleeping = 'Sleeping'
+    Walking = "Walking"
+    Gym = "Gym"
+    Running = "Running"
+    Video_games = "Video Games"
+    Snowboarding = "Snowboarding"
+    Biking = "Biking"
+    Reading = "Reading"
+    Sports = "Sports"
+    Swimming = "Swimming"
+    Hiking = "Hiking"
+    Meditate = "Meditate"
+    Yoga = "Yoga"
+    Skiing = "Skiing"
+    Cooking = "Cooking"
+    Sleeping = "Sleeping"
+
 
 class Error(BaseModel):
     message: str
 
+
 class MoodEnum(str, Enum):
-    Awful = 'awful'
-    Okay = 'okay'
-    Good = 'good'
+    Awful = "awful"
+    Okay = "okay"
+    Good = "good"
     Great = "great"
+
 
 class EntryIn(BaseModel):
     entry_id: int
@@ -38,10 +41,12 @@ class EntryIn(BaseModel):
     journal: Optional[str]
     created: datetime.date
 
+
 class EntryUpdateIn(BaseModel):
     mood: MoodEnum
     journal: Optional[str]
     created: datetime.date
+
 
 class EntryUpdateOut(BaseModel):
     id: int
@@ -49,7 +54,8 @@ class EntryUpdateOut(BaseModel):
     journal: Optional[str]
     created: datetime.date
 
-class EntryOut(BaseModel): # GET METHOD
+
+class EntryOut(BaseModel):  # GET METHOD
     id: int
     user_id: int
     activity_name: List[str]
@@ -57,24 +63,30 @@ class EntryOut(BaseModel): # GET METHOD
     journal: Optional[str]
     created: datetime.date
 
-class EntryGet(BaseModel): # POST METHOD
+
+class EntryGet(BaseModel):  # POST METHOD
     id: int
     user_id: int
     mood: MoodEnum
     journal: Optional[str]
     created: datetime.date
 
+
 class ActivityIn(BaseModel):
     name: ActivityEnum
     entry_id: int
+
 
 class ActivityOut(BaseModel):
     id: int
     entry_id: int
     name: ActivityEnum
 
+
 class EntriesRepo:
-    def create(self, entries: EntryIn, account_data:dict) -> Union[EntryGet, Error]:
+    def create(
+        self, entries: EntryIn, account_data: dict
+    ) -> Union[EntryGet, Error]:
         try:
             with pool.connection() as conn:
                 db = conn.cursor()
@@ -91,7 +103,7 @@ class EntriesRepo:
                         entries.mood,
                         entries.journal,
                         entries.created,
-                    ]
+                    ],
                 )
                 entry_id = db.fetchone()[0]
                 activities = []
@@ -107,22 +119,24 @@ class EntriesRepo:
                         [
                             entry_id,
                             activity,
-                        ]
+                        ],
                     )
                     activity_id = result.fetchone()[0]
-                    activities.append(ActivityOut(
-                        id = activity_id,
-                        entry_id = entry_id,
-                        name = activity,
-                    ))
+                    activities.append(
+                        ActivityOut(
+                            id=activity_id,
+                            entry_id=entry_id,
+                            name=activity,
+                        )
+                    )
                 db.close()
                 return EntryGet(
-                    id = entry_id,
-                    user_id = account_data["id"],
-                    mood = entries.mood,
-                    journal = entries.journal,
-                    created = entries.created,
-                    activities = activities
+                    id=entry_id,
+                    user_id=account_data["id"],
+                    mood=entries.mood,
+                    journal=entries.journal,
+                    created=entries.created,
+                    activities=activities,
                 )
         except Exception as e:
             return {"message": "Could not create an entry: " + e}
@@ -137,7 +151,7 @@ class EntriesRepo:
                         from entries
                         where entries.user_id = %s
                         """,
-                        [account_data["id"]]
+                        [account_data["id"]],
                     )
                     entries = db.fetchall()
                     entries_return = []
@@ -148,10 +162,14 @@ class EntriesRepo:
                                 from activities
                                 where entry_id = %s
                             """,
-                            [entry[0]]
+                            [entry[0]],
                         )
-                        activities = [activity[0] for activity in db.fetchall()]
-                        entry_with_activities = self.record_to_entries_out(entry, activities)
+                        activities = [
+                            activity[0] for activity in db.fetchall()
+                        ]
+                        entry_with_activities = self.record_to_entries_out(
+                            entry, activities
+                        )
                         entries_return.append(entry_with_activities)
                     return entries_return
         except Exception as e:
@@ -159,12 +177,12 @@ class EntriesRepo:
 
     def record_to_entries_out(self, entry, activities):
         return EntryOut(
-            id = entry[0],
-            user_id = entry[1],
-            activity_name = activities,
-            mood = entry[2],
-            journal = entry[3],
-            created = entry[4],
+            id=entry[0],
+            user_id=entry[1],
+            activity_name=activities,
+            mood=entry[2],
+            journal=entry[3],
+            created=entry[4],
         )
 
     def get_one(self, entry_id: int) -> Optional[EntryOut]:
@@ -187,19 +205,28 @@ class EntriesRepo:
                     for row in records:
                         activity = row[7]
                         if not entries.get(row[0]):
-                            entries[row[0]] = { 'id': row[0], 'user_id': row[1], 'mood': row[2], 'journal': row[3], 'created': row[4], 'activity_name': [activity]}
+                            entries[row[0]] = {
+                                "id": row[0],
+                                "user_id": row[1],
+                                "mood": row[2],
+                                "journal": row[3],
+                                "created": row[4],
+                                "activity_name": [activity],
+                            }
                         else:
-                            entries[row[0]]['activity_name'].append(activity)
+                            entries[row[0]]["activity_name"].append(activity)
 
                     entries = list(entries.values())
 
                     return EntryOut(**entries[0])
 
         except Exception as e:
-            print (e)
+            print(e)
             return {"message": "Could not get that entry"}
 
-    def update(self, id: int, entry: EntryUpdateIn) -> Union[EntryUpdateOut, Error]:
+    def update(
+        self, id: int, entry: EntryUpdateIn
+    ) -> Union[EntryUpdateOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -216,13 +243,13 @@ class EntriesRepo:
                             entry.journal,
                             entry.created,
                             id,
-                        ]
+                        ],
                     )
                     return self.entry_in_to_out(id, entry)
         except Exception as e:
-            print (e)
+            print(e)
             return {"message": "Could not update that entry"}
 
-    def entry_in_to_out(self, id:int, entry: EntryUpdateIn):
+    def entry_in_to_out(self, id: int, entry: EntryUpdateIn):
         old_data = entry.dict()
         return EntryUpdateOut(id=id, **old_data)

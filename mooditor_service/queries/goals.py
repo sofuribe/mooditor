@@ -23,7 +23,6 @@ class GoalOut(BaseModel):
     is_completed: Optional[bool] = False
 
 
-
 class GoalRepository:
     def create(self, goal: GoalIn) -> Union[GoalOut, Error]:
         try:
@@ -49,7 +48,7 @@ class GoalRepository:
                             goal.goal,
                             goal.created_on,
                             goal.is_completed,
-                        ]
+                        ],
                     )
                     id = result.fetchone()[0]
                     return self.goal_in_to_out(id, goal)
@@ -74,12 +73,9 @@ class GoalRepository:
                         WHERE users.id = %s
                         ORDER BY created_on;
                         """,
-                        [account_data["id"]]
+                        [account_data["id"]],
                     )
-                    return [
-                        self.record_to_goal_out(record)
-                        for record in db
-                    ]
+                    return [self.record_to_goal_out(record) for record in db]
         except Exception:
             return {"message": "Could not get all goals"}
 

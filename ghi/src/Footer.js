@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from "react-router-dom";
-
 function Footer(){
     return (
         <footer className="bg-stone-50 text-center sticky bottom-0 w-full mt-8 transition-all duration-500 transform translate-y-full">

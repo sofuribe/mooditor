@@ -1,5 +1,3 @@
-import { Menu, Transition } from "@headlessui/react";
-import { DotsVerticalIcon } from "@heroicons/react/outline";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import {
   add,
@@ -15,7 +13,7 @@ import {
   parseISO,
   startOfToday,
 } from "date-fns";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function classNames(...classes) {
@@ -25,25 +23,25 @@ function classNames(...classes) {
 export default function Calendar() {
   const { token } = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
-  const fetchData = async () => {
-    if (token) {
-      const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/entries`;
-      const fetchConfig = {
-        method: "get",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const response = await fetch(url, fetchConfig);
-      if (response.ok) {
-        const data = await response.json();
-        setEntries(data);
-        console.log(data);
-      }
-    }
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      if (token) {
+        const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/entries`;
+        const fetchConfig = {
+          method: "get",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await fetch(url, fetchConfig);
+        if (response.ok) {
+          const data = await response.json();
+          setEntries(data);
+          console.log(data);
+        }
+      }
+    };
     fetchData();
   }, [token]);
 

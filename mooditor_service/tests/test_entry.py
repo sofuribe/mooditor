@@ -5,30 +5,29 @@ from authenticator import authenticator
 
 client = TestClient(app)
 
+
 class EmptyEntryQueries:
     def get_all(self):
         return []
 
+
 class CreateEntryQueries:
     def create(self, entry, account_data):
         result = {
-        "id": 1,
-        "user_id": account_data["id"],
-        "activity_name": [
-            "Walking"
-        ]
-    }
+            "id": 1,
+            "user_id": account_data["id"],
+            "activity_name": ["Walking"],
+        }
         result.update(entry)
         return result
 
-test_user = {
-    "id": 1,
-    "username": "string",
-    "password": "string"
-}
+
+test_user = {"id": 1, "username": "string", "password": "string"}
+
 
 def user_override():
     return test_user
+
 
 def test_create_entry():
     app.dependency_overrides[EntriesRepo] = CreateEntryQueries
@@ -37,12 +36,10 @@ def test_create_entry():
     ] = user_override
 
     json = {
-        "activity_name": [
-            "Walking"
-        ],
+        "activity_name": ["Walking"],
         "mood": "awful",
         "journal": "string",
-        "created": "2023-04-07"
+        "created": "2023-04-07",
     }
 
     expected = {
@@ -50,7 +47,7 @@ def test_create_entry():
         "user_id": 1,
         "mood": "awful",
         "journal": "string",
-        "created": "2023-04-07"
+        "created": "2023-04-07",
     }
 
     response = client.post("/entries", json=json)
