@@ -24,10 +24,10 @@ function Nav() {
             <Link to="/">main page</Link>
             </li>
             <li className="p-2 hover:text-emerald-800">
-              <Link to="login">login</Link>
+              <Link to="/login">login</Link>
             </li>
             <li className="p-2 pr-4 hover:text-emerald-800">
-              <Link to="signup">sign up</Link>
+              <Link to="/signup">sign up</Link>
             </li>
           </ul>
         </div>
