@@ -10,11 +10,11 @@ import LoginForm from "./LoginForm.js";
 import Footer from "./Footer";
 import GoalForm from "./GoalForm";
 import Calendar from "./CalendarUI";
-import EntriesList from './EntriesList';
-import EntryForm from './EntryForm';
+import LoginSignup from "./LoginSignupForm";
+import EntriesList from "./EntriesList";
 
 const domain = /https:\/\/[^/]+/;
-const basename = process.env.PUBLIC_URL.replace(domain, '');
+const basename = process.env.PUBLIC_URL.replace(domain, "");
 
 function App() {
   return (
@@ -31,6 +31,7 @@ function App() {
           <Route path="entries" element={<EntriesList />} />
           <Route path="goal" element={<GoalForm />} />
           <Route path="entry" element={<EntryForm />} />
+          <Route path="account" element={<LoginSignup />} />
         </Routes>
         <Footer />
       </AuthProvider>
