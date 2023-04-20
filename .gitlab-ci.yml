@@ -32,8 +32,8 @@ build-front-end-job:
   needs:
     - lint-test-job
   variables:
-    PUBLIC_URL: https://mooditor.gitlab.io/mooditor/
-    REACT_APP_USER_SERVICE_API_HOST: https://mooditor.dec-pt-4.mod3projects.com
+    PUBLIC_URL: https://mooditor.gitlab.io/mooditor
+    REACT_APP_USER_SERVICE_API_HOST: https://mooditor-service.dec-pt-4.mod3projects.com
   script:
     - cd ghi
     - npm install

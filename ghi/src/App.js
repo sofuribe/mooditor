@@ -13,9 +13,12 @@ import Calendar from "./CalendarUI";
 import EntriesList from './EntriesList';
 import LoggedInHome from './LoggedInHome';
 
+const domain = /https:\/\/[^/]+/;
+const basename = process.env.PUBLIC_URL.replace(domain, '');
+
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <AuthProvider
         tokenUrl={`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`}
       >
