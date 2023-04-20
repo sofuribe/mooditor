@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import useToken from '@galvanize-inc/jwtdown-for-react';
+import { toast } from 'react-toastify'
 
 
 function GoalForm () {
@@ -33,6 +34,7 @@ function GoalForm () {
         if (response.ok) {
             await response.json();
             setGoal("");
+            toast.success('Goal created')
         } else {
             console.error("Could not create goal");
         }

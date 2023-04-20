@@ -13,7 +13,9 @@ import Calendar from "./CalendarUI";
 import EntriesList from './EntriesList';
 import LoggedInHome from './LoggedInHome';
 import LoginSignup from "./LoginSignupForm";
-import EntriesList from "./EntriesList";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const domain = /https:\/\/[^/]+/;
 const basename = process.env.PUBLIC_URL.replace(domain, "");
@@ -35,6 +37,14 @@ function App() {
           <Route path="home" element={<LoggedInHome />} />
           <Route path="account" element={<LoginSignup />} />
         </Routes>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
+          closeOnClick
+          rtl={false}
+          draggable
+          pauseOnHover
+         />
         <Footer />
       </AuthProvider>
     </BrowserRouter>
