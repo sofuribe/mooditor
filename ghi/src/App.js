@@ -10,6 +10,7 @@ import LoginForm from "./LoginForm.js";
 import Footer from "./Footer";
 import GoalForm from "./GoalForm";
 import Calendar from "./CalendarUI";
+import GoalList from "./GoalList";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="signup" element={<SignupForm />} />
           <Route path="login" element={<LoginForm />} />
           <Route path="goal" element={<GoalForm />} />
+          <Route path="list" element={<GoalList />} />
         </Routes>
         <Footer />
       </AuthProvider>
