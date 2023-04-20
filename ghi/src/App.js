@@ -10,6 +10,7 @@ import LoginForm from "./LoginForm.js";
 import Footer from "./Footer";
 import GoalForm from "./GoalForm";
 import Calendar from "./CalendarUI";
+import EntriesList from './EntriesList';
 
 const domain = /https:\/\/[^/]+/;
 const basename = process.env.PUBLIC_URL.replace(domain, '');
@@ -26,6 +27,7 @@ function App() {
           <Route path="calendar" element={<Calendar />} />
           <Route path="signup" element={<SignupForm />} />
           <Route path="login" element={<LoginForm />} />
+          <Route path="entries" element={<EntriesList />} />
           <Route path="goal" element={<GoalForm />} />
         </Routes>
         <Footer />

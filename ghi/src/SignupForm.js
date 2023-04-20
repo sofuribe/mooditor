@@ -31,7 +31,7 @@ function SignupForm() {
     }
   };
   return (
-    <div className="container-fluid">
+    <div className="container-fluid min-h-screen">
       <div className="row">
         <div className="col-12 col-md-4">
           <div className="shadow p-4 mt-4">
