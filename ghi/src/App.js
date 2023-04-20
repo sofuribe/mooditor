@@ -11,6 +11,7 @@ import Footer from "./Footer";
 import GoalForm from "./GoalForm";
 import Calendar from "./CalendarUI";
 import EntriesList from './EntriesList';
+import LoggedInHome from './LoggedInHome';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="login" element={<LoginForm />} />
           <Route path="entries" element={<EntriesList />} />
           <Route path="goal" element={<GoalForm />} />
+          <Route path="home" element={<LoggedInHome />} />
         </Routes>
         <Footer />
       </AuthProvider>

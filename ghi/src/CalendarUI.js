@@ -38,7 +38,6 @@ export default function Calendar() {
         if (response.ok) {
           const data = await response.json();
           setEntries(data);
-          console.log(data);
         }
       }
     };

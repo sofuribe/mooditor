@@ -41,7 +41,9 @@ function Nav() {
             <img className="w-32 p-2 pl-4" src="img/mooditor.png" alt="logo" />
           </h1>
           <ul className="flex text-xlg">
-            <li className="p-2 hover:text-blue-900">home</li>
+            <li className="p-2 hover:text-blue-900">
+              <Link to="home">home</Link>
+            </li>
             <li className="p-2 hover:text-blue-900">
               <Link to="entries">all entries</Link>
             </li>
