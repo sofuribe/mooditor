@@ -38,7 +38,7 @@ class EntryIn(BaseModel):
     activity_name: List[ActivityEnum]
     mood: MoodEnum
     journal: Optional[str]
-    created: datetime.date
+    created: Optional[datetime.date]
 
 
 class EntryUpdateIn(BaseModel):
@@ -68,7 +68,7 @@ class EntryGet(BaseModel):  # POST METHOD
     user_id: int
     mood: MoodEnum
     journal: Optional[str]
-    created: datetime.date
+    created: Optional[datetime.date]
 
 
 class ActivityIn(BaseModel):
@@ -89,6 +89,8 @@ class EntriesRepo:
         try:
             with pool.connection() as conn:
                 db = conn.cursor()
+                if entries.created is None:
+                    entries.created = datetime.date.today()
                 db.execute(
                     """
                     INSERT INTO entries
