@@ -12,6 +12,7 @@ import GoalForm from "./GoalForm";
 import Calendar from "./CalendarUI";
 import LoginSignup from "./LoginSignupForm";
 import EntriesList from "./EntriesList";
+import EntryForm from "./EntryForm";
 
 const domain = /https:\/\/[^/]+/;
 const basename = process.env.PUBLIC_URL.replace(domain, "");

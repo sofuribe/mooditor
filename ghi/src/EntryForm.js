@@ -3,7 +3,10 @@ import useToken from '@galvanize-inc/jwtdown-for-react';
 
 
 function EntryForm () {
+
     const { token } = useToken();
+
+    function 
 
     const [mood, setMood] = useState("")
     const [activity, setActivity] = useState("")
@@ -54,6 +57,8 @@ function EntryForm () {
             console.error("Could not create entry");
         }
     };
+
+
 
     return (
         <div className="row">
