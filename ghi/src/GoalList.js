@@ -48,36 +48,51 @@ function GoalList() {
         }
     };
 
-    const handleCheckboxChange = async (event, id) => {
-        const isCompleted = event.target.checked;
+
+    const handleCheckboxChange = async (event, id, goal) => {
+        const isCompleted = event.target.checked ? true : false;
         const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
+        // map goals
+        // compare the id
+        // fetch
+        // if (id === goals[0].id) {
+
+        // or new table for just update
         const fetchConfig = {
             method: "put",
-            body: JSON.stringify({is_completed: isCompleted}),
+            body: JSON.stringify( {id: id, goal : { goals: goals, "is_completed": isCompleted }}),
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
         };
         const response = await fetch(goalUrl, fetchConfig);
-        console.log('#########')
+        console.log('Response object:', response);
         if (response.ok) {
-            console.log('!!!!!!!!!!')
             const data = await response.json();
-            console.log(data, "$$$$$$$$$")
+            console.log('Data:', data);
             setGoals(goals.map(goal => {
-                if (goal.id === data.id) {
-                    return data;
+                if (goal.id === id) {
                     console.log(data, "-----")
+                    return { ...goal, is_completed: data.is_completed };
                 } else {
-                    return goal;
                     console.log(goal, "++++++++")
+                    return goal;
                 }
             }));
         } else {
-            console.error("Could not update goal");
+            console.error("Could not update goal!");
         }
-    }
+        // } else {
+        //     console.log("!!!!!!!!!!")
+        // }
+
+    };
+// button change the onclick
+
+
+// { goal: {goal: goals[0].id}},
+
 
     return (
         <>
@@ -97,7 +112,7 @@ function GoalList() {
                                         <input
                                             type="checkbox"
                                             checked={goal.isCompleted}
-                                            onChange={(event) => handleCheckboxChange(event, goal)}
+                                            onChange={(event) => handleCheckboxChange(event, goal.id)}
                                         />
                                     </td>
                                     <td className={goal.isCompleted ? 'completed' : ''}>{goal.goal}</td>
