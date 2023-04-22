@@ -10,14 +10,14 @@ class Error(BaseModel):
 
 class GoalIn(BaseModel):
     user_id: Optional[int]
-    goal: str
+    goal: Optional[str]
     created_on: Optional[datetime.date]
     is_completed: Optional[bool] = False
 
 
 class GoalOut(BaseModel):
     id: int
-    user_id: Optional[int]
+    user_id: int
     goal: str
     created_on: datetime.date
     is_completed: Optional[bool] = False
@@ -119,14 +119,14 @@ class GoalRepository:
                             [id]
                         )
                         goal.user_id = db.fetchone()[0]
-                    # if goal.goal is None:
-                    #     db.execute(
-                    #         """
-                    #         SELECT goal FROM goals WHERE id = %s
-                    #         """,
-                    #         [id]
-                    #     )
-                    #     goal.goal = db.fetchone()[0]
+                    if goal.goal is None:
+                        db.execute(
+                            """
+                            SELECT goal FROM goals WHERE id = %s
+                            """,
+                            [id]
+                        )
+                        goal.goal = db.fetchone()[0]
 
                     db.execute(
                         """
