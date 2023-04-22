@@ -10,7 +10,7 @@ class Error(BaseModel):
 
 class GoalIn(BaseModel):
     user_id: Optional[int]
-    goal: Optional[str]
+    goal: str
     created_on: Optional[datetime.date]
     is_completed: Optional[bool] = False
 

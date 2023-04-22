@@ -48,39 +48,52 @@ function GoalList() {
         }
     };
 
-
     const handleCheckboxChange = async (event, id) => {
-
-        const isCompleted = event.target.checked ? true : false;
+        const isCompleted = event. target.checked ? true : false;
         const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
 
-        const fetchConfig = {
-            method: "put",
-            body: JSON.stringify({ is_completed: isCompleted }),
+        // GET the goal with matching id
+        const response = await fetch (goalUrl, {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
 
+        if (!response.ok) {
+            console.error("Could not retrieve goal");
+            return;
+        }
+
+        const goal = await response.json();
+
+        // UPDATE the is_completed
+        const updateUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
+        const fetchConfig = {
+            method: 'put',
+            body: JSON.stringify({ goal: goal.goal, is_completed: isCompleted}),
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
         };
-        const response = await fetch(goalUrl, fetchConfig);
 
-        if (response.ok) {
-            const data = await response.json();
+        const updateResponse = await fetch(updateUrl, fetchConfig);
 
-            setGoals(goals.map(goal => {
-                if (goal.id === id) {
-
-                    return { ...goal, is_completed: data.is_completed };
+        if (updateResponse.ok) {
+            const updateDate = await updateResponse.json();
+            setGoals(goals.map((goal) => {
+                if(goal.id === id) {
+                    return { ...goal, is_completed: updateDate.is_completed};
                 } else {
-
                     return goal;
                 }
             }));
         } else {
-            console.error("Could not update goal!");
+            console.error("Could not update goal")
         }
     }
+
 
     return (
         <>
