@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import * as Components from "./Styles";
+import { toast } from 'react-toastify'
 
 function LoginSignup() {
   const { login } = useToken();
@@ -47,6 +48,7 @@ function LoginSignup() {
       setUsername("");
       setEmail("");
       setPassword("");
+      toast('Account created, please login!')
       navigate("/home");
     } else {
       console.error("Could not create user");
@@ -57,6 +59,7 @@ function LoginSignup() {
     e.preventDefault();
     {
       await login(username, password);
+      toast('Good to see you back!')
       navigate("/home");
     }
   };

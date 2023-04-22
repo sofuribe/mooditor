@@ -35,7 +35,7 @@ function App() {
         </Routes>
         <ToastContainer
           position="bottom-right"
-          autoClose={2000}
+          autoClose={1500}
           closeOnClick
           rtl={false}
           draggable
