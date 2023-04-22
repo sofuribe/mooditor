@@ -5,8 +5,6 @@ import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import "./App.css";
 import MainPage from "./MainPage";
 import Nav from "./Nav";
-import SignupForm from "./SignupForm.js";
-import LoginForm from "./LoginForm.js";
 import Footer from "./Footer";
 import GoalForm from "./GoalForm";
 import Calendar from "./CalendarUI";
@@ -30,8 +28,6 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="calendar" element={<Calendar />} />
-          <Route path="signup" element={<SignupForm />} />
-          <Route path="login" element={<LoginForm />} />
           <Route path="entries" element={<EntriesList />} />
           <Route path="goal" element={<GoalForm />} />
           <Route path="home" element={<LoggedInHome />} />

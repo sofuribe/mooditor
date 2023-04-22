@@ -7,7 +7,7 @@ function LoggedInHome(){
     const { token } = useToken();
 
     //to reach username
-    const [user, setUser] = useState("")
+    const [user, setUser] = useState([])
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -20,6 +20,7 @@ function LoggedInHome(){
         if (response.ok) {
             const data = await response.json();
             setUser(data.account);
+            console.log(data)
         }
     };
 

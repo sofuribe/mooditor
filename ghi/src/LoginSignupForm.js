@@ -47,7 +47,7 @@ function LoginSignup() {
       setUsername("");
       setEmail("");
       setPassword("");
-      navigate("/");
+      navigate("/home");
     } else {
       console.error("Could not create user");
     }
@@ -57,11 +57,12 @@ function LoginSignup() {
     e.preventDefault();
     {
       await login(username, password);
-      navigate("/");
+      navigate("/home");
     }
   };
 
   return (
+    <div className="">
     <div className="modal-dialog modal-lg pt-5" style={{ maxWidth: "900px" }}>
       <div
         className="modal-content mt-5"
@@ -102,7 +103,7 @@ function LoginSignup() {
 
           <Components.SignInContainer signinIn={signIn}>
             <Components.Form onSubmit={handleLoginSubmit}>
-              <Components.Title>Sign In!</Components.Title>
+              <Components.Title>Login!</Components.Title>
               <Components.Input
                 type="text"
                 placeholder="Username"
@@ -151,6 +152,7 @@ function LoginSignup() {
           </Components.OverlayContainer>
         </Components.Container>
       </div>
+    </div>
     </div>
   );
 }
