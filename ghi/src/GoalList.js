@@ -48,50 +48,58 @@ function GoalList() {
         }
     };
 
+    // const handleComplete = async (id) => {
+    //     const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
+    //     const response = await fetch(goalUrl,
+    //         { method: 'put',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Authorization: `Bearer ${token}`,
+    //         },
+    //         body: JSON.stringify({isCompleted: true})
+    //         });
+    //     if (response.ok) {
+    //         const copyGoals = [...goals];
+    //         const filteredGoals = copyGoals.filter()
+    //     }
+    // }
 
     const handleCheckboxChange = async (event, id, goal) => {
-        const isCompleted = event.target.checked ? true : false;
+        const isCompleted = event.target.checked;
         const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
-        // map goals
-        // compare the id
-        // fetch
-        // if (id === goals[0].id) {
 
-        // or new table for just update
+        let payload = { id: id, is_completed: isCompleted };
+        if (!isCompleted) {
+            payload.goal = goal;
+        }
+
         const fetchConfig = {
             method: "put",
-            body: JSON.stringify( {id: id, goal : { goals: goals, "is_completed": isCompleted }}),
+            body: JSON.stringify(payload),
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
         };
-        const response = await fetch(goalUrl, fetchConfig);
-        console.log('Response object:', response);
-        if (response.ok) {
+        try {
+            const response = await fetch(goalUrl, fetchConfig);
+            if (response.ok) {
             const data = await response.json();
-            console.log('Data:', data);
             setGoals(goals.map(goal => {
                 if (goal.id === id) {
-                    console.log(data, "-----")
-                    return { ...goal, is_completed: data.is_completed };
+                return { ...goal, is_completed: data.is_completed };
                 } else {
-                    console.log(goal, "++++++++")
-                    return goal;
+                return goal;
                 }
             }));
-        } else {
+            } else {
             console.error("Could not update goal!");
+            }
+        } catch (error) {
+            console.error("Failed to fetch goal update:", error);
         }
-        // } else {
-        //     console.log("!!!!!!!!!!")
-        // }
 
     };
-// button change the onclick
-
-
-// { goal: {goal: goals[0].id}},
 
 
     return (

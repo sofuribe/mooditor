@@ -22,6 +22,18 @@ class GoalOut(BaseModel):
     created_on: datetime.date
     is_completed: Optional[bool] = False
 
+# class GoalUpdateIn(BaseModel):
+#     goal: Optional[str]
+#     is_completed: Optional[bool] = False
+#     created_on: Optional[datetime.date]
+
+# class GoalUpdateOut(BaseModel):
+#     id: int
+#     user_id: Optional[int]
+#     goal: Optional[str]
+#     created_on: datetime.date
+#     is_completed: Optional[bool] = True
+
 
 class GoalRepository:
     def create(self, goal: GoalIn) -> Union[GoalOut, Error]:
@@ -165,6 +177,11 @@ class GoalRepository:
     def goal_in_to_out(self, id: int, goal: GoalIn):
         old_data = goal.dict()
         return GoalOut(id=id, **old_data)
+        # return GoalOut(id = "9", user_id = 1, goal= "what", created_on= "2023-04-21", is_completed= True)
+
+    # def goal_in_to_out(self, id: int, goal: GoalUpdateIn):
+    #     old_data = goal.dict()
+    #     return GoalUpdateOut(id=id, **old_data)
 
     def record_to_goal_out(self, record):
         return GoalOut(
