@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Calendar from './CalendarUI';
-import { Link } from "react-router-dom";
 
 function LoggedInHome(){
     const { token } = useToken();
@@ -57,5 +56,3 @@ function LoggedInHome(){
     }
 }
 export default LoggedInHome;
-
-{/* <div className="border-2 border-teal-700 rounded-lg mx-96"> */}
