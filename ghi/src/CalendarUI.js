@@ -38,7 +38,6 @@ export default function Calendar() {
         if (response.ok) {
           const data = await response.json();
           setEntries(data);
-          console.log(data);
         }
       }
     };
@@ -70,7 +69,7 @@ export default function Calendar() {
   );
 
   return (
-    <div className="pt-16 min-h-screen">
+    <div className="pt-10 min-h-screen">
       <div className="max-w-sm rounded overflow-hidden shadow-lg px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">

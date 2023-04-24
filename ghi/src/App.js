@@ -12,9 +12,11 @@ import GoalForm from "./GoalForm";
 import Calendar from "./CalendarUI";
 import EntriesList from './EntriesList';
 import GoalList from "./GoalList";
+import LoggedInHome from './LoggedInHome';
+import LoginSignup from "./LoginSignupForm";
 
 const domain = /https:\/\/[^/]+/;
-const basename = process.env.PUBLIC_URL.replace(domain, '');
+const basename = process.env.PUBLIC_URL.replace(domain, "");
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
           <Route path="entries" element={<EntriesList />} />
           <Route path="goal" element={<GoalForm />} />
           <Route path="list" element={<GoalList />} />
+          <Route path="home" element={<LoggedInHome />} />
+          <Route path="account" element={<LoginSignup />} />
         </Routes>
         <Footer />
       </AuthProvider>
