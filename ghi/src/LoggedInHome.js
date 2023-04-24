@@ -56,5 +56,3 @@ function LoggedInHome(){
     }
 }
 export default LoggedInHome;
-
-{/* <div className="border-2 border-teal-700 rounded-lg mx-96"> */}

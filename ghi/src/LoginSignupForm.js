@@ -55,8 +55,7 @@ function LoginSignup() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    {
-      await login(username, password);
+    {await login(username, password);
       navigate("/");
     }
   };
