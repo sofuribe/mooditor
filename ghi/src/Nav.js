@@ -22,11 +22,11 @@ function Nav() {
               <img className="w-48 pl-4" src="img/mooditor.png" alt="logo" />
             </Link>
           </h1>
-          <ul className="flex text-xlg">
-            <li className="p-4 hover:text-emerald-800">
+          <ul className="flex text-xlg body">
+            <li className="p-2 hover:text-emerald-800">
               <Link to="/">main page</Link>
             </li>
-            <li className="p-4 hover:text-emerald-800">
+            <li className="p-2 pr-4 hover:text-emerald-800">
               <Link to="account">login</Link>
             </li>
           </ul>
@@ -40,7 +40,7 @@ function Nav() {
           <h1>
             <img className="w-48 p-2 pl-4" src="img/mooditor.png" alt="logo" />
           </h1>
-          <ul className="flex text-xlg">
+          <ul className="flex text-xlg body">
             <li className="p-2 hover:text-emerald-800">
               <Link to="home">home</Link>
             </li>

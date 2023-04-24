@@ -138,7 +138,7 @@ function LoginSignup() {
                   Login here
                 </Components.OtherParagraph>
                 <Components.OtherGhostButton onClick={() => toggle(true)}>
-                  Sign In
+                  Login
                 </Components.OtherGhostButton>
               </Components.LeftOverlayPanel>
 

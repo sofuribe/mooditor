@@ -39,19 +39,19 @@ function MainPage() {
             </p> */}
         <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl">
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
-            <div className="w-64 h-64 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
+            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
                 <img src="img/track.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
             </div>
             <div className="my-14 pb-6 text-center font-medium">Track How You Are Feeling</div>
             </div>
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5 ">
-            <div className="w-64 h-64 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
+            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
                 <img src="img/goals.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
             </div>
             <div className="my-14 pb-6 text-center font-medium">Set Daily Goals</div>
             </div>
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
-            <div className="w-64 h-64 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
+            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
                 <img src="img/reflect.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
             </div>
             <div className="my-14 pb-6 text-center font-medium">Reflect On Your Day</div>
@@ -61,8 +61,8 @@ function MainPage() {
       <div className="bg-black h-1 mt-10"></div>
       <div className="bg-gradient-to-tr from-cyan-500 to-yellow-300 p-10">
         <div className="headers text-center md:text-5xl text-4xl pt-8 mb-3">Meet the Mindful Creators</div>
-        <div>
-            <p className="body text-center font-medium md:text-lg text-md px-20 py-6 md:py-3 mb-3 mx-80">
+        <div className="py-6 px-10">
+            <p className="text-left body border-2 border-black border-t-0 border-b-0 border-r-0 font-medium md:text-lg text-md px-0 md:px-4 py-0 md:py-2 mb-3 mx-80">
                 We are a team of passionate individuals dedicated to helping
                 people improve their emotional well-being by creating a platform
                 that empowers individuals to take control of their emotional health.

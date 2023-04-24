@@ -48,7 +48,7 @@ function LoggedInHome(){
                 </div> */}
             <div className="border-4 border-yellow-100 rounded-md shadow-2xl relative mx-48 my-8">
                 <div className="headers text-4xl flex justify-center items-center pt-8">Your Calendar</div>
-                <div className="pb-10">
+                <div className="pb-10 mx-4">
                     <Calendar />
                 </div>
             </div>
