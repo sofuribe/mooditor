@@ -13,7 +13,6 @@ import Calendar from "./CalendarUI";
 import EntriesList from './EntriesList';
 import LoggedInHome from './LoggedInHome';
 import LoginSignup from "./LoginSignupForm";
-import EntriesList from "./EntriesList";
 
 const domain = /https:\/\/[^/]+/;
 const basename = process.env.PUBLIC_URL.replace(domain, "");
