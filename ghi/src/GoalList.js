@@ -50,7 +50,7 @@ function GoalList() {
     };
 
     const handleCheckboxChange = async (event, id) => {
-        const isCompleted = event. target.checked ? true : false;
+        const isCompleted = event.target.checked ? true : false;
         const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
 
         // GET the goal with matching id

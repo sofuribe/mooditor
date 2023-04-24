@@ -38,7 +38,6 @@ export default function Calendar() {
         if (response.ok) {
           const data = await response.json();
           setEntries(data);
-          console.log(data);
         }
       }
     };
@@ -70,12 +69,12 @@ export default function Calendar() {
   );
 
   return (
-    <div className="pt-16 min-h-screen">
+    <div className="pt-10">
       <div className="max-w-sm rounded overflow-hidden shadow-lg px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
             <div className="flex items-center">
-              <h2 className="flex-auto font-semibold text-gray-900">
+              <h2 className="flex-auto font-semibold text-gray-900 text-lg mt-5">
                 {format(firstDayCurrentMonth, "MMMM yyyy")}
               </h2>
               <button
@@ -172,7 +171,7 @@ export default function Calendar() {
               ))}
             </div>
           </div>
-          <section className="mt-12 md:mt-0 md:pl-14">
+          <section className="mt-12 md:mt-5 md:pl-10 text-lg">
             <h2 className="font-semibold text-gray-900">
               Entries for{" "}
               <time dateTime={format(selectedDay, "yyyy-MM-dd")}>
@@ -185,7 +184,7 @@ export default function Calendar() {
                   <EntryData entry={entry} key={entry.id} />
                 ))
               ) : (
-                <p>No entries for today.</p>
+                <p>No entries for this day.</p>
               )}
             </ol>
           </section>

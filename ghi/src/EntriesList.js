@@ -39,11 +39,12 @@ function EntriesList(){
     return (
         <>
         <div className="min-h-screen m-10">
-            <div className="flex justify-center items-center h-full">
-                <div className="w-1/2">
+            <div className="border-4 border-yellow-100 rounded-md shadow-2xl relative mx-48 my-8">
+            <div className="body flex justify-center items-center h-full">
+                <div className="w-1/2 pt-6">
                     <select
                     onChange={handleSearchChange}
-                    className=" appearance-none w-full rounded bg-orange-50 border border-black px-4 py-2 pr-8 hover:bg-orange-100 mb-2rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                    className=" appearance-none w-full rounded border border-black bg-yellow-100 px-4 py-2 pr-8 hover:bg-yellow-200 mb-2rounded shadow-lg leading-tight focus:outline-none focus:shadow-outline"
                     value={search}
                     >
                         <option value="" disabled>Select a month</option>
@@ -63,14 +64,14 @@ function EntriesList(){
                     </select>
                 </div>
             </div>
-            <div className="rounded-lg">
+            <div className="rounded-lg pb-60">
                 <table className="w-1/2 ml-auto mr-auto mt-3">
                     <thead>
-                        <tr className="bg-orange-50 border rounded border-black">
-                            <th className="px-4 py-2">All Entries</th>
+                        <tr className="bg-gradient-to-r from-cyan-500 to-yellow-300 rounded">
+                            <th className="headers text-2xl px-4 py-2">All Entries</th>
                         </tr>
                     </thead>
-                    <tbody className = "">
+                    <tbody className = "body text-xl">
                         {entries.filter((entry) => {
                             return search === "" ? entry : entry.created.includes(search)})
                             .map((entry, id) => {
@@ -89,6 +90,7 @@ function EntriesList(){
                         })}
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
         </>
