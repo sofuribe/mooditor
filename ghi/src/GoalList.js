@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import useToken from '@galvanize-inc/jwtdown-for-react';
+import { ToastContainer, toast } from 'react-toastify';
 
 function GoalList() {
     const { token } = useToken();
 
     const [goals, setGoals] = useState([]);
-    // const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -43,6 +43,7 @@ function GoalList() {
         if (response.ok) {
 
             setGoals(goals.filter(goal => goal.id !== id));
+            toast("Goal Deleted!")
         } else {
             console.error("Could not delete goal");
         }
@@ -88,16 +89,12 @@ function GoalList() {
                 } else {
                     return goal;
                 }
+
             }));
+            toast("Congrats! Goal Completed.")
         } else {
             console.error("Could not update goal")
         }
-
-        // if (isCompleted) {
-        //     setIsChecked(true);
-        // } else {
-        //     setIsChecked(false);
-        // }
     };
 
 
@@ -113,7 +110,6 @@ function GoalList() {
                     </thead>
                     <tbody>
                         {goals.map(goal => {
-                            // const isCompleted = goal.isCompleted;
                             return (
                                 <tr key={goal.id}>
                                     <td>
@@ -134,6 +130,7 @@ function GoalList() {
                     </tbody>
                 </table>
             </div>
+
         </>
     )
 }

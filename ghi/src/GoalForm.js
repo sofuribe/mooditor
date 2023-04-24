@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import useToken from '@galvanize-inc/jwtdown-for-react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function GoalForm () {
@@ -33,6 +35,7 @@ function GoalForm () {
         if (response.ok) {
             await response.json();
             setGoal("");
+            toast("Great job, you've add a goal for today!")
         } else {
             console.error("Could not create goal");
         }
@@ -55,11 +58,24 @@ function GoalForm () {
                             id="goal"
                         />
                     </div>
-                    <button className="shadow bg-orange-50 hover:bg-orange-100 focus:shadow-outline focus:outline-none text-black py-2 px-4 rounded" type="button">Create</button>
+                    <button className="shadow bg-orange-50 hover:bg-orange-100 focus:shadow-outline focus:outline-none text-black py-2 px-4 rounded">Create</button>
                     </form>
                 </div>
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                 />
+
         </div>
+
     )
 }
 
