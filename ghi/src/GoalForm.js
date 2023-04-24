@@ -39,25 +39,23 @@ function GoalForm () {
     };
 
     return (
-        <div className="row min-h-screen">
-            <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <h1>New Goal</h1>
+        <div className="rounded-lg">
+            <div className="w-1/2 ml-auto mr-auto mt-3">
+                <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <h1 className="font-bold px-4 py-2 mb-2">New Goal</h1>
                     <form onSubmit={handleSubmit} id="create-goal-form">
                     <div className="form-floating mb-3">
-                        <textarea
+                        <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             onChange={handleGoalChange}
                             value={goal}
-                            placeholder="Goal"
+                            placeholder="Set Your Daily Goal(s)"
                             required
                             type="text"
                             name="goal"
                             id="goal"
-                            className="form-control"
                         />
-                        <label htmlFor="goal">Goal</label>
                     </div>
-                    <button className="btn btn-primary">Create</button>
+                    <button className="shadow bg-orange-50 hover:bg-orange-100 focus:shadow-outline focus:outline-none text-black py-2 px-4 rounded" type="button">Create</button>
                     </form>
                 </div>
             </div>

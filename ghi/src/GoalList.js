@@ -113,13 +113,13 @@ function GoalList() {
                     </thead>
                     <tbody>
                         {goals.map(goal => {
-                            const isCompleted = goal.isCompleted;
+                            // const isCompleted = goal.isCompleted;
                             return (
                                 <tr key={goal.id}>
                                     <td>
                                         <input
                                             type="checkbox"
-                                            checked={isCompleted}
+                                            checked={goal.isCompleted}
                                             onChange={(event) => handleCheckboxChange(event, goal.id)}
                                         />
 
