@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useToken from '@galvanize-inc/jwtdown-for-react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 function GoalList() {
     const { token } = useToken();
@@ -50,7 +50,7 @@ function GoalList() {
     };
 
     const handleCheckboxChange = async (event, id) => {
-        const isCompleted = event. target.checked ? true : false;
+        const isCompleted = event.target.checked ? true : false;
         const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
 
         // GET the goal with matching id
@@ -100,12 +100,12 @@ function GoalList() {
 
     return (
         <>
-            <div>
-                <table>
+            <div className="rounded-lg">
+                <table className="w-1/2 ml-auto mr-auto mt-3">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>My Daily Goals</th>
+                            <th>Daily Goals</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,7 +122,7 @@ function GoalList() {
                                     </td>
                                     <td className={goal.isCompleted ? 'completed' : ''}>{goal.goal}</td>
                                     <td>
-                                        <button type="button" className="btn btn-danger" onClick={() => handleDelete(goal.id)}>Delete</button>
+                                        <button className="px-3 py-2 text-xs text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="button" onClick={() => handleDelete(goal.id)}>Delete</button>
                                     </td>
                                 </tr>
                             )
