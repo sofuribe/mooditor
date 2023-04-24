@@ -57,11 +57,9 @@ function LoginSignup() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    {
       await login(username, password);
       toast('Good to see you back!')
       navigate("/home");
-    }
   };
 
   return (
