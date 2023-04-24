@@ -72,7 +72,7 @@ function GoalForm () {
                 pauseOnFocusLoss={false}
                 draggable
                 pauseOnHover={false}
-                 />
+            />
 
         </div>
 
