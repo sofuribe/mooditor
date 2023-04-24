@@ -14,20 +14,20 @@ function Nav() {
 
   if (!token) {
     return (
-      <nav className="px-4 py-4 text-2xl">
-        <div className="rounded-full border-2 border-black flex justify-between items-center h-16 mx-auto bg-stone-50 ">
-          <h1>
-            <img className="w-32 p-2 pl-4" src="img/mooditor.png" alt="logo" />
+      <nav className="px-1 text-2xl bg-yellow-200 border-black border-b-4 sticky top-0 z-20">
+        <div className="flex justify-between items-center h-16 mx-auto ">
+          <h1 >
+            <Link to="/" className="w-48 p-2 pl-4 text-3xl font-bold tracking-wider">
+              {/* mooditor */}
+              <img className="w-48 pl-4" src="img/mooditor.png" alt="logo" />
+            </Link>
           </h1>
-          <ul className="flex text-xlg">
+          <ul className="flex text-xlg body">
             <li className="p-2 hover:text-emerald-800">
-            <Link to="/">main page</Link>
-            </li>
-            <li className="p-2 hover:text-emerald-800">
-              <Link to="/login">login</Link>
+              <Link to="/">main page</Link>
             </li>
             <li className="p-2 pr-4 hover:text-emerald-800">
-              <Link to="/signup">sign up</Link>
+              <Link to="account">login</Link>
             </li>
           </ul>
         </div>
@@ -35,17 +35,19 @@ function Nav() {
     );
   } else {
     return (
-      <nav className="px-4 py-4 text-2xl">
-        <div className="rounded-full border-2 border-black flex justify-between items-center h-16 mx-auto bg-stone-50 ">
+      <nav className="px-1 text-2xl bg-yellow-200 border-black border-b-4 sticky top-0 z-20">
+        <div className="flex justify-between items-center h-16 mx-auto ">
           <h1>
-            <img className="w-32 p-2 pl-4" src="img/mooditor.png" alt="logo" />
+            <img className="w-48 p-2 pl-4" src="img/mooditor.png" alt="logo" />
           </h1>
-          <ul className="flex text-xlg">
-            <li className="p-2 hover:text-blue-900">home</li>
-            <li className="p-2 hover:text-blue-900">
+          <ul className="flex text-xlg body">
+            <li className="p-2 hover:text-emerald-800">
+              <Link to="home">home</Link>
+            </li>
+            <li className="p-2 hover:text-emerald-800">
               <Link to="entries">all entries</Link>
             </li>
-            <li className="p-2 pr-4 hover:text-blue-900">
+            <li className="p-2 pr-4 hover:text-emerald-800">
               <button onClick={handleLogout}>logout</button>
             </li>
           </ul>
