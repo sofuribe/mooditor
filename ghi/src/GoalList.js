@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import useToken from '@galvanize-inc/jwtdown-for-react';
-import './GoalList.css';
 
 function GoalList() {
     const { token } = useToken();
 
     const [goals, setGoals] = useState([]);
+    // const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -81,10 +81,10 @@ function GoalList() {
         const updateResponse = await fetch(updateUrl, fetchConfig);
 
         if (updateResponse.ok) {
-            const updateDate = await updateResponse.json();
+            const updateData = await updateResponse.json();
             setGoals(goals.map((goal) => {
                 if(goal.id === id) {
-                    return { ...goal, is_completed: updateDate.is_completed};
+                    return { ...goal, is_completed: updateData.is_completed};
                 } else {
                     return goal;
                 }
@@ -92,7 +92,13 @@ function GoalList() {
         } else {
             console.error("Could not update goal")
         }
-    }
+
+        // if (isCompleted) {
+        //     setIsChecked(true);
+        // } else {
+        //     setIsChecked(false);
+        // }
+    };
 
 
     return (
@@ -102,19 +108,21 @@ function GoalList() {
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Goals of the day</th>
+                            <th>My Daily Goals</th>
                         </tr>
                     </thead>
                     <tbody>
                         {goals.map(goal => {
+                            const isCompleted = goal.isCompleted;
                             return (
                                 <tr key={goal.id}>
                                     <td>
                                         <input
                                             type="checkbox"
-                                            checked={goal.isCompleted}
+                                            checked={isCompleted}
                                             onChange={(event) => handleCheckboxChange(event, goal.id)}
                                         />
+
                                     </td>
                                     <td className={goal.isCompleted ? 'completed' : ''}>{goal.goal}</td>
                                     <td>
