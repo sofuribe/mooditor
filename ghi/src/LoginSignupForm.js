@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import * as Components from "./Styles";
+import { toast } from 'react-toastify'
 
 function LoginSignup() {
   const { login } = useToken();
@@ -47,7 +48,8 @@ function LoginSignup() {
       setUsername("");
       setEmail("");
       setPassword("");
-      navigate("/");
+      toast('Account created, please login!')
+      navigate("/home");
     } else {
       console.error("Could not create user");
     }
@@ -55,11 +57,13 @@ function LoginSignup() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    await login(username, password);
-      navigate("/");
+      await login(username, password);
+      toast('Good to see you back!')
+      navigate("/home");
   };
 
   return (
+    <div className="">
     <div className="modal-dialog modal-lg pt-5" style={{ maxWidth: "900px" }}>
       <div
         className="modal-content mt-5"
@@ -100,7 +104,7 @@ function LoginSignup() {
 
           <Components.SignInContainer signinIn={signIn}>
             <Components.Form onSubmit={handleLoginSubmit}>
-              <Components.Title>Sign In!</Components.Title>
+              <Components.Title>Login!</Components.Title>
               <Components.Input
                 type="text"
                 placeholder="Username"
@@ -132,7 +136,7 @@ function LoginSignup() {
                   Login here
                 </Components.OtherParagraph>
                 <Components.OtherGhostButton onClick={() => toggle(true)}>
-                  Sign In
+                  Login
                 </Components.OtherGhostButton>
               </Components.LeftOverlayPanel>
 
@@ -149,6 +153,7 @@ function LoginSignup() {
           </Components.OverlayContainer>
         </Components.Container>
       </div>
+    </div>
     </div>
   );
 }
