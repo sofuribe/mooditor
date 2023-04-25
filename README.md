@@ -146,16 +146,17 @@ Merge a change into main to kick off the initial deploy. Once the build pipeline
 finishes you should be able to see an "under construction" page on your GitLab
 pages site.
 
------------------------------------------------------------------------------------
+
+
 
 # MOODITOR
 
 ## Software Developers:
 
-Sofia Uribe
-Jackie Liu
-Terence Wong
-Brooke Crokett
+- Sofia Uribe
+- Jackie Liu
+- Terence Wong
+- Brooke Crokett
 
 ## Theme
 
@@ -164,10 +165,10 @@ Mooditor is a platform for individuals to keep track of their daily mood, goals,
 ## Design
 
 ### Wireframe
-- ![Wireframe](wireframe.png)
+- ![Wireframe](/uploads/01a3815cdbc12de899837eb4ea62b090/wireframe.png)
 
 ### Schemas
-- ![Schemas](Schema.png)
+- ![Schemas](/uploads/724f27cadd3c6711a099e44a1c7f8630/Schema.png)
 
 ## Requirements
 1. Python 3
@@ -194,10 +195,10 @@ In your project directory, type and press enter after each command listed below:
 2. Build the container and image: ```docker-compose build```
 3. Run the container: ```docker-compose up```
 
-![Successful Docker Containers](docker.png)
+![Successful Docker Containers](/uploads/df253454852f9f24e11feac3946e1206/docker.png)
 
 ## Navigating the Front-End
-
+To navigate the server, type ```http://localhost:3000```, this will take you to the Home Page.
 
 
 ## FastAPI Endpoints
@@ -209,7 +210,7 @@ In your project directory, type and press enter after each command listed below:
   This action creates a user account tied to a specific user and stores it within the database.
   <br>
   <br>
-  JSON Request Body:
+  Request Body:
 
   `{
     "username": "string",
@@ -241,7 +242,7 @@ In your project directory, type and press enter after each command listed below:
   This action logs an existing user into the application.
   <br>
   <br>
-  JSON Request Body:
+  Request Body:
 
   `{
     "username": "string",
@@ -279,7 +280,7 @@ In your project directory, type and press enter after each command listed below:
   This action creates an entry tied to the existing user and stores it within the database.
   <br>
   <br>
-  JSON Request Body:
+  Request Body:
 
   `{
     "activity_name": [
@@ -357,7 +358,7 @@ In your project directory, type and press enter after each command listed below:
   This action updates the single entry tied to the input id.
   <br>
   <br>
-  JSON Request Body:
+  Request Body:
 
   `{
     "mood": "good",
@@ -385,7 +386,7 @@ In your project directory, type and press enter after each command listed below:
   This action creates a goal tied to the existing user and stores it within the database.
   <br>
   <br>
-  JSON Request Body:
+  Request Body:
 
   `{
     "user_id": 0,
@@ -453,7 +454,7 @@ In your project directory, type and press enter after each command listed below:
   This action updates the single goal tied to the input id.
   <br>
   <br>
-  JSON Request Body:
+  Request Body:
 
   `{
     "user_id": 0,
