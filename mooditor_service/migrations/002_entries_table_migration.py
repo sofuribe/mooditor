@@ -22,7 +22,7 @@ steps = [
             user_id INT NOT NULL,
             mood MOOD_TYPE NOT NULL,
             journal TEXT,
-            created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+            created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         """,
         # "Down" SQL statement
