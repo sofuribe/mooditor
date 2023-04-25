@@ -489,4 +489,8 @@ To navigate the server, type ```http://localhost:3000```, this will take you to 
   <br>
   <br>
 
+<<<<<<< HEAD
 </details>
+=======
+</details>
+>>>>>>> main
