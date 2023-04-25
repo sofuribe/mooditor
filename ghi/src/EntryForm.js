@@ -1,39 +1,36 @@
 import React, { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
-// import { faPersonRunning } from "@fortawesome/free-solid-svg-icons";
-// import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
-// import { faPersonWalking } from "@fortawesome/free-solid-svg-icons";
-// import { faGamepad } from "@fortawesome/free-solid-svg-icons";
-// import { faPersonSnowboarding } from "@fortawesome/free-solid-svg-icons";
-// import { faPersonBiking } from "@fortawesome/free-solid-svg-icons";
-// import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
-// import { faPersonHiking } from "@fortawesome/free-solid-svg-icons";
-// import { faPersonSkiing } from "@fortawesome/free-solid-svg-icons";
-// import { faKitchenSet } from "@fortawesome/free-solid-svg-icons";
-// import { faBed } from "@fortawesome/free-solid-svg-icons";
-// import { faFaceLaughBeam } from "@fortawesome/free-solid-svg-icons";
-// import { faFaceSmileBeam } from "@fortawesome/free-solid-svg-icons";
-// import { faFaceMeh } from "@fortawesome/free-solid-svg-icons";
-// import { faFaceTired } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { faPersonRunning } from "@fortawesome/free-solid-svg-icons";
+import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
+import { faPersonWalking } from "@fortawesome/free-solid-svg-icons";
+import { faGamepad } from "@fortawesome/free-solid-svg-icons";
+import { faPersonSnowboarding } from "@fortawesome/free-solid-svg-icons";
+import { faPersonBiking } from "@fortawesome/free-solid-svg-icons";
+import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
+import { faPersonHiking } from "@fortawesome/free-solid-svg-icons";
+import { faPersonSkiing } from "@fortawesome/free-solid-svg-icons";
+import { faKitchenSet } from "@fortawesome/free-solid-svg-icons";
+import { faBed } from "@fortawesome/free-solid-svg-icons";
+import { faFaceLaughBeam } from "@fortawesome/free-solid-svg-icons";
+import { faFaceSmileBeam } from "@fortawesome/free-solid-svg-icons";
+import { faFaceMeh } from "@fortawesome/free-solid-svg-icons";
+import { faFaceTired } from "@fortawesome/free-solid-svg-icons";
 
 const activities = [
-  "Reading",
-  "Running",
-  "Gym",
-  "Walking",
-  "Games",
-  "Snowboarding",
-  "Biking",
-  "Sports",
-  "Swimming",
-  "Hiking",
-  "Meditate",
-  "Yoga",
-  "Skiing",
-  "Cooking",
-  "Sleeping",
+  { name: "Reading", icon: faBookOpen },
+  { name: "Running", icon: faPersonRunning },
+  { name: "Gym", icon: faDumbbell },
+  { name: "Walking", icon: faPersonWalking },
+  { name: "Snowboarding", icon: faPersonSnowboarding },
+  { name: "Biking", icon: faPersonBiking },
+  { name: "Swimming", icon: faPersonSwimming },
+  { name: "Hiking", icon: faPersonHiking },
+  { name: "Skiing", icon: faPersonSkiing },
+  { name: "Cooking", icon: faKitchenSet },
+  { name: "Sleeping", icon: faBed },
+  { name: "Games", icon: faGamepad },
 ];
 
 function EntryForm() {
@@ -57,9 +54,8 @@ function EntryForm() {
     setJournal(value);
   };
 
-  const handleMoodButtonClick = (e) => {
-    const value = e.target.value;
-    setMood(value);
+  const handleMoodButtonClick = (mood) => {
+    setMood(mood);
   };
 
   const handleSubmit = async (event) => {
@@ -96,53 +92,56 @@ function EntryForm() {
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1>What's Your Mood Today?</h1>
-          {/* <FontAwesomeIcon icon={faFaceLaughBeam} size="2xl" />
-          <FontAwesomeIcon icon={faFaceSmileBeam} size="2xl" />
-          <FontAwesomeIcon icon={faFaceMeh} size="2xl" />
-          <FontAwesomeIcon icon={faFaceTired} size="2xl" /> */}
           <form onSubmit={handleSubmit} id="create-mood-form">
             <div className="form-floating mb-3">
-              <label htmlFor="mood">Mood</label>
-              <div className="btn-group mb-3">
-                <button
-                  type="button"
-                  className={`w-16 h-16 bg-green-500 rounded-full btn ${
-                    mood === "great" ? "bg-green-600" : "hover:bg-green-600"
-                  } p-4`}
-                  value="great"
-                  onClick={handleMoodButtonClick}
-                >
-                  Great
+              <div
+                className="btn-group mb-3"
+                style={{
+                  display: "flex",
+                  gap: "1rem",
+                  marginTop: "0.5rem",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                <button>
+                  <FontAwesomeIcon
+                    icon={faFaceLaughBeam}
+                    value="great"
+                    size="4x"
+                    onClick={() => {
+                      handleMoodButtonClick("great");
+                    }}
+                  />
                 </button>
-                <button
-                  type="button"
-                  className={`w-16 h-16 bg-blue-500 rounded-full btn ${
-                    mood === "good" ? "bg-blue-600" : "hover:bg-blue-600"
-                  } p-4`}
-                  value="good"
-                  onClick={handleMoodButtonClick}
-                >
-                  Good
+                <button>
+                  <FontAwesomeIcon
+                    icon={faFaceSmileBeam}
+                    value="good"
+                    size="4x"
+                    onClick={() => {
+                      handleMoodButtonClick("good");
+                    }}
+                  />
                 </button>
-                <button
-                  type="button"
-                  className={`w-16 h-16 bg-yellow-500 rounded-full btn ${
-                    mood === "okay" ? "bg-yellow-600" : "hover:bg-yellow-600"
-                  } p-4`}
-                  value="okay"
-                  onClick={handleMoodButtonClick}
-                >
-                  Okay
+                <button>
+                  <FontAwesomeIcon
+                    icon={faFaceMeh}
+                    value="okay"
+                    size="4x"
+                    onClick={() => {
+                      handleMoodButtonClick("okay");
+                    }}
+                  />
                 </button>
-                <button
-                  type="button"
-                  className={`w-16 h-16 bg-red-500 rounded-full btn ${
-                    mood === "awful" ? "bg-red-600" : "hover:bg-red-600"
-                  } p-4`}
-                  value="awful"
-                  onClick={handleMoodButtonClick}
-                >
-                  Awful
+                <button>
+                  <FontAwesomeIcon
+                    icon={faFaceTired}
+                    value="awful"
+                    size="4x"
+                    onClick={() => {
+                      handleMoodButtonClick("awful");
+                    }}
+                  />
                 </button>
               </div>
             </div>
@@ -185,18 +184,6 @@ function EntryForm() {
                 className="form-control"
               />
             </div>
-            {/* <FontAwesomeIcon icon={faBookOpen} size="xl" />
-            <FontAwesomeIcon icon={faPersonRunning} size="2xl" />
-            <FontAwesomeIcon icon={faDumbbell} size="xl" />
-            <FontAwesomeIcon icon={faPersonWalking} size="xl" />
-            <FontAwesomeIcon icon={faGamepad} />
-            <FontAwesomeIcon icon={faPersonSnowboarding} />
-            <FontAwesomeIcon icon={faPersonBiking} size="xl" />
-            <FontAwesomeIcon icon={faPersonSwimming} size="xl" />
-            <FontAwesomeIcon icon={faPersonHiking} size="xl" />
-            <FontAwesomeIcon icon={faPersonSkiing} size="xl" />
-            <FontAwesomeIcon icon={faKitchenSet} size="xl" />
-            <FontAwesomeIcon icon={faBed} /> */}
             <button className="btn btn-primary">Submit</button>
           </form>
         </div>
