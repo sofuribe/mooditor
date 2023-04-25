@@ -23,7 +23,7 @@ const activities = [
   "Running",
   "Gym",
   "Walking",
-  "Video Games",
+  "Games",
   "Snowboarding",
   "Biking",
   "Sports",
@@ -36,14 +36,12 @@ const activities = [
   "Sleeping",
 ];
 
-function EntryForm () {
+function EntryForm() {
+  const { token } = useToken();
 
-    const { token } = useToken();
-
-    const [mood, setMood] = useState("");
-    const [selectedActivities, setSelectedActivities] = useState([]);
-    const [journal, setJournal] = useState("");
-
+  const [mood, setMood] = useState("");
+  const [selectedActivities, setSelectedActivities] = useState([]);
+  const [journal, setJournal] = useState("");
 
   const handleActivityChange = (activity) => {
     if (selectedActivities.includes(activity)) {

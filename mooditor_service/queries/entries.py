@@ -9,7 +9,7 @@ class ActivityEnum(str, Enum):
     Walking = "Walking"
     Gym = "Gym"
     Running = "Running"
-    Video_games = "Video Games"
+    Games = "Games"
     Snowboarding = "Snowboarding"
     Biking = "Biking"
     Reading = "Reading"
