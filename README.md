@@ -96,7 +96,7 @@ deployment, but it just consists of these steps:
 * make sure this project is in a group. If it isn't, stop
   now and move it to a GitLab group
 * remove the fork relationship: In GitLab go to:
-  
+
   Settings -> General -> Advanced -> Remove fork relationship
 
 * add these GitLab CI/CD variables:
@@ -145,3 +145,347 @@ in GitLab.
 Merge a change into main to kick off the initial deploy. Once the build pipeline
 finishes you should be able to see an "under construction" page on your GitLab
 pages site.
+
+-----------------------------------------------------------------------------------
+
+# MOODITOR
+
+## Software Developers:
+
+Sofia Uribe
+Jackie Liu
+Terence Wong
+Brooke Crokett
+
+## Theme
+
+Mooditor is a platform for individuals to keep track of their daily mood, goals, and activities.
+
+## Design
+
+### Wireframe
+- ![Wireframe](wireframe.png)
+
+### Schemas
+- ![Schemas](Schema.png)
+
+## Requirements
+1. Python 3
+2. Docker Desktop
+3. VS Code
+4. FastAPI
+5. A database compatible with PostgresSQL databases (Beekeeper Studio)
+
+## Getting Started
+
+Please have Docker Desktop downloaded before continuing with the following directions listed below.
+
+### Cloning the Repository
+
+Inside your terminal, change to a directory that you would like to clone this project into
+In your terminal, type: ```git clone https://gitlab.com/mooditor/mooditor.git```
+Switch into the project directory:
+
+### Firing up Docker
+
+In your project directory, type and press enter after each command listed below:
+
+1. Create the volume: ```docker volume create postgres-data```
+2. Build the container and image: ```docker-compose build```
+3. Run the container: ```docker-compose up```
+
+![Successful Docker Containers](docker.png)
+
+## Navigating the Front-End
+
+
+
+## FastAPI Endpoints
+
+### Users
+
+<details>
+  <summary markdown="span">POST: Create User | http://localhost:8000/api/users</summary>
+  This action creates a user account tied to a specific user and stores it within the database.
+  <br>
+  <br>
+  JSON Request Body:
+
+  `{
+    "username": "string",
+    "password": "string",
+    "email": "string"
+  }`
+  <br>
+  <br>
+  Returns (Status Code 200):
+
+  `{
+    "access_token": "string",
+    "token_type": "Bearer",
+    "account": {
+      "id": 0,
+      "username": "string",
+      "email": "string"
+    }
+  }`
+  <br>
+  <br>
+
+</details>
+
+### Authentication
+
+<details>
+  <summary markdown="span">POST: Login | http://localhost:8000/token</summary>
+  This action logs an existing user into the application.
+  <br>
+  <br>
+  JSON Request Body:
+
+  `{
+    "username": "string",
+    "password": "string"
+  }`
+  <br>
+  <br>
+  Returns (Status Code 200):
+
+  `{
+    "access_token": "string",
+    "token_type": "Bearer"
+  }`
+  <br>
+  <br>
+
+</details>
+<details>
+  <summary markdown="span">DELETE: Logout | http://localhost:8000/token</summary>
+  This action logs an existing user out of the application.
+  <br>
+  <br>
+
+  Returns (Status Code 200):
+
+  `true`
+  <br>
+  <br>
+
+</details>
+
+### Entries
+<details>
+  <summary markdown="span">POST: Create Entries | http://localhost:8000/entries</summary>
+  This action creates an entry tied to the existing user and stores it within the database.
+  <br>
+  <br>
+  JSON Request Body:
+
+  `{
+    "activity_name": [
+      "Walking", "Snowboarding"
+    ],
+    "mood": "great",
+    "journal": "had a great day",
+    "created": "2023-04-25"
+  }`
+  <br>
+  <br>
+  Returns (Status Code 200):
+
+  `{
+    "id": 1,
+    "user_id": 2,
+    "mood": "great",
+    "journal": "had a great day",
+    "created": "2023-04-25"
+  }`
+  <br>
+  <br>
+
+</details>
+<details>
+  <summary markdown="span">GET: Get All Entries | http://localhost:8000/entries</summary>
+  This action gets all entries stored within the database.
+  <br>
+  <br>
+
+  Returns (Status Code 200):
+
+  `[
+    {
+      "id": 1,
+      "user_id": 2,
+      "activity_name": [
+        "Walking",
+        "Snowboarding"
+      ],
+      "mood": "great",
+      "journal": "had a great day",
+      "created": "2023-04-25"
+    }
+  ]`
+  <br>
+  <br>
+
+</details>
+<details>
+  <summary markdown="span">GET: Get One Entry | http://localhost:8000/entry/{id}</summary>
+  This action gets the single entry tied to the input id.
+  <br>
+  <br>
+
+  Returns (Status Code 200):
+
+  `{
+    "id": 1,
+    "user_id": 2,
+    "activity_name": [
+      "Walking",
+      "Snowboarding"
+    ],
+    "mood": "great",
+    "journal": "had a great day",
+    "created": "2023-04-25"
+  }`
+  <br>
+  <br>
+
+</details>
+<details>
+  <summary markdown="span">PUT: Update Entry| http://localhost:8000/entry/{id}</summary>
+  This action updates the single entry tied to the input id.
+  <br>
+  <br>
+  JSON Request Body:
+
+  `{
+    "mood": "good",
+    "journal": "i had fun",
+    "created": "2023-04-25"
+  }`
+  <br>
+  <br>
+  Returns (Status Code 200):
+
+  `{
+    "id": 1,
+    "mood": "good",
+    "journal": "i had fun",
+    "created": "2023-04-25"
+  }`
+  <br>
+  <br>
+
+</details>
+
+### Goals
+<details>
+  <summary markdown="span">POST: Create Goals | http://localhost:8000/goals</summary>
+  This action creates a goal tied to the existing user and stores it within the database.
+  <br>
+  <br>
+  JSON Request Body:
+
+  `{
+    "user_id": 0,
+    "goal": "string",
+    "created_on": "2023-04-24",
+    "is_completed": false
+  }`
+  <br>
+  <br>
+  Returns (Status Code 200):
+
+  `{
+    "id": 66,
+    "user_id": 2,
+    "goal": "string",
+    "created_on": "2023-04-24",
+    "is_completed": false
+  }`
+  <br>
+  <br>
+
+</details>
+<details>
+  <summary markdown="span">GET: Get All Goals | http://localhost:8000/goals</summary>
+  This action gets all goals stored within the database.
+  <br>
+  <br>
+
+  Returns (Status Code 200):
+
+  `[
+    {
+      "id": 9,
+      "user_id": 2,
+      "goal": "string",
+      "created_on": "2023-04-25",
+      "is_completed": false
+    }
+  ]`
+  <br>
+  <br>
+
+</details>
+<details>
+  <summary markdown="span">GET: Get One Goal | http://localhost:8000/goal/{id}</summary>
+  This action gets the single goal tied to the input id.
+  <br>
+  <br>
+
+  Returns (Status Code 200):
+
+  `{
+    "id": 9,
+    "user_id": 2,
+    "goal": "string",
+    "created_on": "2023-04-25",
+    "is_completed": false
+  }`
+  <br>
+  <br>
+
+</details>
+<details>
+  <summary markdown="span">PUT: Update Goal | http://localhost:8000/goal/{id}</summary>
+  This action updates the single goal tied to the input id.
+  <br>
+  <br>
+  JSON Request Body:
+
+  `{
+    "user_id": 0,
+    "goal": "study for final",
+    "created_on": "2023-04-25",
+    "is_completed": true
+  }`
+  <br>
+  <br>
+  Returns (Status Code 200):
+
+  `{
+    "id": 9,
+    "user_id": 0,
+    "goal": "study for final",
+    "created_on": "2023-04-25",
+    "is_completed": true
+  }`
+  <br>
+  <br>
+
+</details>
+<details>
+  <summary markdown="span">DELETE: Delete Goal | http://localhost:8000/goal/{id}</summary>
+  This action deletes the single goal tied to the input id.
+  <br>
+  <br>
+
+  Returns (Status Code 200):
+
+  `true`
+  <br>
+  <br>
+
+</details>
