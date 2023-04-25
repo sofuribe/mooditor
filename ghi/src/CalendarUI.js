@@ -284,9 +284,9 @@ function EntryData({ entry }) {
   return (
     <>
       <div>
-        <p className="font-semibold text-gray-900">
+        <div className="font-semibold text-gray-900">
           <FontAwesomeIcon icon={icon} size="4x" />
-        </p>
+        </div>
       </div>
       <div>
         <p className="font-semibold text-gray-900">
@@ -311,7 +311,9 @@ function EntryData({ entry }) {
         </p>
       </div>
       <div className="flex-auto">
-        <p className="font-semibold text-gray-900">Journal: {entry.journal}</p>
+        <div className="font-semibold text-gray-900">
+          Journal: {entry.journal}
+        </div>
       </div>
     </>
   );
