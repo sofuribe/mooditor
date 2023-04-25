@@ -15,19 +15,19 @@ function MainPage() {
         </div>
         <div className="md:w-2/3 h-full flex items-center">
           <div className="h-full bg-gradient-to-tr from-cyan-500 to-yellow-300 text-black items-start max-w-screen-lg mx-7">
-            <h2 className="headers text-4xl md:text-5xl text-center px-32 pt-40 mt-8 font-bold">
-              Empowering emotional health, one mood at a time.
-            </h2>
-            <p className="text-xl md:text-2xl text-center py-8 md:py-10">
-                Keep track of your daily mood, goals, and activities
-            </p>
-            <div className="flex justify-center items-center">
-              <Link to="account">
-                <button className="bg-yellow-200 hover:bg-yellow-300 ring-2 ring-black hover:-translate-y-2 text-black py-5 px-4 rounded-full font-bold shadow-2xl">
-                  Create An Account
-                </button>
-              </Link>
-            </div>
+                <h2 className="headers text-4xl md:text-5xl text-center px-32 pt-40 mt-8 font-bold">
+                Empowering emotional health, one mood at a time.
+                </h2>
+                <p className="text-xl md:text-2xl text-center py-8 md:py-10">
+                    Keep track of your daily mood, goals, and activities
+                </p>
+                <div className="flex justify-center items-center">
+                    <Link to="account">
+                        <button className="bg-yellow-200 hover:bg-yellow-300 ring-2 ring-black hover:-translate-y-2 text-black py-5 px-4 rounded-full font-bold shadow-2xl">
+                        Create An Account
+                        </button>
+                    </Link>
+                </div>
           </div>
         </div>
       </div>
