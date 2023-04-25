@@ -21,6 +21,18 @@ import {
   faFaceTired,
   faSmileBeam,
   faFaceMeh,
+  faBookOpen,
+  faPersonRunning,
+  faDumbbell,
+  faPersonWalking,
+  faGamepad,
+  faPersonSnowboarding,
+  faPersonBiking,
+  faPersonSwimming,
+  faPersonHiking,
+  faPersonSkiing,
+  faKitchenSet,
+  faBed,
 } from "@fortawesome/free-solid-svg-icons";
 
 function classNames(...classes) {
@@ -33,6 +45,52 @@ const moodIcons = {
   awful: faFaceTired,
 };
 
+const activityIcons = {
+  Reading: {
+    icon: faBookOpen,
+    label: "Reading",
+  },
+  Running: {
+    icon: faPersonRunning,
+    label: "Running",
+  },
+  Gym: {
+    icon: faDumbbell,
+    label: "Gym",
+  },
+  Walking: {
+    icon: faPersonWalking,
+    label: "Walking",
+  },
+  Snowboarding: {
+    icon: faPersonSnowboarding,
+    label: "Snowboarding",
+  },
+  Biking: {
+    icon: faPersonBiking,
+    label: "Biking",
+  },
+  Swimming: {
+    icon: faPersonSwimming,
+    label: "Swimming",
+  },
+  Hiking: {
+    icon: faPersonHiking,
+    label: "Hiking",
+  },
+  Skiing: {
+    icon: faPersonSkiing,
+    label: "Skiing",
+  },
+  Cooking: {
+    icon: faKitchenSet,
+    label: "Cooking",
+  },
+  Sleeping: {
+    icon: faBed,
+    label: "Sleeping",
+  },
+};
 export default function Calendar() {
   const { token } = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
