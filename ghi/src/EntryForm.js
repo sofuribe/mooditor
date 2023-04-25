@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
-import { faPersonRunning } from "@fortawesome/free-solid-svg-icons";
-import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
-import { faPersonWalking } from "@fortawesome/free-solid-svg-icons";
-import { faGamepad } from "@fortawesome/free-solid-svg-icons";
-import { faPersonSnowboarding } from "@fortawesome/free-solid-svg-icons";
-import { faPersonBiking } from "@fortawesome/free-solid-svg-icons";
-import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
-import { faPersonHiking } from "@fortawesome/free-solid-svg-icons";
-import { faPersonSkiing } from "@fortawesome/free-solid-svg-icons";
-import { faKitchenSet } from "@fortawesome/free-solid-svg-icons";
-import { faBed } from "@fortawesome/free-solid-svg-icons";
-import { faFaceLaughBeam } from "@fortawesome/free-solid-svg-icons";
-import { faFaceSmileBeam } from "@fortawesome/free-solid-svg-icons";
-import { faFaceMeh } from "@fortawesome/free-solid-svg-icons";
-import { faFaceTired } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+// import { faPersonRunning } from "@fortawesome/free-solid-svg-icons";
+// import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
+// import { faPersonWalking } from "@fortawesome/free-solid-svg-icons";
+// import { faGamepad } from "@fortawesome/free-solid-svg-icons";
+// import { faPersonSnowboarding } from "@fortawesome/free-solid-svg-icons";
+// import { faPersonBiking } from "@fortawesome/free-solid-svg-icons";
+// import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
+// import { faPersonHiking } from "@fortawesome/free-solid-svg-icons";
+// import { faPersonSkiing } from "@fortawesome/free-solid-svg-icons";
+// import { faKitchenSet } from "@fortawesome/free-solid-svg-icons";
+// import { faBed } from "@fortawesome/free-solid-svg-icons";
+// import { faFaceLaughBeam } from "@fortawesome/free-solid-svg-icons";
+// import { faFaceSmileBeam } from "@fortawesome/free-solid-svg-icons";
+// import { faFaceMeh } from "@fortawesome/free-solid-svg-icons";
+// import { faFaceTired } from "@fortawesome/free-solid-svg-icons";
 
 const activities = [
   "Reading",
@@ -40,7 +40,10 @@ function EntryForm () {
 
     const { token } = useToken();
 
-    function
+    const [mood, setMood] = useState("");
+    const [selectedActivities, setSelectedActivities] = useState([]);
+    const [journal, setJournal] = useState("");
+
 
   const handleActivityChange = (activity) => {
     if (selectedActivities.includes(activity)) {
@@ -95,10 +98,10 @@ function EntryForm () {
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1>What's Your Mood Today?</h1>
-          <FontAwesomeIcon icon={faFaceLaughBeam} size="2xl" />
+          {/* <FontAwesomeIcon icon={faFaceLaughBeam} size="2xl" />
           <FontAwesomeIcon icon={faFaceSmileBeam} size="2xl" />
           <FontAwesomeIcon icon={faFaceMeh} size="2xl" />
-          <FontAwesomeIcon icon={faFaceTired} size="2xl" />
+          <FontAwesomeIcon icon={faFaceTired} size="2xl" /> */}
           <form onSubmit={handleSubmit} id="create-mood-form">
             <div className="form-floating mb-3">
               <label htmlFor="mood">Mood</label>
@@ -184,7 +187,7 @@ function EntryForm () {
                 className="form-control"
               />
             </div>
-            <FontAwesomeIcon icon={faBookOpen} size="xl" />
+            {/* <FontAwesomeIcon icon={faBookOpen} size="xl" />
             <FontAwesomeIcon icon={faPersonRunning} size="2xl" />
             <FontAwesomeIcon icon={faDumbbell} size="xl" />
             <FontAwesomeIcon icon={faPersonWalking} size="xl" />
@@ -195,7 +198,7 @@ function EntryForm () {
             <FontAwesomeIcon icon={faPersonHiking} size="xl" />
             <FontAwesomeIcon icon={faPersonSkiing} size="xl" />
             <FontAwesomeIcon icon={faKitchenSet} size="xl" />
-            <FontAwesomeIcon icon={faBed} />
+            <FontAwesomeIcon icon={faBed} /> */}
             <button className="btn btn-primary">Submit</button>
           </form>
         </div>
