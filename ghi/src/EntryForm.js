@@ -6,8 +6,6 @@ function EntryForm () {
 
     const { token } = useToken();
 
-    function 
-
     const [mood, setMood] = useState("")
     const [activity, setActivity] = useState("")
     const [journal, setJournal] = useState("")

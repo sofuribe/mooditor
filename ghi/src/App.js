@@ -14,6 +14,7 @@ import LoggedInHome from './LoggedInHome';
 import LoginSignup from "./LoginSignupForm";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import EntryForm from "./EntryForm";
 
 
 const domain = /https:\/\/[^/]+/;
