@@ -70,10 +70,10 @@ class GoalRepository:
                         FROM goals
                         JOIN users
                         ON goals.user_id = users.id
-                        WHERE users.id = %s
+                        WHERE users.id = %s AND goals.created_on = %s
                         ORDER BY created_on;
                         """,
-                        [account_data["id"]],
+                        [account_data["id"], datetime.date.today()],
                     )
                     return [self.record_to_goal_out(record) for record in db]
         except Exception:
@@ -109,6 +109,25 @@ class GoalRepository:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
+                    if goal.created_on is None:
+                        goal.created_on = datetime.date.today()
+                    if goal.user_id is None:
+                        db.execute(
+                            """
+                            SELECT user_id FROM goals WHERE id = %s
+                            """,
+                            [id]
+                        )
+                        goal.user_id = db.fetchone()[0]
+                    if goal.goal is None:
+                        db.execute(
+                            """
+                            SELECT goal FROM goals WHERE id = %s
+                            """,
+                            [id]
+                        )
+                        goal.goal = db.fetchone()[0]
+
                     db.execute(
                         """
                         UPDATE goals

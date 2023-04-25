@@ -36,12 +36,11 @@ const activities = [
   "Sleeping",
 ];
 
-function EntryForm() {
-  const { token } = useToken();
+function EntryForm () {
 
-  const [mood, setMood] = useState("");
-  const [selectedActivities, setSelectedActivities] = useState([]);
-  const [journal, setJournal] = useState("");
+    const { token } = useToken();
+
+    function
 
   const handleActivityChange = (activity) => {
     if (selectedActivities.includes(activity)) {

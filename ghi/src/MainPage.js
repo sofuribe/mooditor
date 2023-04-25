@@ -1,84 +1,105 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import './fonts.css';
 
 function MainPage() {
   return (
     <div className="min-h-screen">
-      <h1 className="text-center mt-14 text-5xl">welcome to mooditor!</h1>
-      <div className="flex flex-wrap my-8 mx-4">
-        <div className="w-full md:w-1/3 flex items-center">
+      <div className="h-[700px] flex">
+        <div className="md:w-1/3 h-full flex items-center">
           <img
-            className="align-top h-96 flex-shrink-0"
-            src="img/brainGif2.gif"
-            alt="people talking"
+            className="align-top hover:-translate-y-5"
+            src="img/mainGif.gif"
+            alt="floating head"
           />
         </div>
-        <div className="w-full md:w-2/3 flex items-center">
-          <div className=" h-96 mt-12 bg-orange-200 rounded-md text-black items-start max-w-screen-lg mx-auto px-8">
-            <h2 className="text-3xl text-center pt-8 mt-5 underline underline-offset-4 decoration-2">
-              who we are
-            </h2>
-            <p className="text-m text-center m-10">
-              We are a team of passionate individuals dedicated to helping
-              people improve their emotional well-being by creating a platform
-              that empowers individuals to take control of their emotional
-              health. Our mission is to provide a simple and effective way for
-              people to track their moods, identify triggers, and gain insights
-              that can help them make positive changes in their lives. We are
-              committed to promoting mental health awareness and supporting
-              individuals on their journey towards emotional well-being.
-            </p>
-            <div className="flex justify-center items-center">
-              <Link to="account">
-                <button className="bg-orange-400 hover:ring-2 hover:-translate-y-2 ring-black text-black py-5 px-4 rounded-full font-bold">
-                  create an account
-                </button>
-              </Link>
+        <div className="md:w-2/3 h-full flex items-center">
+          <div className="h-full bg-gradient-to-tr from-cyan-500 to-yellow-300 text-black items-start max-w-screen-lg mx-7">
+                <h2 className="headers text-4xl md:text-5xl text-center px-32 pt-40 mt-8 font-bold">
+                Empowering emotional health, one mood at a time.
+                </h2>
+                <p className="text-xl md:text-2xl text-center py-8 md:py-10">
+                    Keep track of your daily mood, goals, and activities
+                </p>
+                <div className="flex justify-center items-center">
+                    <Link to="account">
+                        <button className="bg-yellow-200 hover:bg-yellow-300 ring-2 ring-black hover:-translate-y-2 text-black py-5 px-4 rounded-full font-bold shadow-2xl">
+                        Create An Account
+                        </button>
+                    </Link>
+                </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-black h-1 mt-10"></div>
+      <div className="bg-gradient-to-br from-cyan-500 to-yellow-300">
+        <div className="headers text-center text-5xl pt-20 mb-8 font-bold">App Highlights</div>
+            {/* <p className="text-xl md:text-2xl text-center md:py-3">
+                An insight to your personal tracker
+            </p> */}
+        <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl">
+            <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
+            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
+                <img src="img/track.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
             </div>
-          </div>
+            <div className="my-14 pb-6 text-center font-medium">Track How You Are Feeling</div>
+            </div>
+            <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5 ">
+            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
+                <img src="img/goals.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
+            </div>
+            <div className="my-14 pb-6 text-center font-medium">Set Daily Goals</div>
+            </div>
+            <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
+            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
+                <img src="img/reflect.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
+            </div>
+            <div className="my-14 pb-6 text-center font-medium">Reflect On Your Day</div>
+            </div>
         </div>
       </div>
-      <div className="bg-black h-1 my-24"></div>
-      <div className="text-center text-4xl mb-8">what you'll find</div>
-      <div className="flex flex-col justify-center  md:flex-row md:justify-center md:items-stretch text-xl">
-        <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
-          <div className="w-64 h-64 bg-teal-700 rounded-full"></div>
-          <div className="mt-14 text-center">track how you are feeling</div>
+      <div className="bg-black h-1 mt-10"></div>
+      <div className="bg-gradient-to-tr from-cyan-500 to-yellow-300 p-10">
+        <div className="headers text-center md:text-5xl text-4xl pt-8 mb-3">Meet the Mindful Creators</div>
+        <div className="py-6 px-10">
+            <p className="text-left body border-2 border-black border-t-0 border-b-0 border-r-0 font-medium md:text-lg text-md px-0 md:px-4 py-0 md:py-2 mb-3 mx-80">
+                We are a team of passionate individuals dedicated to helping
+                people improve their emotional well-being by creating a platform
+                that empowers individuals to take control of their emotional health.
+            </p>
         </div>
-        <div className="flex items-center flex-col mx-4 md:mx-20 py-8 hover:-translate-y-5">
-          <div className="w-64 h-64 bg-teal-700 rounded-full"></div>
-          <div className="mt-14 text-center">set daily goals</div>
-        </div>
-        <div className="flex items-center flex-col mx-4 md:mx-20 py-8 hover:-translate-y-5">
-          <div className="w-64 h-64 bg-teal-700 rounded-full"></div>
-          <div className="mt-14 text-center">reflect on your day</div>
-        </div>
-      </div>
-      <div className="bg-black h-1 my-24"></div>
-      <div className="text-center text-4xl mb-8 my-28">mindful creators</div>
-      <div className="bg-orange-200 rounded-md p-16 mx-16">
-        <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl mt-4">
-          <div className="flex items-center flex-col mx-4 md:mx-10 md:my-0 my-4 hover:-translate-y-5">
-            <div className="w-52 h-52 bg-teal-700 rounded-full border-2 border-black"></div>
-            <div className="mt-10 font-bold text-center">Sofia Uribe</div>
-            <div className="mt-2 text-center text-base">Software Engineer</div>
-          </div>
-          <div className="flex items-center flex-col mx-4 md:mx-10 md:my-0 my-4 hover:-translate-y-5">
-            <div className="w-52 h-52 bg-teal-700 rounded-full border-2 border-black"></div>
-            <div className="mt-10 font-bold text-center">Jackie Liu</div>
-            <div className="mt-2 text-center text-base">Software Engineer</div>
-          </div>
-          <div className="flex items-center flex-col mx-4 md:mx-10 md:my-0 my-4 hover:-translate-y-5">
-            <div className="w-52 h-52 bg-teal-700 rounded-full border-2 border-black"></div>
-            <div className="mt-10 font-bold text-center">Terence Wong</div>
-            <div className="mt-2 text-center text-base">Software Engineer</div>
-          </div>
-          <div className="flex items-center flex-col mx-4 md:mx-10 md:my-0 my-4 hover:-translate-y-5">
-            <div className="w-52 h-52 bg-teal-700 rounded-full border-2 border-black"></div>
-            <div className="mt-10 font-bold text-center">Brooke Crockett</div>
-            <div className="mt-2 text-center text-base">Software Engineer</div>
-          </div>
-        </div>
+        {/* <div className="bg-teal-100 rounded-md pt-10 mx-10 max-w-9xl"> */}
+            <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl my-5 body">
+                <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
+                    <div className="w-40 h-40 rounded-full relative">
+                        <img src="img/team/sofia.jpeg" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
+                    </div>
+                    <div className="mt-8 font-bold text-center">Sofia Uribe</div>
+                    <div className="mt-2 pb-10 text-center text-base">Software Engineer</div>
+                </div>
+                <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
+                    <div className="w-40 h-40 rounded-full relative">
+                        <img src="img/team/jackie.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
+                    </div>
+                    <div className="mt-8 font-bold text-center">Jackie Liu</div>
+                    <div className="mt-2 pb-10 text-center text-base">Software Engineer</div>
+                </div>
+                <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
+                    <div className="w-40 h-40 rounded-full relative">
+                        <img src="img/team/terence.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
+                    </div>
+                    <div className="mt-8 font-bold text-center">Terence Wong</div>
+                    <div className="mt-2 pb-10 text-center text-base">Software Engineer</div>
+                </div>
+                <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
+                    <div className="w-40 h-40 rounded-full relative">
+                        <img src="img/team/brooke.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
+                    </div>
+                    <div className="mt-8 font-bold text-center">Brooke Crockett</div>
+                    <div className="mt-2 pb-10 text-center text-base">Software Engineer</div>
+                </div>
+            </div>
+        {/* </div> */}
       </div>
     </div>
   );
