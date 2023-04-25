@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
-const activities = ["Reading", "Running", "Gym"];
+
+const activities = ["Reading", "Running", "Gym", "Walking", "Video Games", "Snowboarding", "Biking", "Sports", "Swimming", "Hiking", "Meditate", "Yoga", "Skiing", "Cooking", "Sleeping"];
 
 function EntryForm() {
   const { token } = useToken();
@@ -114,22 +115,22 @@ function EntryForm() {
             <div className="flex flex-wrap gap-4">
               {activities.map((activity) => (
                 <button
-                  key={activity}
-                  onClick={() => handleActivityChange(activity)}
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "50%",
-                    backgroundColor: isActivity(activity) ? "blue" : "gray",
-                    color: "white",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontWeight: "bold",
-                    fontSize: "1.2rem",
-                    padding: "0.5rem",
-                    border: "none",
-                    outline: "none",
+                    key={activity}
+                    onClick={() => handleActivityChange(activity)}
+                    style={{
+                        width: "80px",
+                        height: "80px",
+                        borderRadius: "50%",
+                        backgroundColor: isActivity(activity) ? "blue" : "gray",
+                        color: "white",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                        padding: "0.5rem",
+                        border: "none",
+                        outline: "none",
                   }}
                 >
                   {activity}
@@ -141,16 +142,15 @@ function EntryForm() {
               <textarea
                 onChange={handleJournalChange}
                 value={journal}
-                placeholder="Journal"
+                placeholder="Today ..."
                 required
                 type="text"
                 name="journal"
                 id="journal"
                 className="form-control"
               />
-              <label htmlFor="journal">Journal</label>
             </div>
-            <button className="btn btn-primary">Create</button>
+            <button className="btn btn-primary">Submit</button>
           </form>
         </div>
       </div>
