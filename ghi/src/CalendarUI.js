@@ -90,7 +90,21 @@ const activityIcons = {
     icon: faBed,
     label: "Sleeping",
   },
+  Games: {
+    icon: faGamepad,
+    label: "Games",
+  },
+  Yoga: {
+    label: "Yoga",
+  },
+  Meditate: {
+    label: "Meditate",
+  },
+  Sports: {
+    label: "Sports",
+  },
 };
+
 export default function Calendar() {
   const { token } = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
@@ -271,12 +285,29 @@ function EntryData({ entry }) {
     <>
       <div>
         <p className="font-semibold text-gray-900">
-          Mood: <FontAwesomeIcon icon={icon} size="2x" />
+          <FontAwesomeIcon icon={icon} size="4x" />
         </p>
       </div>
       <div>
         <p className="font-semibold text-gray-900">
-          Activities: {entry.activity_name.join(", ")}
+          {" "}
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+            }}
+          >
+            {entry.activity_name.map((activity) => {
+              const activityIcon = activityIcons[activity]?.icon;
+              return (
+                <span key={activity}>
+                  <FontAwesomeIcon icon={activityIcon} size="4x" />
+                </span>
+              );
+            })}
+          </div>
         </p>
       </div>
       <div className="flex-auto">
