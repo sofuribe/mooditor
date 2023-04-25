@@ -101,10 +101,10 @@ function GoalList() {
     return (
         <>
             <div className="rounded-lg">
-                <table className= "ml-auto mr-auto mt-3">
+                <table className= "ml-auto mr-auto">
                     <thead>
                         <tr>
-                            <th className="text-3xl">Daily Goals</th>
+                            <th className="headers text-3xl">Daily Goals</th>
                         </tr>
                     </thead>
                     <tbody>
