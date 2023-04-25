@@ -15,10 +15,23 @@ import {
 } from "date-fns";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFaceLaughBeam,
+  faFaceTired,
+  faSmileBeam,
+  faFaceMeh,
+} from "@fortawesome/free-solid-svg-icons";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+const moodIcons = {
+  great: faFaceLaughBeam,
+  good: faSmileBeam,
+  okay: faFaceMeh,
+  awful: faFaceTired,
+};
 
 export default function Calendar() {
   const { token } = useContext(AuthContext);
@@ -195,10 +208,13 @@ export default function Calendar() {
 }
 
 function EntryData({ entry }) {
+  const icon = moodIcons[entry.mood];
   return (
     <>
       <div>
-        <p className="font-semibold text-gray-900">Mood: {entry.mood}</p>
+        <p className="font-semibold text-gray-900">
+          Mood: <FontAwesomeIcon icon={icon} size="2x" />
+        </p>
       </div>
       <div>
         <p className="font-semibold text-gray-900">
