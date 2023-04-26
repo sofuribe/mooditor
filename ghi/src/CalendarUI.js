@@ -15,11 +15,82 @@ import {
 } from "date-fns";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFaceLaughBeam,
+  faFaceTired,
+  faSmileBeam,
+  faFaceMeh,
+  faBookOpen,
+  faPersonRunning,
+  faDumbbell,
+  faPersonWalking,
+  faGamepad,
+  faPersonSnowboarding,
+  faPersonBiking,
+  faPersonSwimming,
+  faPersonHiking,
+  faPersonSkiing,
+  faKitchenSet,
+  faBed,
+} from "@fortawesome/free-solid-svg-icons";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+const moodIcons = {
+  great: faFaceLaughBeam,
+  good: faSmileBeam,
+  okay: faFaceMeh,
+  awful: faFaceTired,
+};
 
+const activityIcons = {
+  Reading: {
+    icon: faBookOpen,
+    label: "Reading",
+  },
+  Running: {
+    icon: faPersonRunning,
+    label: "Running",
+  },
+  Gym: {
+    icon: faDumbbell,
+    label: "Gym",
+  },
+  Walking: {
+    icon: faPersonWalking,
+    label: "Walking",
+  },
+  Snowboarding: {
+    icon: faPersonSnowboarding,
+    label: "Snowboarding",
+  },
+  Biking: {
+    icon: faPersonBiking,
+    label: "Biking",
+  },
+  Swimming: {
+    icon: faPersonSwimming,
+    label: "Swimming",
+  },
+  Hiking: {
+    icon: faPersonHiking,
+    label: "Hiking",
+  },
+  Skiing: {
+    icon: faPersonSkiing,
+    label: "Skiing",
+  },
+  Cooking: {
+    icon: faKitchenSet,
+    label: "Cooking",
+  },
+  Sleeping: {
+    icon: faBed,
+    label: "Sleeping",
+  },
+};
 export default function Calendar() {
   const { token } = useContext(AuthContext);
   const [entries, setEntries] = useState([]);
@@ -195,10 +266,13 @@ export default function Calendar() {
 }
 
 function EntryData({ entry }) {
+  const icon = moodIcons[entry.mood];
   return (
     <>
       <div>
-        <p className="font-semibold text-gray-900">Mood: {entry.mood}</p>
+        <p className="font-semibold text-gray-900">
+          Mood: <FontAwesomeIcon icon={icon} size="2x" />
+        </p>
       </div>
       <div>
         <p className="font-semibold text-gray-900">

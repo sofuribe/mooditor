@@ -3,7 +3,7 @@ steps = [
         # "Up" SQL statement
         """
         CREATE TYPE activities_name AS ENUM (
-            'walking', 'gym', 'running', 'video games',
+            'walking', 'gym', 'running', 'games',
             'snowboarding', 'biking', 'reading', 'sports', 'swimming',
             'hiking', 'meditate', 'yoga', 'skiing', 'cooking', 'sleeping'
         );
