@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import useToken from '@galvanize-inc/jwtdown-for-react';
 import { toast } from 'react-toastify';
+import GoalForm from './GoalForm';
 
 function GoalList() {
     const { token } = useToken();
 
     const [goals, setGoals] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,6 +30,14 @@ function GoalList() {
         }
         fetchData();
     }, [token]);
+
+    function openForm() {
+        setShowModal(true);
+    }
+
+    function closeForm () {
+        setShowModal(false);
+    }
 
     const handleDelete = async (id) => {
         const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
@@ -91,7 +101,7 @@ function GoalList() {
                 }
 
             }));
-            toast("Congrats! Goal Completed.")
+            toast("Congrats, Goal Completed!")
         } else {
             console.error("Could not update goal")
         }
@@ -128,6 +138,15 @@ function GoalList() {
                         })}
                     </tbody>
                 </table>
+                {/* goal popup */}
+                {showModal ? (
+                    <div className="modal-backdrop">
+                        <div className="modal-content">
+                            <GoalForm onClose={closeForm} />
+                        </div>
+                    </div>
+                ) : null}
+                <button className="openModalBtn" onClick={() => setShowModal(true)}>Add Goal</button>
             </div>
 
         </>

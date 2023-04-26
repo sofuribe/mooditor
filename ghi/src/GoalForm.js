@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import useToken from '@galvanize-inc/jwtdown-for-react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-function GoalForm () {
+function GoalForm ({onClose}) {
     const { token } = useToken();
 
     const [goal, setGoal] = useState("")
@@ -20,6 +20,7 @@ function GoalForm () {
         const data = {};
 
         data.goal = goal;
+        data.timestamp = new Date().toISOString();
 
         const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goals`;
         const fetchConfig = {
@@ -42,10 +43,15 @@ function GoalForm () {
     };
 
     return (
+
         <div className="rounded-lg">
             <div className="w-1/2 ml-auto mr-auto mt-3">
                 <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    <h1 className="font-bold px-4 py-2 mb-2">New Goal</h1>
+                    <div className="close-button" onClick={onClose}>x</div>
+                    <div className="title">
+                        <h1 className="font-bold px-4 py-2 mb-2">New Goal</h1>
+                    </div>
+
                     <form onSubmit={handleSubmit} id="create-goal-form">
                     <div className="form-floating mb-3">
                         <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -58,24 +64,14 @@ function GoalForm () {
                             id="goal"
                         />
                     </div>
-                    <button className="shadow bg-orange-50 hover:bg-orange-100 focus:shadow-outline focus:outline-none text-black py-2 px-4 rounded">Create</button>
+                    <div className="footer">
+                        <button className="shadow bg-orange-50 hover:bg-orange-100 focus:shadow-outline focus:outline-none text-black py-2 px-4 rounded">Create</button>
+                        <button>Cancel</button>
+                    </div>
                     </form>
                 </div>
             </div>
-            <ToastContainer
-                position="top-center"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss={false}
-                draggable
-                pauseOnHover={false}
-            />
-
         </div>
-
     )
 }
 
