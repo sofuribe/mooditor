@@ -5,7 +5,7 @@
 - Sofia Uribe
 - Jackie Liu
 - Terence Wong
-- Brooke Crokett
+- Brooke Crockett
 
 ## Who we are 
 
