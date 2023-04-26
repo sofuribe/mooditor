@@ -7,7 +7,7 @@
 - Terence Wong
 - Brooke Crokett
 
-## Theme
+## Who we are 
 
 Mooditor is a user-friendly platform for individuals to keep track of their daily mood, goals, and activities. Our mission is to empower individuals to take control of their mental health by providing them with a platform to track and monitor their emotional well-being. Our goal is to make mental health management accessible, convenient, and stigma-free. We aim to help our users develop a deeper understanding of their mental health, identify patterns and make informed decisions about their daily wellbeing. Ultimately, our vision is to help people lead happier, healthier, and more fulfilling lives. 
 
