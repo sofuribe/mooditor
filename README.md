@@ -202,6 +202,12 @@ In your project directory, type and press enter after each command listed below:
 ## Navigating the Front-End
 To navigate the server, type ```http://localhost:3000```, this will take you to the Home Page.
 
+## Functionality
+- Signup/Login: Once at the home page, the user will select "create an account" where they will be directed to signup and login. 
+- Home Page: After logging in, the user will be redirected to the home page where they can choose to set their goals for the day or select "create entry".
+- Goals: The user is able to input all the goals they want to accomplish for the day and check them off once completed. 
+- Entry Form: After selecting "create entry" the user will be redirected to their daily entry form where they can choose their mood for the day, select which activities they performed to boost their wellbeing, and write in a daily journal about how their day went.
+- Calendar: After submitting the daily entry form, the user will be redirected to the home page where they will see their daily entry populate on the calendar with a color that correlates with their mood for that day. The user will be able to look back at previous months, select a past entry, and reflect on what they did that enhanced or diminshed their mood that day. 
 
 ## FastAPI Endpoints
 
