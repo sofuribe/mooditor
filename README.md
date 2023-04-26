@@ -17,7 +17,7 @@ Mooditor is a user-friendly platform for individuals to keep track of their dail
 ![wireframe_](/uploads/841bf09b793606157a54fef7489b9eb8/wireframe_.png)
 
 ### Schemas
-![Schemas](/uploads/724f27cadd3c6711a099e44a1c7f8630/Schema.png)
+![schema](/uploads/3c092513cb278885a0c67513f3aadf57/schema.png)
 
 
 
