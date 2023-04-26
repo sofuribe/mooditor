@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
-import { faPersonRunning } from "@fortawesome/free-solid-svg-icons";
-import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
-import { faPersonWalking } from "@fortawesome/free-solid-svg-icons";
-import { faGamepad } from "@fortawesome/free-solid-svg-icons";
-import { faPersonSnowboarding } from "@fortawesome/free-solid-svg-icons";
-import { faPersonBiking } from "@fortawesome/free-solid-svg-icons";
-import { faPersonSwimming } from "@fortawesome/free-solid-svg-icons";
-import { faPersonHiking } from "@fortawesome/free-solid-svg-icons";
-import { faPersonSkiing } from "@fortawesome/free-solid-svg-icons";
-import { faKitchenSet } from "@fortawesome/free-solid-svg-icons";
-import { faBed } from "@fortawesome/free-solid-svg-icons";
-import { faFaceLaughBeam } from "@fortawesome/free-solid-svg-icons";
-import { faFaceSmileBeam } from "@fortawesome/free-solid-svg-icons";
-import { faFaceMeh } from "@fortawesome/free-solid-svg-icons";
-import { faFaceTired } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBookOpen,
+  faPersonRunning,
+  faDumbbell,
+  faPersonWalking,
+  faGamepad,
+  faPersonSnowboarding,
+  faPersonBiking,
+  faPersonSwimming,
+  faPersonHiking,
+  faPersonSkiing,
+  faKitchenSet,
+  faBed,
+  faFaceLaughBeam,
+  faFaceSmileBeam,
+  faFaceMeh,
+  faFaceTired,
+} from "@fortawesome/free-solid-svg-icons";
 
 const activities = [
   { name: "Reading", icon: faBookOpen },
@@ -103,73 +105,106 @@ function EntryForm() {
                   marginBottom: "0.5rem",
                 }}
               >
-                <button>
+                <button
+                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
+                    mood === "great" ? "border-blue-500" : ""
+                  }`}
+                  onClick={() => {
+                    handleMoodButtonClick("great");
+                  }}
+                >
                   <FontAwesomeIcon
                     icon={faFaceLaughBeam}
                     value="great"
                     size="4x"
-                    onClick={() => {
-                      handleMoodButtonClick("great");
-                    }}
                   />
                 </button>
-                <button>
+                <button
+                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
+                    mood === "good" ? "border-blue-500" : ""
+                  }`}
+                  onClick={() => {
+                    handleMoodButtonClick("good");
+                  }}
+                >
                   <FontAwesomeIcon
                     icon={faFaceSmileBeam}
                     value="good"
                     size="4x"
-                    onClick={() => {
-                      handleMoodButtonClick("good");
-                    }}
                   />
                 </button>
-                <button>
-                  <FontAwesomeIcon
-                    icon={faFaceMeh}
-                    value="okay"
-                    size="4x"
-                    onClick={() => {
-                      handleMoodButtonClick("okay");
-                    }}
-                  />
+                <button
+                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
+                    mood === "okay" ? "border-blue-500" : ""
+                  }`}
+                  onClick={() => {
+                    handleMoodButtonClick("okay");
+                  }}
+                >
+                  <FontAwesomeIcon icon={faFaceMeh} value="okay" size="4x" />
                 </button>
-                <button>
-                  <FontAwesomeIcon
-                    icon={faFaceTired}
-                    value="awful"
-                    size="4x"
-                    onClick={() => {
-                      handleMoodButtonClick("awful");
-                    }}
-                  />
+                <button
+                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
+                    mood === "awful" ? "border-blue-500" : ""
+                  }`}
+                  onClick={() => {
+                    handleMoodButtonClick("awful");
+                  }}
+                >
+                  <FontAwesomeIcon icon={faFaceTired} value="awful" size="4x" />
                 </button>
               </div>
             </div>
             <h1>Activities</h1>
-            <div className="flex flex-wrap gap-4">
-              {activities.map((activity) => (
-                <button
-                  key={activity}
-                  onClick={() => handleActivityChange(activity)}
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "50%",
-                    backgroundColor: isActivity(activity) ? "blue" : "gray",
-                    color: "white",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontWeight: "bold",
-                    fontSize: "1.2rem",
-                    padding: "0.5rem",
-                    border: "none",
-                    outline: "none",
-                  }}
-                >
-                  {activity}
-                </button>
-              ))}
+            <div className="activity-grid">
+              <div className="activity-row">
+                {activities.slice(0, 4).map((activity) => (
+                  <button
+                    key={activity.name}
+                    type="button"
+                    className={`btn btn-outline-primary rounded-full border-2 h-14 w-14 hover:bg-green-500 ${
+                      isActivity(activity.name)
+                        ? "bg-green-500"
+                        : "border-gray-800"
+                    }`}
+                    onClick={() => handleActivityChange(activity.name)}
+                  >
+                    <FontAwesomeIcon icon={activity.icon} size="2x" />
+                  </button>
+                ))}
+              </div>
+              <div className="activity-row">
+                {activities.slice(4, 8).map((activity) => (
+                  <button
+                    key={activity.name}
+                    type="button"
+                    className={`btn btn-outline-primary rounded-full border-2 h-14 w-14 hover:bg-green-500 ${
+                      isActivity(activity.name)
+                        ? "bg-green-500"
+                        : "border-gray-800"
+                    }`}
+                    onClick={() => handleActivityChange(activity.name)}
+                  >
+                    <FontAwesomeIcon icon={activity.icon} size="2x" />
+                  </button>
+                ))}
+              </div>
+              <div className="activity-row">
+                {activities.slice(8, 12).map((activity) => (
+                  <button
+                    key={activity.name}
+                    type="button"
+                    className={`btn btn-outline-primary rounded-full border-2 h-14 w-14 hover:bg-green-500 ${
+                      isActivity(activity.name)
+                        ? "bg-green-500"
+                        : "border-gray-800"
+                    }`}
+                    onClick={() => handleActivityChange(activity.name)}
+                  >
+                    <FontAwesomeIcon icon={activity.icon} size="2x" />
+                  </button>
+                ))}
+              </div>
             </div>
             <h1>Daily Journal</h1>
             <div className="form-floating mb-3">

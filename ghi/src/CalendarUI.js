@@ -269,7 +269,7 @@ export default function Calendar() {
                   <EntryData entry={entry} key={entry.id} />
                 ))
               ) : (
-                <p>No entries for this day.</p>
+                <div>No entries for this day.</div>
               )}
             </ol>
           </section>
@@ -289,7 +289,7 @@ function EntryData({ entry }) {
         </div>
       </div>
       <div>
-        <p className="font-semibold text-gray-900">
+        <div className="font-semibold text-gray-900">
           {" "}
           <div
             style={{
@@ -308,7 +308,7 @@ function EntryData({ entry }) {
               );
             })}
           </div>
-        </p>
+        </div>
       </div>
       <div className="flex-auto">
         <div className="font-semibold text-gray-900">
