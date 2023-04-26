@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import useToken, { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import Calendar from './CalendarUI';
 import { Link } from "react-router-dom";
 import GoalList from './GoalList';
