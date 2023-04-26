@@ -57,12 +57,13 @@ export const Form = styled.form`
 export const Title = styled.h1`
   font-weight: bold;
   margin: 0;
+  color: #000000;
 `;
 
 export const OtherTitle = styled.h1`
   font-weight: bold;
   margin: 0;
-  color: #fff;
+  color: #000;
 `;
 
 export const Input = styled.input`
@@ -93,13 +94,14 @@ export const Button = styled.button`
 `;
 export const GhostButton = styled(Button)`
   background-color: transparent;
-  border-color: #ffffff;
+  border-color: #000000;
+  color: #000000;
 `;
 
 export const OtherGhostButton = styled(Button)`
   background-color: transparent;
-  border-color: #fff;
-  color: #fff;
+  border-color: #000;
+  color: #000;
 `;
 
 export const Anchor = styled.a`
@@ -123,7 +125,7 @@ export const OverlayContainer = styled.div`
 
 export const Overlay = styled.div`
   background: #000000;
-  background: linear-gradient(to right, #fdba74, #fed7aa);
+  background: linear-gradient(to right, #fef9c3, #fef08a);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -169,6 +171,7 @@ export const Paragraph = styled.p`
   line-height: 20px;
   letter-spacing: 0.5px;
   margin: 20px 0 30px;
+  color: #000000;
 `;
 
 export const OtherParagraph = styled.p`
@@ -177,5 +180,5 @@ export const OtherParagraph = styled.p`
   line-height: 20px;
   letter-spacing: 0.5px;
   margin: 20px 0 30px;
-  color: #fff;
+  color: #000;
 `;
