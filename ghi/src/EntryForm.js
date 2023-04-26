@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -60,6 +61,8 @@ function EntryForm() {
     setMood(mood);
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -84,6 +87,7 @@ function EntryForm() {
       setMood("");
       setSelectedActivities([]);
       setJournal("");
+      navigate("/home");
     } else {
       console.error("Could not create entry");
     }
@@ -106,22 +110,28 @@ function EntryForm() {
                 }}
               >
                 <button
-                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
-                    mood === "great" ? "border-blue-500" : ""
+                  className={`border-2 rounded-full p-2 hover:bg-red-500 border-red-500 focus:outline-none ${
+                    mood === "awful" ? "shadow-2xl border-2 bg-red-500" : ""
                   }`}
                   onClick={() => {
-                    handleMoodButtonClick("great");
+                    handleMoodButtonClick("awful");
                   }}
                 >
-                  <FontAwesomeIcon
-                    icon={faFaceLaughBeam}
-                    value="great"
-                    size="4x"
-                  />
+                  <FontAwesomeIcon icon={faFaceTired} value="awful" size="4x" />
                 </button>
                 <button
-                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
-                    mood === "good" ? "border-blue-500" : ""
+                  className={`border-2 rounded-full p-2 hover:bg-yellow-500 border-yellow-500 focus:outline-none ${
+                    mood === "okay" ? "shadow-2xl border-2 bg-yellow-500" : ""
+                  }`}
+                  onClick={() => {
+                    handleMoodButtonClick("okay");
+                  }}
+                >
+                  <FontAwesomeIcon icon={faFaceMeh} value="okay" size="4x" />
+                </button>
+                <button
+                  className={`border-2 shadow-xl rounded-full p-2 hover:bg-green-600 border-green-600 focus:outline-none ${
+                    mood === "good" ? "shadow-2xl border-2 bg-green-600" : ""
                   }`}
                   onClick={() => {
                     handleMoodButtonClick("good");
@@ -134,24 +144,18 @@ function EntryForm() {
                   />
                 </button>
                 <button
-                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
-                    mood === "okay" ? "border-blue-500" : ""
+                  className={`border-2 shadow-xl rounded-full p-2 hover:bg-green-700 border-green-700 focus:outline-none ${
+                    mood === "great" ? "shadow-2xl border-2  bg-green-700" : ""
                   }`}
                   onClick={() => {
-                    handleMoodButtonClick("okay");
+                    handleMoodButtonClick("great");
                   }}
                 >
-                  <FontAwesomeIcon icon={faFaceMeh} value="okay" size="4x" />
-                </button>
-                <button
-                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
-                    mood === "awful" ? "border-blue-500" : ""
-                  }`}
-                  onClick={() => {
-                    handleMoodButtonClick("awful");
-                  }}
-                >
-                  <FontAwesomeIcon icon={faFaceTired} value="awful" size="4x" />
+                  <FontAwesomeIcon
+                    icon={faFaceLaughBeam}
+                    value="great"
+                    size="4x"
+                  />
                 </button>
               </div>
             </div>
