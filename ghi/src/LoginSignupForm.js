@@ -49,7 +49,7 @@ function LoginSignup() {
       setEmail("");
       setPassword("");
       toast('Account created, please login!')
-      navigate("/home");
+      navigate("/");
     } else {
       console.error("Could not create user");
     }

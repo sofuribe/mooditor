@@ -1,15 +1,15 @@
 import {useEffect, useState} from 'react';
-import useToken from "@galvanize-inc/jwtdown-for-react";
+import useToken, { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import Calendar from './CalendarUI';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import GoalList from './GoalList';
 import './fonts.css';
 
 function LoggedInHome(){
-    const { token } = useToken();
+    const { token } = useAuthContext();
 
     //to reach username
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState()
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -24,20 +24,18 @@ function LoggedInHome(){
             setUser(data.account);
         }
     };
-
         fetchUserData();
     }, [token]);
 
-    if (token){
+
+    if (token && user){
         return (
             <>
             <div className='shadow-xl headers h-20 mt-12 bg-gradient-to-l from-cyan-500 to-yellow-300 rounded-2xl text-black max-w-screen-lg mx-auto px-8 text-4xl flex justify-center items-center'>
                 Welcome, {user.username}!
             </div>
-
-
             {/* entry form */}
-            <div className= "md:w-1/2 pt-8">
+            <div className="pt-8">
                 <div className= "new text-3xl flex justify-center items-center pb-2">
                     How are you feeling today?
                 </div>

@@ -107,6 +107,9 @@ function GoalList() {
                             <th className="headers text-3xl">Daily Goals</th>
                         </tr>
                     </thead>
+                    {goals.length === 0 ? (
+                    <div>No goals created</div>
+                    ) : (
                     <tbody>
                         {goals.map(goal => {
                             return (
@@ -117,7 +120,6 @@ function GoalList() {
                                             checked={goal.isCompleted}
                                             onChange={(event) => handleCheckboxChange(event, goal.id)}
                                         />
-
                                     </td>
                                     <td className={goal.isCompleted ? 'completed' : ''}>{goal.goal}</td>
                                     <td>
@@ -127,9 +129,9 @@ function GoalList() {
                             )
                         })}
                     </tbody>
+                    )}
                 </table>
             </div>
-
         </>
     )
 }
