@@ -172,7 +172,7 @@ function GoalList() {
             </tr>
           </thead>
           {goals.length === 0 ? (
-            <p className="body text-xl">No goals for today</p>
+            <td className="body text-xl">No goals for today</td>
           ) : (
           <tbody>
             {goals.map((goal) => {
