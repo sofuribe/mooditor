@@ -38,13 +38,13 @@ function App() {
           <Route path="account" element={<LoginSignup />} />
         </Routes>
         <ToastContainer
-          position="bottom-right"
-          autoClose={1500}
+          position="top-center"
+          autoClose={2000}
           closeOnClick
           rtl={false}
           draggable
           pauseOnHover
-         />
+        />
         <Footer />
       </AuthProvider>
     </BrowserRouter>

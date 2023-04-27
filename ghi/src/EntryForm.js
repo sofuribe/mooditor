@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { toast } from "react-toastify";
+
 import {
   faBookOpen,
   faPersonRunning,
@@ -60,6 +63,7 @@ function EntryForm() {
     setMood(mood);
   };
 
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -84,146 +88,180 @@ function EntryForm() {
       setMood("");
       setSelectedActivities([]);
       setJournal("");
+      navigate("/home");
+      toast("You completed today's entry!");
     } else {
       console.error("Could not create entry");
     }
   };
 
   return (
-    <div className="row">
-      <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-          <h1>What's Your Mood Today?</h1>
+    <>
+      <div className="headers text-4xl text-center mt-10 my-2">
+        Reflect on your day
+      </div>
+      <div className="border-4 border-yellow-100 rounded-2xl shadow-xl relative mx-48 my-8">
+        <div className="text-center p-4 mt-4">
+          <h1 className="headers text-3xl mb-10">What's your mood today?</h1>
           <form onSubmit={handleSubmit} id="create-mood-form">
-            <div className="form-floating mb-3">
-              <div
-                className="btn-group mb-3"
-                style={{
-                  display: "flex",
-                  gap: "1rem",
-                  marginTop: "0.5rem",
-                  marginBottom: "0.5rem",
+            <div
+              className="flex items-center justify-center mt-2 mb-2"
+              style={{
+                display: "flex",
+                gap: "2rem",
+                marginTop: "0.5rem",
+                marginBottom: "0.5rem",
+              }}
+            >
+              {/* MOODS................................................................................................. */}
+              <button
+                type="button"
+                className={`border-4 rounded-full p-2 hover:bg-red-500 border-red-500 focus:outline-none ${
+                  mood === "awful" ? "shadow-2xl bg-red-500" : ""
+                }`}
+                onClick={() => {
+                  handleMoodButtonClick("awful");
                 }}
               >
-                <button
-                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
-                    mood === "great" ? "border-blue-500" : ""
-                  }`}
-                  onClick={() => {
-                    handleMoodButtonClick("great");
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faFaceLaughBeam}
-                    value="great"
-                    size="4x"
-                  />
-                </button>
-                <button
-                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
-                    mood === "good" ? "border-blue-500" : ""
-                  }`}
-                  onClick={() => {
-                    handleMoodButtonClick("good");
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faFaceSmileBeam}
-                    value="good"
-                    size="4x"
-                  />
-                </button>
-                <button
-                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
-                    mood === "okay" ? "border-blue-500" : ""
-                  }`}
-                  onClick={() => {
-                    handleMoodButtonClick("okay");
-                  }}
-                >
-                  <FontAwesomeIcon icon={faFaceMeh} value="okay" size="4x" />
-                </button>
-                <button
-                  className={`border-2 border-gray-300 rounded-full p-2 hover:border-green-500 focus:outline-none ${
-                    mood === "awful" ? "border-blue-500" : ""
-                  }`}
-                  onClick={() => {
-                    handleMoodButtonClick("awful");
-                  }}
-                >
-                  <FontAwesomeIcon icon={faFaceTired} value="awful" size="4x" />
-                </button>
-              </div>
+                <FontAwesomeIcon icon={faFaceTired} value="awful" size="4x" />
+              </button>
+              <button
+                type="button"
+                className={`border-4 rounded-full p-2 hover:bg-yellow-500 border-yellow-500 focus:outline-none ${
+                  mood === "okay" ? "shadow-2xl border-2 bg-yellow-500" : ""
+                }`}
+                onClick={() => {
+                  handleMoodButtonClick("okay");
+                }}
+              >
+                <FontAwesomeIcon icon={faFaceMeh} value="okay" size="4x" />
+              </button>
+              <button
+                type="button"
+                className={`border-4 shadow-xl rounded-full p-2 hover:bg-green-600 border-green-600 focus:outline-none ${
+                  mood === "good" ? "shadow-2xl bg-green-600" : ""
+                }`}
+                onClick={() => {
+                  handleMoodButtonClick("good");
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faFaceSmileBeam}
+                  value="good"
+                  size="4x"
+                />
+              </button>
+              <button
+                type="button"
+                className={`border-4 shadow-xl rounded-full p-2 hover:bg-green-700 border-green-700 focus:outline-none ${
+                  mood === "great" ? "shadow-2xl  bg-green-700" : ""
+                }`}
+                onClick={() => {
+                  handleMoodButtonClick("great");
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faFaceLaughBeam}
+                  value="great"
+                  size="4x"
+                />
+              </button>
             </div>
-            <h1>Activities</h1>
+
+            {/* ACTIVITIES.............................................................................................. */}
+            {/* <div className="border-2 rounded-2xl border-black m-20"> */}
+            <h1 className="headers text-3xl mt-10">Activities</h1>
             <div className="activity-grid">
-              <div className="activity-row">
+              <div className="activity-row my-10">
                 {activities.slice(0, 4).map((activity) => (
-                  <button
-                    key={activity.name}
-                    type="button"
-                    className={`btn btn-outline-primary rounded-full border-2 h-14 w-14 hover:bg-green-500 ${
-                      isActivity(activity.name)
-                        ? "bg-green-500"
-                        : "border-gray-800"
-                    }`}
-                    onClick={() => handleActivityChange(activity.name)}
-                  >
-                    <FontAwesomeIcon icon={activity.icon} size="2x" />
-                  </button>
+                  <div key={activity.name} className="relative inline-block">
+                    <button
+                      key={activity.name}
+                      type="button"
+                      className={`mx-8 mb-3 shadow-xl rounded-full h-20 w-20 hover:bg-gradient-to-r from-cyan-500 to-yellow-300 ${
+                        isActivity(activity.name)
+                          ? "bg-gradient-to-r from-cyan-500 to-yellow-300"
+                          : "border-gray-800"
+                      }`}
+                      onClick={() => handleActivityChange(activity.name)}
+                    >
+                      <FontAwesomeIcon icon={activity.icon} size="2x" />
+                    </button>
+                    <span className="body absolute top-full left-1/2 transform -translate-x-1/2">
+                      {activity.name}
+                    </span>
+                  </div>
                 ))}
               </div>
-              <div className="activity-row">
+              <div className="activity-row my-10">
                 {activities.slice(4, 8).map((activity) => (
-                  <button
-                    key={activity.name}
-                    type="button"
-                    className={`btn btn-outline-primary rounded-full border-2 h-14 w-14 hover:bg-green-500 ${
-                      isActivity(activity.name)
-                        ? "bg-green-500"
-                        : "border-gray-800"
-                    }`}
-                    onClick={() => handleActivityChange(activity.name)}
-                  >
-                    <FontAwesomeIcon icon={activity.icon} size="2x" />
-                  </button>
+                  <div key={activity.name} className="relative inline-block">
+                    <button
+                      key={activity.name}
+                      type="button"
+                      className={`mx-8 mb-3 shadow-xl rounded-full h-20 w-20 hover:bg-gradient-to-r from-cyan-500 to-yellow-300 ${
+                        isActivity(activity.name)
+                          ? "bg-gradient-to-r from-cyan-500 to-yellow-300"
+                          : "border-gray-800"
+                      }`}
+                      onClick={() => handleActivityChange(activity.name)}
+                    >
+                      <FontAwesomeIcon icon={activity.icon} size="2x" />
+                    </button>
+                    <span className="body absolute top-full left-1/2 transform -translate-x-1/2">
+                      {activity.name}
+                    </span>
+                  </div>
                 ))}
               </div>
-              <div className="activity-row">
+              <div className="activity-row my-10">
                 {activities.slice(8, 12).map((activity) => (
-                  <button
-                    key={activity.name}
-                    type="button"
-                    className={`btn btn-outline-primary rounded-full border-2 h-14 w-14 hover:bg-green-500 ${
-                      isActivity(activity.name)
-                        ? "bg-green-500"
-                        : "border-gray-800"
-                    }`}
-                    onClick={() => handleActivityChange(activity.name)}
-                  >
-                    <FontAwesomeIcon icon={activity.icon} size="2x" />
-                  </button>
+                  <div key={activity.name} className="relative inline-block">
+                    <button
+                      key={activity.name}
+                      type="button"
+                      className={`mx-8 mb-3 shadow-xl rounded-full h-20 w-20 hover:bg-gradient-to-r from-cyan-500 to-yellow-300 ${
+                        isActivity(activity.name)
+                          ? "bg-gradient-to-r from-cyan-500 to-yellow-300"
+                          : "border-gray-800"
+                      }`}
+                      onClick={() => handleActivityChange(activity.name)}
+                    >
+                      <FontAwesomeIcon icon={activity.icon} size="2x" />
+                    </button>
+                    <span className="body absolute top-full left-1/2 transform -translate-x-1/2">
+                      {activity.name}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>
-            <h1>Daily Journal</h1>
-            <div className="form-floating mb-3">
-              <textarea
-                onChange={handleJournalChange}
-                value={journal}
-                placeholder="Today ..."
-                required
-                type="text"
-                name="journal"
-                id="journal"
-                className="form-control"
-              />
+            {/* </div> */}
+
+            {/* JOURNAL.............................................................................................. */}
+            <div className="border-2 shadow-2xl rounded-2xl border-black m-20">
+              <h1 className="mt-6 mb-6 headers text-2xl">Daily Journal</h1>
+              <div className="flex flex-col">
+                <textarea
+                  onChange={handleJournalChange}
+                  value={journal}
+                  id="journal"
+                  name="journal"
+                  className="border rounded-2xl p-5 mx-20 text-gray-700 leading-tight focus:outline-none focus:border-black resize-none"
+                  rows="10"
+                  placeholder="Write about your day here..."
+                />
+              </div>
+              <div className="m-5">
+                <button className="body text-lg bg-orange-400 hover:bg-orange-500 text-black py-2 px-4 rounded-full">
+                  Submit
+                </button>
+              </div>
             </div>
-            <button className="btn btn-primary">Submit</button>
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
