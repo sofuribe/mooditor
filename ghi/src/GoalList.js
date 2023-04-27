@@ -65,10 +65,12 @@ function GoalList() {
     }
   };
 
-
   const handleCheckboxChange = async (event, id) => {
     const isCompleted = event.target.checked ? true : false;
     const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
+
+    // Update the is_completed field in local storage
+    localStorage.setItem(`goal_${id}_isCompleted`, isCompleted.toString());
 
     // GET the goal with matching id
     const response = await fetch(goalUrl, {
@@ -112,6 +114,7 @@ function GoalList() {
     } else {
         console.error("Could not update goal")
     }
+
 };
 
   const handleEdit = async (id) => {
@@ -174,12 +177,14 @@ function GoalList() {
           ) : (
           <tbody>
             {goals.map((goal) => {
+              const prevIsCompleted = localStorage.getItem(`goal_${goal.id}_isCompleted`) === "true" || false;
               return (
                 <tr key={goal.id}>
                   <td>
                     <input
                       type="checkbox"
-                      checked={goal.isCompleted}
+                      // checked={goal.isCompleted}
+                      checked={prevIsCompleted ? true : false}
                       onChange={(event) => handleCheckboxChange(event, goal.id)}
                     />
                   </td>
