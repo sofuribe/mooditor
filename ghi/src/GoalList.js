@@ -183,7 +183,7 @@ function GoalList() {
                       <div className="mr-3">
                         <input
                           type="checkbox"
-                          checked={goal.isCompleted}
+                          checked={prevIsCompleted ? true : false}
                           onChange={(event) => handleCheckboxChange(event, goal.id)}
                           />
                         </div>
