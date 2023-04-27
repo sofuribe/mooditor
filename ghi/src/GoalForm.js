@@ -47,30 +47,24 @@ function GoalForm ({onClose}) {
         <div className="rounded-xl">
             <div className="w-full justify-center px-2">
                 <div className="close-button" onClick={onClose}>x</div>
-
                 <h1 className="text-center headers text-2xl px-4 mb-2">New Goal</h1>
-
-
-            <form onSubmit={handleSubmit} id="create-goal-form">
-                <div className="form mb-3">
+                <form onSubmit={handleSubmit} id="create-goal-form">
                     <textarea className="shadow appearance-none border rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
                         onChange={handleGoalChange}
                         value={goal}
                         placeholder="Set your daily goal"
                         required
-                        rows="4"
+                        rows="2"
                         type="text"
                         name="goal"
                         id="goal"
                     />
-                </div>
-                <div className="text-center">
-                    <button className="text-center shadow bg-orange-50 hover:bg-orange-100 focus:shadow-outline focus:outline-none text-black py-2 px-4 rounded-2xl">Create</button>
-                </div>
-            </form>
+                    <div className="text-center">
+                        <button className="m-2 shadow bg-orange-400 hover:bg-orange-500 focus:shadow-outline focus:outline-none text-black py-2 px-4 rounded-2xl">Create</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
   )
-}
 }
 export default GoalForm;
