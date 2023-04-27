@@ -14,8 +14,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         os.environ.get(
-            "CORS_HOST", "http://localhost:3000", "https://mooditor.gitlab.io"
-        )
+            "CORS_HOST", "http://localhost:3000")
     ],
     allow_credentials=True,
     allow_methods=["*"],
