@@ -37,16 +37,8 @@ function GoalList() {
         fetchData();
     }, [token]);
 
-  function openForm() {
-    setShowModal(true);
-  }
-
   function closeForm () {
     setShowModal(false);
-  }
-
-  function openFormUpdate() {
-    setShowModalUpdate(true);
   }
 
   function closeFormUpdate() {
