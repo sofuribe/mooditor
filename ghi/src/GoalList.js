@@ -28,14 +28,14 @@ function GoalList() {
         };
         const response = await fetch(goalUrl, fetchConfig);
 
-                if (response.ok) {
-                    const data = await response.json();
-                    setGoals(data);
-                }
-            }
+        if (response.ok) {
+            const data = await response.json();
+            setGoals(data);
         }
-        fetchData();
-    }, [token]);
+      }
+    }
+    fetchData();
+  }, [token]);
 
   function closeForm () {
     setShowModal(false);
@@ -98,69 +98,67 @@ function GoalList() {
 
     const updateResponse = await fetch(updateUrl, fetchConfig);
 
-        if (updateResponse.ok) {
-            const updateData = await updateResponse.json();
-            setGoals(goals.map((goal) => {
-                if(goal.id === id) {
-                    return { ...goal, is_completed: updateData.is_completed};
-                } else {
-                    return goal;
-                }
+    if (updateResponse.ok) {
+        const updateData = await updateResponse.json();
+        setGoals(goals.map((goal) => {
+            if(goal.id === id) {
+                return { ...goal, is_completed: updateData.is_completed};
+            } else {
+                return goal;
+            }
 
-            }));
-            toast("Congrats, Goal Completed!")
-        } else {
-            console.error("Could not update goal")
-        }
+        }));
+        toast("Congrats, Goal Completed!")
+    } else {
+        console.error("Could not update goal")
+    }
+};
+
+  const handleEdit = async (id) => {
+    const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
+
+    // GET the goal with matching id
+    const response = await fetch(goalUrl, {
+      method: "get",
+      headers: {
+          Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      console.error("Could not retrieve goal");
+      return;
+    }
+
+    const goal = await response.json();
+    setShowModalUpdate(true);
+
+    // UPDATE goal
+    const editUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
+    const fetchConfig = {
+      method: "put",
+      body: JSON.stringify({ id: goal.id, goal: goal.goal}),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     };
 
-    const handleEdit = async (id) => {
-      const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
+    const editResponse = await fetch(editUrl, fetchConfig);
 
-        // GET the goal with matching id
-        const response = await fetch(goalUrl, {
-            method: "get",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
-        if (!response.ok) {
-            console.error("Could not retrieve goal");
-            return;
-        }
-
-        const goal = await response.json();
-        setShowModalUpdate(true);
-
-        // UPDATE goal
-        const editUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
-        const fetchConfig = {
-            method: "put",
-            body: JSON.stringify({ id: goal.id, goal: goal.goal}),
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-        };
-
-        const editResponse = await fetch(editUrl, fetchConfig);
-
-        if (editResponse.ok) {
-            const editData = await editResponse.json();
-            setGoals(goals.map((goal) => {
-                if(goal.id === id) {
-                    return { ...goal, goal: editData.goal};
-                } else {
-                    return goal;
-                }
-            }))
+    if (editResponse.ok) {
+      const editData = await editResponse.json();
+      setGoals(goals.map((goal) => {
+        if(goal.id === id) {
+          return { ...goal, goal: editData.goal};
         } else {
-            console.error("Could not update goal");
+          return goal;
         }
-
-   }
-
+      }))
+    } else {
+      console.error("Could not update goal");
+    }
+  }
 
   return (
     <>
@@ -170,6 +168,9 @@ function GoalList() {
               <th className="text-3xl pb-5 text-center">Daily Goals</th>
             </tr>
           </thead>
+          {goals.length === 0 ? (
+            <p>No goals for today</p>
+          ) : (
           <tbody>
             {goals.map((goal) => {
               return (
@@ -210,6 +211,7 @@ function GoalList() {
               );
             })}
           </tbody>
+          )}
         </table>
         {showModal ? (
             <div className="modal-backdrop-popup">
