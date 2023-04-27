@@ -179,25 +179,28 @@ function GoalList() {
               const prevIsCompleted = localStorage.getItem(`goal_${goal.id}_isCompleted`) === "true" || false;
               return (
                 <tr key={goal.id}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={prevIsCompleted ? true : false}
-                      onChange={(event) => handleCheckboxChange(event, goal.id)}
-                    />
-                  </td>
-                  <td className={goal.isCompleted ? "completed" : ""}>
-                    {goal.goal}
-                  </td>
-                  <td>
-                    <button className="">
-                      <FontAwesomeIcon
-                        icon={faPencil}
-                        type="button"
-                        onClick={() => [
-                          handleEdit(goal.id), setGoalId(goal.id)]}
-                      />
-                    </button>
+                   <td className="py-2 flex items-center">
+                      <div className="mr-3">
+                        <input
+                          type="checkbox"
+                          checked={goal.isCompleted}
+                          onChange={(event) => handleCheckboxChange(event, goal.id)}
+                          />
+                        </div>
+                      <div>
+                        {goal.isCompleted ? "completed" : ""}
+                            {goal.goal}
+                        </div>
+                      </td>
+                    <td>
+                      <button className="mx-4">
+                        <FontAwesomeIcon
+                          icon={faPencil}
+                          type="button"
+                          onClick={() => [
+                            handleEdit(goal.id), setGoalId(goal.id)]}
+                        />
+                      </button>
                   </td>
                   <td>
                     <button className="mx-4">
