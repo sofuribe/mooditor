@@ -15,10 +15,95 @@ import {
 } from "date-fns";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFaceLaughBeam,
+  faFaceTired,
+  faSmileBeam,
+  faFaceMeh,
+  faBookOpen,
+  faPersonRunning,
+  faDumbbell,
+  faPersonWalking,
+  faGamepad,
+  faPersonSnowboarding,
+  faPersonBiking,
+  faPersonSwimming,
+  faPersonHiking,
+  faPersonSkiing,
+  faKitchenSet,
+  faBed,
+} from "@fortawesome/free-solid-svg-icons";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+const moodIcons = {
+  great: faFaceLaughBeam,
+  good: faSmileBeam,
+  okay: faFaceMeh,
+  awful: faFaceTired,
+};
+
+const activityIcons = {
+  Reading: {
+    icon: faBookOpen,
+    label: "Reading",
+  },
+  Running: {
+    icon: faPersonRunning,
+    label: "Running",
+  },
+  Gym: {
+    icon: faDumbbell,
+    label: "Gym",
+  },
+  Walking: {
+    icon: faPersonWalking,
+    label: "Walking",
+  },
+  Snowboarding: {
+    icon: faPersonSnowboarding,
+    label: "Snowboarding",
+  },
+  Biking: {
+    icon: faPersonBiking,
+    label: "Biking",
+  },
+  Swimming: {
+    icon: faPersonSwimming,
+    label: "Swimming",
+  },
+  Hiking: {
+    icon: faPersonHiking,
+    label: "Hiking",
+  },
+  Skiing: {
+    icon: faPersonSkiing,
+    label: "Skiing",
+  },
+  Cooking: {
+    icon: faKitchenSet,
+    label: "Cooking",
+  },
+  Sleeping: {
+    icon: faBed,
+    label: "Sleeping",
+  },
+  Games: {
+    icon: faGamepad,
+    label: "Games",
+  },
+  Yoga: {
+    label: "Yoga",
+  },
+  Meditate: {
+    label: "Meditate",
+  },
+  Sports: {
+    label: "Sports",
+  },
+};
 
 export default function Calendar() {
   const { token } = useContext(AuthContext);
@@ -184,7 +269,7 @@ export default function Calendar() {
                   <EntryData entry={entry} key={entry.id} />
                 ))
               ) : (
-                <p>No entries for this day.</p>
+                <div>No entries for this day.</div>
               )}
             </ol>
           </section>
@@ -195,18 +280,40 @@ export default function Calendar() {
 }
 
 function EntryData({ entry }) {
+  const icon = moodIcons[entry.mood];
   return (
     <>
       <div>
-        <p className="font-semibold text-gray-900">Mood: {entry.mood}</p>
+        <div className="font-semibold text-gray-900">
+          <FontAwesomeIcon icon={icon} size="4x" />
+        </div>
       </div>
       <div>
-        <p className="font-semibold text-gray-900">
-          Activities: {entry.activity_name.join(", ")}
-        </p>
+        <div className="font-semibold text-gray-900">
+          {" "}
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+            }}
+          >
+            {entry.activity_name.map((activity) => {
+              const activityIcon = activityIcons[activity]?.icon;
+              return (
+                <span key={activity}>
+                  <FontAwesomeIcon icon={activityIcon} size="4x" />
+                </span>
+              );
+            })}
+          </div>
+        </div>
       </div>
       <div className="flex-auto">
-        <p className="font-semibold text-gray-900">Journal: {entry.journal}</p>
+        <div className="font-semibold text-gray-900">
+          Journal: {entry.journal}
+        </div>
       </div>
     </>
   );

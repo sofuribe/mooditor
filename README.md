@@ -194,6 +194,8 @@ In your project directory, type and press enter after each command listed below:
 1. Create the volume: ```docker volume create postgres-data```
 2. Build the container and image: ```docker-compose build```
 3. Run the container: ```docker-compose up```
+4. If using an apple computer with a M1 or M2 chip use the following command instead of docker-compose build:
+```DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose build```
 
 ![Successful Docker Containers](/uploads/df253454852f9f24e11feac3946e1206/docker.png)
 
