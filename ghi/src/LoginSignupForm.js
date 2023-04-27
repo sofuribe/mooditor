@@ -34,7 +34,7 @@ function LoginSignup() {
     data.username = username;
     data.email = email;
     data.password = password;
-    const url = "http://localhost:8000/api/users";
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/api/users`;
     const fetchConfig = {
       method: "POST",
       body: JSON.stringify(data),
