@@ -4,13 +4,16 @@ import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPencil } from "@fortawesome/free-solid-svg-icons";
 import GoalForm from './GoalForm';
+import UpdateForm from './UpdateForm';
 import './Popup.css';
 
 function GoalList() {
   const { token } = useToken();
 
-    const [goals, setGoals] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+  const [goals, setGoals] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const [goalId, setGoalId] = useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +43,14 @@ function GoalList() {
 
   function closeForm () {
     setShowModal(false);
+  }
+
+  function openFormUpdate() {
+    setShowModalUpdate(true);
+  }
+
+  function closeFormUpdate() {
+    setShowModalUpdate(false);
   }
 
 
@@ -111,8 +122,50 @@ function GoalList() {
         }
     };
 
-    const handleEdit = async () => {
-        setShowModal(true);
+    const handleEdit = async (id) => {
+      const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
+
+        // GET the goal with matching id
+        const response = await fetch(goalUrl, {
+            method: "get",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            console.error("Could not retrieve goal");
+            return;
+        }
+
+        const goal = await response.json();
+        setShowModalUpdate(true);
+
+        // UPDATE goal
+        const editUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goal/${id}`;
+        const fetchConfig = {
+            method: "put",
+            body: JSON.stringify({ id: goal.id, goal: goal.goal}),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const editResponse = await fetch(editUrl, fetchConfig);
+
+        if (editResponse.ok) {
+            const editData = await editResponse.json();
+            setGoals(goals.map((goal) => {
+                if(goal.id === id) {
+                    return { ...goal, goal: editData.goal};
+                } else {
+                    return goal;
+                }
+            }))
+        } else {
+            console.error("Could not update goal");
+        }
 
    }
 
@@ -145,10 +198,8 @@ function GoalList() {
                       <FontAwesomeIcon
                         icon={faPencil}
                         type="button"
-                        onClick={() => {
-                          handleEdit(goal.id);
-                          openForm();
-                        }}
+                        onClick={() => [
+                          handleEdit(goal.id), setGoalId(goal.id)]}
                       />
                     </button>
                   </td>
@@ -173,8 +224,15 @@ function GoalList() {
                             <GoalForm onClose={closeForm} />
                         </div>
                     </div>
+                ) : showModalUpdate ? (
+                  <div className="modal-backdrop-popup">
+                        <div className="modal-content-popup">
+                            <UpdateForm onClose={closeFormUpdate} id={goalId} />
+                        </div>
+                    </div>
                 ) : null}
                 <button className="bg-orange-400 hover:bg-orange-500 text-black py-2 px-4 rounded-full" onClick={() => setShowModal(true)}>Add Goal</button>
+
       </div>
     </>
   );
