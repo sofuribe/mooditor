@@ -5,7 +5,7 @@
 - Sofia Uribe
 - Jackie Liu
 - Terence Wong
-- Brooke Crokett
+- Brooke Crockett
 
 ## Who we are 
 
@@ -14,10 +14,12 @@ Mooditor is a user-friendly platform for individuals to keep track of their dail
 ## Design
 
 ### Wireframe
-- ![Wireframe](/uploads/01a3815cdbc12de899837eb4ea62b090/wireframe.png)
+![wireframe_](/uploads/841bf09b793606157a54fef7489b9eb8/wireframe_.png)
 
-### Schemas
-- ![Schemas](/uploads/724f27cadd3c6711a099e44a1c7f8630/Schema.png)
+### Schema
+![schema](/uploads/3c092513cb278885a0c67513f3aadf57/schema.png)
+
+
 
 ## Requirements
 1. Python 3
