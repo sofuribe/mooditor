@@ -116,7 +116,7 @@ class GoalRepository:
                             """
                             SELECT user_id FROM goals WHERE id = %s
                             """,
-                            [id]
+                            [id],
                         )
                         goal.user_id = db.fetchone()[0]
                     if goal.goal is None:
@@ -124,7 +124,7 @@ class GoalRepository:
                             """
                             SELECT goal FROM goals WHERE id = %s
                             """,
-                            [id]
+                            [id],
                         )
                         goal.goal = db.fetchone()[0]
 
