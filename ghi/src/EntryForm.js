@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { toast } from "react-toastify";
+
 import {
   faBookOpen,
   faPersonRunning,
@@ -62,7 +64,6 @@ function EntryForm() {
   };
 
   const navigate = useNavigate();
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -87,7 +88,8 @@ function EntryForm() {
       setMood("");
       setSelectedActivities([]);
       setJournal("");
-      navigate("/home");
+      navigate("/home")
+      toast("You completed today's entry!")
     } else {
       console.error("Could not create entry");
     }
@@ -98,7 +100,7 @@ function EntryForm() {
     <div className="headers text-4xl text-center mt-10 my-2">Reflect on your day</div>
     <div className="border-4 border-yellow-100 rounded-2xl shadow-xl relative mx-48 my-8">
         <div className="text-center p-4 mt-4">
-          <h1 className="headers text-2xl mb-10">
+          <h1 className="headers text-3xl mb-10">
             What's your mood today?
           </h1>
           <form onSubmit={handleSubmit} id="create-mood-form">
@@ -114,6 +116,7 @@ function EntryForm() {
 
                 {/* MOODS................................................................................................. */}
                 <button
+                type="button"
                   className={`border-4 rounded-full p-2 hover:bg-red-500 border-red-500 focus:outline-none ${
                     mood === "awful" ? "shadow-2xl bg-red-500" : ""
                   }`}
@@ -124,6 +127,7 @@ function EntryForm() {
                   <FontAwesomeIcon icon={faFaceTired} value="awful" size="4x" />
                 </button>
                 <button
+                type="button"
                   className={`border-4 rounded-full p-2 hover:bg-yellow-500 border-yellow-500 focus:outline-none ${
                     mood === "okay" ? "shadow-2xl border-2 bg-yellow-500" : ""
                   }`}
@@ -134,6 +138,7 @@ function EntryForm() {
                   <FontAwesomeIcon icon={faFaceMeh} value="okay" size="4x" />
                 </button>
                 <button
+                type="button"
                   className={`border-4 shadow-xl rounded-full p-2 hover:bg-green-600 border-green-600 focus:outline-none ${
                     mood === "good" ? "shadow-2xl bg-green-600" : ""
                   }`}
@@ -148,6 +153,7 @@ function EntryForm() {
                   />
                 </button>
                 <button
+                type="button"
                   className={`border-4 shadow-xl rounded-full p-2 hover:bg-green-700 border-green-700 focus:outline-none ${
                     mood === "great" ? "shadow-2xl  bg-green-700" : ""
                   }`}
@@ -164,7 +170,8 @@ function EntryForm() {
               </div>
 
             {/* ACTIVITIES.............................................................................................. */}
-            <h1 className="headers text-2xl mt-10">
+            {/* <div className="border-2 rounded-2xl border-black m-20"> */}
+            <h1 className="headers text-3xl mt-10">
               Activities
             </h1>
             <div className="activity-grid">
@@ -174,9 +181,9 @@ function EntryForm() {
                     <button
                       key={activity.name}
                       type="button"
-                      className={`mx-8 mb-3 shadow-xl rounded-full h-14 w-14 hover:bg-gradient-to-r from-cyan-500 to-yellow-300 ${
+                      className={`mx-8 mb-3 shadow-xl rounded-full h-20 w-20 hover:bg-gradient-to-r from-cyan-500 to-yellow-300 ${
                         isActivity(activity.name)
-                          ? "bg-green-500"
+                          ? "bg-gradient-to-r from-cyan-500 to-yellow-300"
                           : "border-gray-800"
                       }`}
                       onClick={() => handleActivityChange(activity.name)}
@@ -193,9 +200,9 @@ function EntryForm() {
                     <button
                       key={activity.name}
                       type="button"
-                      className={`mx-8 mb-3 shadow-xl rounded-full h-14 w-14 hover:bg-gradient-to-r from-cyan-500 to-yellow-300 ${
+                      className={`mx-8 mb-3 shadow-xl rounded-full h-20 w-20 hover:bg-gradient-to-r from-cyan-500 to-yellow-300 ${
                         isActivity(activity.name)
-                          ? "bg-green-500"
+                          ? "bg-gradient-to-r from-cyan-500 to-yellow-300"
                           : "border-gray-800"
                       }`}
                       onClick={() => handleActivityChange(activity.name)}
@@ -212,9 +219,9 @@ function EntryForm() {
                     <button
                       key={activity.name}
                       type="button"
-                      className={`mx-8 mb-3 shadow-xl rounded-full h-14 w-14 hover:bg-gradient-to-r from-cyan-500 to-yellow-300 ${
+                      className={`mx-8 mb-3 shadow-xl rounded-full h-20 w-20 hover:bg-gradient-to-r from-cyan-500 to-yellow-300 ${
                         isActivity(activity.name)
-                          ? "bg-green-500"
+                          ? "bg-gradient-to-r from-cyan-500 to-yellow-300"
                           : "border-gray-800"
                       }`}
                       onClick={() => handleActivityChange(activity.name)}
@@ -226,18 +233,19 @@ function EntryForm() {
                 ))}
               </div>
             </div>
+            {/* </div> */}
 
 
             {/* JOURNAL.............................................................................................. */}
-            <div className="border-2 rounded-2xl border-black m-20">
-              <h1 className= "mt-6 mb-10 headers text-2xl">Daily Journal</h1>
+            <div className="border-2 shadow-2xl rounded-2xl border-black m-20">
+              <h1 className= "mt-6 mb-6 headers text-2xl">Daily Journal</h1>
               <div className="flex flex-col">
                 <textarea
                   onChange={handleJournalChange}
                   value={journal}
                   id="journal"
                   name="journal"
-                  className="border rounded-2xl py-3 mx-20 px-3 text-gray-700 leading-tight focus:outline-none focus:border-black resize-none"
+                  className="border rounded-2xl p-5 mx-20 text-gray-700 leading-tight focus:outline-none focus:border-black resize-none"
                   rows="10"
                   placeholder="Write about your day here..."
                 />

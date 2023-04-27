@@ -47,7 +47,7 @@ function LoggedInHome(){
                                 Complete your daily entry
                             </div>
                             <div className="flex justify-center items-center py-4">
-                                <Link to="">
+                                <Link to="/entry">
                                     <button className="bg-orange-400 hover:bg-orange-500 text-black py-2 px-4 rounded-full">Daily Entry</button>
                                 </Link>
                             </div>
