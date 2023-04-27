@@ -8,7 +8,6 @@ import './fonts.css';
 function LoggedInHome(){
     const { token } = useAuthContext();
 
-    //to reach username
     const [user, setUser] = useState()
 
     useEffect(() => {
@@ -36,9 +35,7 @@ function LoggedInHome(){
                 <div className='shadow-xl headers h-20 mt-12 bg-gradient-to-l from-cyan-500 to-yellow-300 rounded-2xl text-black max-w-screen-lg mx-auto px-8 text-4xl flex justify-center items-center'>
                     Welcome, {user.username}!
                 </div>
-
-                {/* entry form */}
-                <div className="border-4 border-yellow-100 rounded-2xl shadow-lg relative mx-48 my-8">
+                <div className="entry-form border-4 border-yellow-100 rounded-2xl shadow-lg relative mx-48 my-8">
                     <div className= "headers text-3xl flex justify-center items-center pt-8 pb-2">
                         How are you feeling today?
                     </div>
@@ -53,17 +50,13 @@ function LoggedInHome(){
                             </div>
                         </div>
                 </div>
-
-                {/* goals */}
-                <div className= "headers border-4 border-yellow-100 rounded-2xl shadow-lg relative mx-48 my-8">
+                <div className= "goals-list headers border-4 border-yellow-100 rounded-2xl shadow-lg relative mx-48 my-8">
                     <div className="pt-8 pb-2">
                         <GoalList />
                     </div>
                 </div>
-
                 <div className="border-4 border-yellow-100 rounded-2xl shadow-2xl relative mx-48 my-8">
-                {/* calendar */}
-                <div className=" border-yellow-100 m-8">
+                <div className="calendar border-yellow-100 m-8">
                     <div className="headers text-4xl flex justify-center items-center pt-8">Your Calendar</div>
                     <div className="pb-10 mx-4">
                         <Calendar />

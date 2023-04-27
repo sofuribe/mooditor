@@ -165,15 +165,14 @@ function GoalList() {
 
   return (
     <>
-      <div className="rounded-lg text-center">
-        <table className="ml-auto mr-auto mt-3">
+        <table className="ml-auto mr-auto mt-3 text-center">
           <thead>
             <tr>
-              <th className="text-3xl">Daily Goals</th>
+              <th className="text-3xl pb-4 text-center">Daily Goals</th>
             </tr>
           </thead>
           {goals.length === 0 ? (
-            <p>No goals for today</p>
+            <p className="body text-xl">No goals for today</p>
           ) : (
           <tbody>
             {goals.map((goal) => {
@@ -183,7 +182,6 @@ function GoalList() {
                   <td>
                     <input
                       type="checkbox"
-                      // checked={goal.isCompleted}
                       checked={prevIsCompleted ? true : false}
                       onChange={(event) => handleCheckboxChange(event, goal.id)}
                     />
@@ -192,7 +190,7 @@ function GoalList() {
                     {goal.goal}
                   </td>
                   <td>
-                    <button>
+                    <button className="">
                       <FontAwesomeIcon
                         icon={faPencil}
                         type="button"
@@ -202,7 +200,7 @@ function GoalList() {
                     </button>
                   </td>
                   <td>
-                    <button>
+                    <button className="mx-4">
                       <FontAwesomeIcon
                         icon={faTrashCan}
                         type="button"
@@ -216,8 +214,6 @@ function GoalList() {
           </tbody>
           )}
         </table>
-
-        {/* goal popup */}
         {showModal ? (
             <div className="modal-backdrop-popup">
                 <div className="modal-content-popup">
@@ -225,16 +221,16 @@ function GoalList() {
                 </div>
             </div>
         ) : showModalUpdate ? (
-          <div className="modal-backdrop-popup">
+            <div className="modal-backdrop-popup">
                 <div className="modal-content-popup">
                     <UpdateForm onClose={closeFormUpdate} id={goalId} />
                 </div>
             </div>
         ) : null}
-        <button className="bg-orange-400 hover:bg-orange-500 text-black py-2 px-4 rounded-full" onClick={() => setShowModal(true)}>Add Goal</button>
-      </div>
+        <div className="text-center py-4">
+            <button className="body bg-orange-400 hover:bg-orange-500 text-black py-2 px-4 rounded-full" onClick={() => setShowModal(true)}>+ Goal</button>
+        </div>
     </>
   );
 }
-
 export default GoalList;

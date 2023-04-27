@@ -42,27 +42,27 @@ function UpdateForm ({onClose, id}) {
     };
 
   return (
-    <div className="rounded-lg">
-      <div className="w-1/2 ml-auto mr-auto mt-3">
-        <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="rounded-xlg">
+      <div className="w-full justify-center px-2">
           <div className="close-button" onClick={onClose}>x</div>
-          <h1 className="font-bold px-4 py-2 mb-2">Edit Goal</h1>
+          <h1 className="headers text-center text-2xl px-4 mb-2">Edit Goal</h1>
           <form onSubmit={handleSubmit} id="update-goal-form">
-            <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            <textarea className="shadow appearance-none border rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none"
               onChange={handleGoalChange}
               value={goal}
               placeholder="Goal..."
               required
+              rows="2"
               type="text"
               name="goal"
               id="goal"
             />
-            <input className="shadow bg-orange-50 hover:bg-orange-100 focus:shadow-outline focus:outline-none text-black py-2 px-4 rounded" type="submit" value="update" />
+            <div className="text-center">
+              <input className="m-2 shadow bg-orange-400 hover:bg-orange-500 focus:shadow-outline focus:outline-none text-black py-2 px-4 rounded-2xl" type="submit" value="Update" />
+            </div>
           </form>
         </div>
       </div>
-    </div>
   )
 }
-
 export default UpdateForm;
