@@ -21,7 +21,9 @@ Mooditor is a user-friendly platform for individuals to keep track of their dail
 
 ### GHI
 
-- [GHI] (docs/ghi.MD)
+[GHI](docs/ghi.MD)
+
+
 
 
 
