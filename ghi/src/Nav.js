@@ -46,6 +46,9 @@ function Nav() {
             <li className="p-2 hover:text-emerald-800">
               <Link to="entries">all entries</Link>
             </li>
+            <li className="p-2 hover:text-emerald-800">
+              <Link to="resources">resources</Link>
+            </li>
             <li className="p-2 pr-4 hover:text-emerald-800">
               <button onClick={handleLogout}>logout</button>
             </li>

@@ -13,6 +13,7 @@ import LoginSignup from "./LoginSignupForm";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import EntryForm from "./EntryForm";
+import Resources from "./Resources";
 
 
 const domain = /https:\/\/[^/]+/;
@@ -34,6 +35,7 @@ function App() {
           <Route path="list" element={<GoalList />} />
           <Route path="home" element={<LoggedInHome />} />
           <Route path="account" element={<LoginSignup />} />
+          <Route path="resources" element={<Resources />} />
         </Routes>
         <ToastContainer
           position="top-center"
