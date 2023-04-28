@@ -20,7 +20,12 @@ Mooditor is a user-friendly platform for individuals to keep track of their dail
 ![schema](/uploads/3c092513cb278885a0c67513f3aadf57/schema.png)
 
 ### GHI
-<details>
+
+- [GHI] (docs/ghi.MD)
+
+
+
+<!-- <details>
   <summary markdown="span">Landing Page</summary>
 ![Landing](/uploads/f799b38128c2b734b1a0ada4ded9ec74/Landing.png)
 
@@ -80,7 +85,7 @@ Mooditor is a user-friendly platform for individuals to keep track of their dail
   <summary markdown="span">Complete a Goal Page</summary>
 ![Complete_Goal](/uploads/f00dc8df0fa0e976058f9f3e31fa41b5/Complete_Goal.png)
 
-</details>
+</details> -->
 
 ## Requirements
 1. Python 3
