@@ -68,12 +68,12 @@ Mooditor is a user-friendly platform for individuals to keep track of their dail
 </details>
 <details>
   <summary markdown="span">Create a Goal Page</summary>
-![create_goal](/uploads/5fcbc57566be48fe64f5631bb0488f14/create_goal.png)
+![new_goal](/uploads/ca3dcddfbe736091963ff1632eb5d288/new_goal.png)
 
 </details>
 <details>
   <summary markdown="span">Edit a Goal Page</summary>
-![edit_goal](/uploads/0be4d2b9762607cf08c38a953243c87f/edit_goal.png)
+![edit_goal](/uploads/07617aa9a23133da127a2d902dafb20e/edit_goal.png)
 
 </details>
 <details>

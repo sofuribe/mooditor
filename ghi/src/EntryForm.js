@@ -87,7 +87,7 @@ function EntryForm() {
       await response.json();
       setMood("");
       setSelectedActivities([]);
-      setJournal("");
+      setJournal("");dock
       navigate("/home")
       toast("You completed today's entry!")
     } else {
