@@ -165,44 +165,45 @@ function GoalList() {
 
   return (
     <>
-      <div className="rounded-lg text-center">
-        <table className="ml-auto mr-auto mt-3">
+        <table className="ml-auto mr-auto mt-3 text-center">
           <thead>
             <tr>
-              <th className="text-3xl">Daily Goals</th>
+              <th className="text-3xl pb-4 text-center">Daily Goals</th>
             </tr>
           </thead>
           {goals.length === 0 ? (
-            <p>No goals for today</p>
+            <td className="body text-xl">No goals for today</td>
           ) : (
           <tbody>
             {goals.map((goal) => {
               const prevIsCompleted = localStorage.getItem(`goal_${goal.id}_isCompleted`) === "true" || false;
               return (
                 <tr key={goal.id}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      // checked={goal.isCompleted}
-                      checked={prevIsCompleted ? true : false}
-                      onChange={(event) => handleCheckboxChange(event, goal.id)}
-                    />
+                   <td className="py-2 flex items-center">
+                      <div className="mr-3">
+                        <input
+                          type="checkbox"
+                          checked={prevIsCompleted ? true : false}
+                          onChange={(event) => handleCheckboxChange(event, goal.id)}
+                          />
+                        </div>
+                      <div>
+                        {goal.isCompleted ? "completed" : ""}
+                            {goal.goal}
+                        </div>
+                      </td>
+                    <td>
+                      <button className="mx-4">
+                        <FontAwesomeIcon
+                          icon={faPencil}
+                          type="button"
+                          onClick={() => [
+                            handleEdit(goal.id), setGoalId(goal.id)]}
+                        />
+                      </button>
                   </td>
-                  <td className={goal.isCompleted ? "completed" : ""}>
-                    {goal.goal}
-                  </td>
                   <td>
-                    <button>
-                      <FontAwesomeIcon
-                        icon={faPencil}
-                        type="button"
-                        onClick={() => [
-                          handleEdit(goal.id), setGoalId(goal.id)]}
-                      />
-                    </button>
-                  </td>
-                  <td>
-                    <button>
+                    <button className="mx-4">
                       <FontAwesomeIcon
                         icon={faTrashCan}
                         type="button"
@@ -216,8 +217,6 @@ function GoalList() {
           </tbody>
           )}
         </table>
-
-        {/* goal popup */}
         {showModal ? (
             <div className="modal-backdrop-popup">
                 <div className="modal-content-popup">
@@ -225,16 +224,16 @@ function GoalList() {
                 </div>
             </div>
         ) : showModalUpdate ? (
-          <div className="modal-backdrop-popup">
+            <div className="modal-backdrop-popup">
                 <div className="modal-content-popup">
                     <UpdateForm onClose={closeFormUpdate} id={goalId} />
                 </div>
             </div>
         ) : null}
-        <button className="bg-orange-400 hover:bg-orange-500 text-black py-2 px-4 rounded-full" onClick={() => setShowModal(true)}>Add Goal</button>
-      </div>
+        <div className="text-center py-4">
+            <button className="body bg-orange-400 hover:bg-orange-500 text-black py-2 px-4 rounded-full" onClick={() => setShowModal(true)}>+ Goal</button>
+        </div>
     </>
   );
 }
-
 export default GoalList;
