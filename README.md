@@ -7,9 +7,9 @@
 - Terence Wong
 - Brooke Crockett
 
-## Who we are 
+## Who we are
 
-Mooditor is a user-friendly platform for individuals to keep track of their daily mood, goals, and activities. Our mission is to empower individuals to take control of their mental health by providing them with a platform to track and monitor their emotional well-being. Our goal is to make mental health management accessible, convenient, and stigma-free. We aim to help our users develop a deeper understanding of their mental health, identify patterns and make informed decisions about their daily wellbeing. Ultimately, our vision is to help people lead happier, healthier, and more fulfilling lives. 
+Mooditor is a user-friendly platform for individuals to keep track of their daily mood, goals, and activities. Our mission is to empower individuals to take control of their mental health by providing them with a platform to track and monitor their emotional well-being. Our goal is to make mental health management accessible, convenient, and stigma-free. We aim to help our users develop a deeper understanding of their mental health, identify patterns and make informed decisions about their daily wellbeing. Ultimately, our vision is to help people lead happier, healthier, and more fulfilling lives.
 
 ## Design
 
@@ -19,7 +19,68 @@ Mooditor is a user-friendly platform for individuals to keep track of their dail
 ### Schema
 ![schema](/uploads/3c092513cb278885a0c67513f3aadf57/schema.png)
 
+### GHI
+<details>
+  <summary markdown="span">Landing Page</summary>
+![Landing](/uploads/f799b38128c2b734b1a0ada4ded9ec74/Landing.png)
 
+</details>
+<details>
+  <summary markdown="span">Create Account Page</summary>
+  ![create_account](/uploads/55c701771462ffebc6f8a26a50b314f6/create_account.png)
+
+</details>
+<details>
+  <summary markdown="span">Sign-up Page</summary>
+  ![Signup](/uploads/3b67758d60af4cb8b5e0d6c88cc143a4/Signup.png)
+
+</details>
+<details>
+  <summary markdown="span">Log-in Page</summary>
+  ![Login](/uploads/8f14f6dabd37dfe88649ff9f7e0777ad/Login.png)
+
+
+</details>
+<details>
+  <summary markdown="span">Home Page</summary>
+  ![Home](/uploads/04a98c155b1984d6dd57c897b51cf678/Home.png)
+
+</details>
+<details>
+  <summary markdown="span">Create a Entry Page</summary>
+![entry_form](/uploads/ec8b496d4763fc7447093e08148707a4/entry_form.png)
+
+</details>
+<details>
+  <summary markdown="span">Calendar Page</summary>
+![Calendar](/uploads/50f2d2999de81991008b9be9f75d381e/Calendar.png)
+
+</details>
+<details>
+  <summary markdown="span">All Entries Page</summary>
+![all_entries](/uploads/1558d0d7658ee630ef5ac10de615c908/all_entries.png)
+
+</details>
+<details>
+  <summary markdown="span">Daily Goals Page</summary>
+![daily_goals](/uploads/1238604ca50ef32accc7a1ad79a804dd/daily_goals.png)
+
+</details>
+<details>
+  <summary markdown="span">Create a Goal Page</summary>
+![create_goal](/uploads/5fcbc57566be48fe64f5631bb0488f14/create_goal.png)
+
+</details>
+<details>
+  <summary markdown="span">Edit a Goal Page</summary>
+![edit_goal](/uploads/0be4d2b9762607cf08c38a953243c87f/edit_goal.png)
+
+</details>
+<details>
+  <summary markdown="span">Complete a Goal Page</summary>
+![Complete_Goal](/uploads/f00dc8df0fa0e976058f9f3e31fa41b5/Complete_Goal.png)
+
+</details>
 
 ## Requirements
 1. Python 3
@@ -44,9 +105,9 @@ In your project directory, type and press enter after each command listed below:
 
 1. Create the volume: ```docker volume create postgres-data```
 2. Build the container and image: ```docker-compose build```
+  * If using an apple computer with a M1 or M2 chip use the following command instead of docker-compose build: ```DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose build```
 3. Run the container: ```docker-compose up```
-4. If using an apple computer with a M1 or M2 chip use the following command instead of docker-compose build:
-```DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose build```
+
 
 ![Successful Docker Containers](/uploads/df253454852f9f24e11feac3946e1206/docker.png)
 
@@ -54,11 +115,11 @@ In your project directory, type and press enter after each command listed below:
 To navigate the server, type ```http://localhost:3000```, this will take you to the Home Page.
 
 ## Functionality
-- Signup/Login: Once at the home page, the user will select "create an account" where they will be directed to signup and login. 
+- Signup/Login: Once at the home page, the user will select "create an account" where they will be directed to signup and login.
 - Main Page: After logging in, the user will be redirected to the main page where they can choose to set their goals for the day or select "create entry".
-- Goals: The user is able to input all the goals they want to accomplish for the day and check them off once completed. 
+- Goals: The user is able to input all the goals they want to accomplish for the day and check them off once completed.
 - Entry Form: After selecting "create entry" the user will be redirected to their daily entry form where they can choose their mood for the day, select which activities they performed to boost their wellbeing, and write in a daily journal about how their day went.
-- Calendar: After submitting the daily entry form, the user will be redirected to the main page where they will see their daily entry populate on the calendar with a color that correlates with their mood for that day. The user will be able to look back at previous months, select a past entry, and reflect on what they did that enhanced or diminished their mood that day. 
+- Calendar: After submitting the daily entry form, the user will be redirected to the main page where they will see their daily entry populate on the calendar with a color that correlates with their mood for that day. The user will be able to look back at previous months, select a past entry, and reflect on what they did that enhanced or diminished their mood that day.
 
 ## FastAPI Endpoints
 
