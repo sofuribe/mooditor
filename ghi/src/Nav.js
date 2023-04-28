@@ -18,7 +18,6 @@ function Nav() {
         <div className="flex justify-between items-center h-16 mx-auto ">
           <h1 >
             <Link to="/" className="w-48 p-2 pl-4 text-3xl font-bold tracking-wider">
-              {/* mooditor */}
               <img className="w-48 pl-4" src="img/mooditor.png" alt="logo" />
             </Link>
           </h1>

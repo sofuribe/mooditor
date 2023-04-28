@@ -28,7 +28,6 @@ function LoggedInHome(){
         }
     }, [token]);
 
-
     if (token && user){
         return (
             <>
@@ -64,7 +63,7 @@ function LoggedInHome(){
                 </div>
                 </div>
             </>
-            )
-        }
+        )
     }
+}
 export default LoggedInHome;

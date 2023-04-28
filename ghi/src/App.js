@@ -1,5 +1,3 @@
-// import Construct from "./Construct.js";
-// import ErrorNotification from "./ErrorNotification";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import "./App.css";

@@ -34,9 +34,6 @@ function MainPage() {
       <div className="bg-black h-1 mt-10"></div>
       <div className="bg-gradient-to-br from-cyan-500 to-yellow-300">
         <div className="headers text-center text-5xl pt-20 mb-8 font-bold">App Highlights</div>
-            {/* <p className="text-xl md:text-2xl text-center md:py-3">
-                An insight to your personal tracker
-            </p> */}
         <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl">
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
             <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
@@ -68,7 +65,6 @@ function MainPage() {
                 that empowers individuals to take control of their emotional health.
             </p>
         </div>
-        {/* <div className="bg-teal-100 rounded-md pt-10 mx-10 max-w-9xl"> */}
             <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl my-5 body">
                 <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
                     <div className="w-40 h-40 rounded-full relative">
@@ -99,7 +95,6 @@ function MainPage() {
                     <div className="mt-2 pb-10 text-center text-base">Software Engineer</div>
                 </div>
             </div>
-        {/* </div> */}
       </div>
     </div>
   );
