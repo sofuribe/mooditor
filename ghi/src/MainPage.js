@@ -14,7 +14,7 @@ function MainPage() {
           />
         </div>
         <div className="md:w-2/3 h-full flex items-center">
-          <div className="h-full bg-gradient-to-tr from-cyan-500 to-yellow-300 text-black items-start max-w-screen-lg mx-7">
+          <div className="h-full text-black items-start max-w-screen-lg mx-7" style={{backgroundImage: `url('img/bg.png')`}}>
                 <h2 className="headers text-4xl md:text-5xl text-center px-32 pt-40 mt-8 font-bold">
                 Empowering emotional health, one mood at a time.
                 </h2>
@@ -23,7 +23,7 @@ function MainPage() {
                 </p>
                 <div className="flex justify-center items-center">
                     <Link to="account">
-                        <button className="bg-yellow-200 hover:bg-yellow-300 ring-2 ring-black hover:-translate-y-2 text-black py-5 px-4 rounded-full font-bold shadow-2xl">
+                        <button className="bg-yellow-200 hover:bg-yellow-300 ring-2 ring-black hover:-translate-y-2 text-black py-5 px-4 rounded-full font-bold shadow-lg shadow-black">
                         Create An Account
                         </button>
                     </Link>
@@ -32,23 +32,23 @@ function MainPage() {
         </div>
       </div>
       <div className="bg-black h-1 mt-10"></div>
-      <div className="bg-gradient-to-br from-cyan-500 to-yellow-300">
+      <div className="" style={{backgroundImage: `url('img/bg.png')`}}>
         <div className="headers text-center text-5xl pt-20 mb-8 font-bold">App Highlights</div>
         <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl">
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
-            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
+            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full relative">
                 <img src="img/track.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
             </div>
             <div className="my-14 pb-6 text-center font-medium">Track How You Are Feeling</div>
             </div>
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5 ">
-            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
+            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full relative">
                 <img src="img/goal.svg" alt="track" className="absolute top-0 left-0 object-cover rounded-full w-auto h-auto p-5"/>
             </div>
             <div className="my-14 pb-6 text-center font-medium">Set Daily Goals</div>
             </div>
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
-            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
+            <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full relative">
                 <img src="img/journal3.svg" alt="track" className="absolute top-0 left-0 w-auto h-auto object-cover rounded-full p-2"/>
             </div>
             <div className="my-14 pb-6 text-center font-medium">Reflect On Your Day</div>
@@ -56,7 +56,7 @@ function MainPage() {
         </div>
       </div>
       <div className="bg-black h-1 mt-10"></div>
-      <div className="bg-gradient-to-tr from-cyan-500 to-yellow-300 p-10">
+      <div className="p-10" style={{backgroundImage: `url('img/bg.png')`}}>
         <div className="headers text-center md:text-5xl text-4xl pt-8 mb-3">Meet the Mindful Creators</div>
         <div className="py-6 px-10">
             <p className="text-left body border-2 border-black border-t-0 border-b-0 border-r-0 font-medium md:text-lg text-md px-0 md:px-4 py-0 md:py-2 mb-3 mx-80">

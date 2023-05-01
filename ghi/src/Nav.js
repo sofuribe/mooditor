@@ -25,6 +25,9 @@ function Nav() {
             <li className="p-2 hover:text-emerald-800">
               <Link to="/">main page</Link>
             </li>
+            <li className="p-2 hover:text-emerald-800">
+              <Link to="resources">resources</Link>
+            </li>
             <li className="p-2 pr-4 hover:text-emerald-800">
               <Link to="account">login</Link>
             </li>

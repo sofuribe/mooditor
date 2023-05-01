@@ -4,16 +4,16 @@ import React from "react";
 function Resources() {
     return (
     <>
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-cover" style={{backgroundImage: `url('img/bg.png')`}}>
             <div className="flex font">
                 <div className="md:w-1/2 flex items-center">
                     <div>
-                        <h1 className="text-5xl ml-12 mt-10 text-teal-700">
+                        <h1 className="text-5xl ml-12 text-teal-700">
                             Resources
                         </h1>
-                        <div className="ml-12 my-3 text-xl">
+                        <div className="ml-12 my-3 text-xl underline underline-offset-8">
                             <p>
-                                Let's set you up for success
+                                <b>Let's set you up for success</b>
                             </p>
                         </div>
 
@@ -37,7 +37,7 @@ function Resources() {
                     <div className="mx-12">
 
                         <div className="">
-                            <h2 className="text-3xl mb-3 text-teal-700">Find a therapist near you on Psychology Today</h2>
+                            <h2 className="text-3xl mb-2 text-teal-700">Find a therapist near you on Psychology Today</h2>
                             <a className="hover:text-sky-900" href="https://www.psychologytoday.com/us/therapists" target="_blank" rel="noopener noreferrer">www.psychologytoday.com</a>
                             <p className="mt-3 leading-relaxed">
                                 Psychology Today's Therapy Directory lists clinical professionals, psychiatrists
@@ -46,7 +46,7 @@ function Resources() {
                         </div>
 
                         <div className="my-8">
-                            <h2 className="text-3xl mb-3 text-teal-700">988 Crisis Lifeline</h2>
+                            <h2 className="text-3xl mb-2 text-teal-700">988 Crisis Lifeline</h2>
                             <a className="hover:text-sky-900" href="https://988lifeline.org/" target="_blank" rel="noopener noreferrer">988lifeline.org</a>
                             <p className="mt-3 leading-relaxed">
                                 988 Suicide & Crisis Lifeline provides free and confidential emotional
@@ -57,7 +57,7 @@ function Resources() {
                         </div>
 
                         <div className="my-8">
-                            <h2 className="text-3xl mb-3 text-teal-700">Crisis Textline</h2>
+                            <h2 className="text-3xl mb-2 text-teal-700">Crisis Textline</h2>
                             <a className="hover:text-sky-900" href="https://www.crisistextline.org/" target="_blank" rel="noopener noreferrer">https://www.crisistextline.org/</a>
                             <p className="mt-3 leading-relaxed">
                                 Crisis Text Line serves anyone, in any type of crisis, providing access to free, 24/7 support.
@@ -65,7 +65,7 @@ function Resources() {
                         </div>
 
                         <div className="my-5">
-                            <h2 className="text-3xl mb-3 text-teal-700">Mental Health Resource Center</h2>
+                            <h2 className="text-3xl mb-2 text-teal-700">Mental Health Resource Center</h2>
                             <a className="hover:text-sky-900" href="https://jedfoundation.org/mental-health-resource-center/" target="_blank" rel="noopener noreferrer">https://jedfoundation.org/mental-health-resource-center/</a>
                             <p className="mt-3 leading-relaxed">
                                 The Jed Foundation is a non-profit organization that protects emotional health and prevents
