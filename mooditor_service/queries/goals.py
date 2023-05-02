@@ -2,7 +2,9 @@ from pydantic import BaseModel
 from typing import Union, Optional, List
 from queries.pool import pool
 import datetime
+import pytz
 
+tz = pytz.timezone('US/Pacific')
 
 class Error(BaseModel):
     message: str
@@ -11,7 +13,7 @@ class Error(BaseModel):
 class GoalIn(BaseModel):
     user_id: Optional[int]
     goal: str
-    created_on: Optional[datetime.date]
+    created_on: Optional[datetime.date] = datetime.datetime.now(tz).date()
     is_completed: Optional[bool] = False
 
 
