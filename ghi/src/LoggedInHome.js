@@ -55,7 +55,7 @@ function LoggedInHome(){
                         <GoalList />
                     </div>
                 </div>
-                <div className="calendar border-4 border-yellow-100 rounded-2xl shadow-2xl mx-48 my-8">
+                <div className="calendar border-4 border-yellow-100 rounded-2xl shadow-2xl mx-48 my-8 md:mb-24">
                     <div className="m-7">
                         <div className="tracking-wide poppins font-bold text-3xl flex justify-center items-center pt-4">Your Calendar</div>
                         <div className="pb-10 mx-4">
