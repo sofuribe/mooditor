@@ -77,11 +77,10 @@ function EntriesList(){
                             .map((entry, id) => {
                             return (
                                 <tr key={id}>
-                                    {/* <td className="border px-4">{entry.created}</td> */}
-                                    <td className="border px-4 py-2 flex items-center">{entry.created}
-                                        {/* <div className="w-28">
-                                            { new Date(entry.created).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}) }
-                                        </div> */}
+                                    <td className="border px-4 py-2 flex items-center">
+                                        <div className="w-28">
+                                            { new Date(entry.created).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric', timeZone: 'PST'}) }
+                                        </div>
                                         <div className={ `w-6 h-6 rounded-full ml-3
                                             ${entry.mood === "awful" ? "bg-red-500": entry.mood === "okay" ? "bg-yellow-500": entry.mood === "good" ? "bg-blue-500": "bg-green-500"}`}>
                                         </div>

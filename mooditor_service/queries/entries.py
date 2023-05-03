@@ -5,8 +5,6 @@ import datetime
 from queries.pool import pool
 import pytz
 
-tz = pytz.timezone("US/Pacific")
-
 
 class ActivityEnum(str, Enum):
     Walking = "Walking"
@@ -41,7 +39,7 @@ class EntryIn(BaseModel):
     activity_name: List[ActivityEnum]
     mood: MoodEnum
     journal: Optional[str]
-    created: Optional[datetime.date] = datetime.datetime.now(tz).date()
+    created: Optional[datetime.date]
 
 
 class EntryUpdateIn(BaseModel):
