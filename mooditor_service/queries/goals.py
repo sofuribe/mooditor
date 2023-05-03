@@ -4,7 +4,8 @@ from queries.pool import pool
 import datetime
 import pytz
 
-tz = pytz.timezone('US/Pacific')
+tz = pytz.timezone("US/Pacific")
+
 
 class Error(BaseModel):
     message: str

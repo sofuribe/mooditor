@@ -5,7 +5,8 @@ import datetime
 from queries.pool import pool
 import pytz
 
-tz = pytz.timezone('US/Pacific')
+tz = pytz.timezone("US/Pacific")
+
 
 class ActivityEnum(str, Enum):
     Walking = "Walking"

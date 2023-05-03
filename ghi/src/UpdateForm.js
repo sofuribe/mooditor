@@ -31,11 +31,9 @@ function UpdateForm ({onClose, id}) {
       const response = await fetch(goalUrl, fetchConfig);
 
       if (response.ok) {
-        await response.json();
+        // await response.json();
         setGoal("");
-
-        window.location.reload()
-        toast("Goal Updated.")
+        toast("Goal Updated!")
       } else {
         console.error("Could not create goal");
       }

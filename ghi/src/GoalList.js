@@ -14,6 +14,8 @@ function GoalList() {
   const [showModal, setShowModal] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [goalId, setGoalId] = useState(null)
+  const [goalAdded, setGoalAdded] = useState(false);
+  const [goalUpdated, setGoalUpdated] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,14 +37,16 @@ function GoalList() {
       }
     }
     fetchData();
-  }, [token]);
+  }, [token, goalAdded, goalUpdated]);
 
   function closeForm () {
     setShowModal(false);
+    setGoalAdded(true);
   }
 
   function closeFormUpdate() {
     setShowModalUpdate(false);
+    setGoalUpdated(true);
   }
 
   const handleDelete = async (id) => {
