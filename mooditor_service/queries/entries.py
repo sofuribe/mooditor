@@ -3,7 +3,6 @@ from typing import Optional, Union, List
 from enum import Enum
 import datetime
 from queries.pool import pool
-import pytz
 
 
 class ActivityEnum(str, Enum):
