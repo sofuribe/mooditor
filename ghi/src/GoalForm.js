@@ -44,7 +44,7 @@ function GoalForm ({onClose}) {
   };
 
   return (
-    <div className="rounded-xl">
+    <div className="rounded-xl z-100">
         <div className="w-full justify-center px-2">
             <div className="close-button" onClick={onClose}>x</div>
             <h1 className="text-center headers text-2xl px-4 mb-2">New Goal</h1>

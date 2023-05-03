@@ -160,11 +160,6 @@ function GoalList() {
   return (
     <>
       <table className="ml-auto mr-auto mt-3 text-center">
-        <thead>
-          <tr>
-            <th className="text-3xl pb-4 text-center">Daily Goals</th>
-          </tr>
-        </thead>
         {goals.length === 0 ? (
           <td className="body text-xl">No goals for today</td>
         ) : (

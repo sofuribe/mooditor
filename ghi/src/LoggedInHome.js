@@ -31,15 +31,15 @@ function LoggedInHome(){
     if (token && user){
         return (
             <>
-                <div className='shadow-xl headers h-20 mt-12 rounded-2xl text-black max-w-screen-lg mx-auto px-8 text-4xl flex justify-center items-center bg-cover' style={{backgroundImage: `url('img/bg.png')`}}>
+                <div className='shadow-xl tracking-wide poppins font-bold h-20 mt-12 rounded-2xl text-black max-w-screen-lg mx-auto px-8 text-4xl flex justify-center items-center bg-cover' style={{backgroundImage: `url('img/bg.png')`}}>
                     Welcome, {user.username}!
                 </div>
                 <div className="entry-form border-4 border-yellow-100 rounded-xl shadow-lg relative mx-48 my-8">
-                    <div className= "headers text-3xl flex justify-center items-center pt-8 pb-2">
+                    <div className= "tracking-wide poppins font-bold text-3xl flex justify-center items-center pt-8 pb-2">
                         How are you feeling today?
                     </div>
                         <div className= "my-2">
-                            <div className="newBody text-xl flex justify-center items-center">
+                            <div className=" text-xl flex justify-center items-center">
                                 Complete your daily entry
                             </div>
                             <div className="flex justify-center items-center py-4">
@@ -51,12 +51,13 @@ function LoggedInHome(){
                 </div>
                 <div className= "goals-list headers border-4 border-yellow-100 rounded-2xl shadow-lg relative mx-48 my-8">
                     <div className="pt-8 pb-2">
+                       <div className="tracking-wide poppins font-bold text-3xl flex justify-center items-center pb-2">Daily Goals</div>
                         <GoalList />
                     </div>
                 </div>
-                <div className="calendar border-4 border-yellow-100 rounded-2xl shadow-2xl relative mx-48 my-8">
-                    <div className="m-8">
-                        <div className="headers text-4xl flex justify-center items-center pt-8">Your Calendar</div>
+                <div className="calendar border-4 border-yellow-100 rounded-2xl shadow-2xl mx-48 my-8">
+                    <div className="m-7">
+                        <div className="tracking-wide poppins font-bold text-3xl flex justify-center items-center pt-4">Your Calendar</div>
                         <div className="pb-10 mx-4">
                             <Calendar />
                         </div>

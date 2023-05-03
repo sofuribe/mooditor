@@ -155,7 +155,7 @@ export default function Calendar() {
 
   return (
     <div className="pt-10">
-      <div className="max-w-sm rounded overflow-hidden shadow-lg px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg px-4 mx-auto sm:px-7 md:max-w-4xl md:px-8 md:py-5">
         <div className="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
           <div className="md:pr-14">
             <div className="flex items-center">
@@ -246,8 +246,8 @@ export default function Calendar() {
                             : entries.find((entry) =>
                                 isSameDay(parseISO(entry.created), day)
                               ).mood === "good"
-                            ? "bg-blue-500"
-                            : "bg-green-500"
+                            ? "bg-green-600"
+                            : "bg-green-700"
                         }`}
                       ></div>
                     )}
@@ -257,8 +257,8 @@ export default function Calendar() {
             </div>
           </div>
           <section className="mt-12 md:mt-5 md:pl-10 text-lg">
-            <h2 className="font-semibold text-gray-900">
-              Entries for{" "}
+            <h2 className="font-semibold text-gray-900 text-center">
+              Entry for{" "}
               <time dateTime={format(selectedDay, "yyyy-MM-dd")}>
                 {format(selectedDay, "MMM dd, yyy")}
               </time>
@@ -283,18 +283,22 @@ function EntryData({ entry }) {
   const icon = moodIcons[entry.mood];
   return (
     <>
-      <div>
+      <div className="">
         <div className="font-semibold text-gray-900">
-          <FontAwesomeIcon icon={icon} size="4x" />
+          Mood:
+          <div className="mt-2 mb-5">
+            <FontAwesomeIcon icon={icon} size="4x" />
+          </div>
         </div>
       </div>
       <div>
         <div className="font-semibold text-gray-900">
+          Activity:
           {" "}
-          <div
+          <div className= "mt-2"
             style={{
               display: "flex",
-              gap: "1rem",
+              gap: "1.5rem",
               marginTop: "0.5rem",
               marginBottom: "0.5rem",
             }}
@@ -311,7 +315,7 @@ function EntryData({ entry }) {
         </div>
       </div>
       <div className="flex-auto">
-        <div className="font-semibold text-gray-900">
+        <div className="font-semibold text-gray-900 mt-5">
           Journal: {entry.journal}
         </div>
       </div>

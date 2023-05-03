@@ -15,10 +15,10 @@ function Nav() {
   if (!token) {
     return (
       <nav className="px-1 text-2xl bg-yellow-200 border-black border-b-4 sticky top-0 z-20">
-        <div className="flex justify-between items-center h-16 mx-auto ">
+        <div className="flex justify-between items-center h-16 mx-auto">
           <h1 >
-            <Link to="/" className="w-48 p-2 pl-4 text-3xl font-bold tracking-wider">
-              <img className="w-48 pl-4" src="img/mooditor.png" alt="logo" />
+            <Link to="/" className="w-48 p-2 pl-4 text-3xl tracking-wide poppins font-bold">
+              mooditor
             </Link>
           </h1>
           <ul className="flex text-xlg body">
@@ -40,7 +40,9 @@ function Nav() {
       <nav className="px-1 text-2xl bg-yellow-200 border-black border-b-4 sticky top-0 z-20">
         <div className="flex justify-between items-center h-16 mx-auto ">
           <h1>
-            <img className="w-48 p-2 pl-4" src="img/mooditor.png" alt="logo" />
+            <Link to="/home" className="w-48 p-2 pl-4 text-3xl tracking-wide poppins font-bold">
+              mooditor
+            </Link>
           </h1>
           <ul className="flex text-xlg body">
             <li className="p-2 hover:text-emerald-800">

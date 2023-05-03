@@ -33,7 +33,7 @@ function MainPage() {
       </div>
       <div className="bg-black h-1 mt-10"></div>
       <div className="" style={{backgroundImage: `url('img/bg.png')`}}>
-        <div className="headers text-center text-5xl pt-20 mb-8 font-bold">App Highlights</div>
+        <div className="headers text-center text-5xl pt-16 mb-8 poppins font-bold tracking-wide">App Highlights</div>
         <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl">
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
             <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full relative">
@@ -57,14 +57,14 @@ function MainPage() {
       </div>
       <div className="bg-black h-1 mt-10"></div>
       <div className="p-10" style={{backgroundImage: `url('img/bg.png')`}}>
-        <div className="headers text-center md:text-5xl text-4xl pt-8 mb-3">Meet the Mindful Creators</div>
-        <div className="py-6 px-10">
-            <p className="text-left body border-2 border-black border-t-0 border-b-0 border-r-0 font-medium md:text-lg text-md px-0 md:px-4 py-0 md:py-2 mb-3 mx-80">
-                We are a team of passionate individuals dedicated to helping
-                people improve their emotional well-being by creating a platform
-                that empowers individuals to take control of their emotional health.
-            </p>
-        </div>
+        <div className="text-center md:text-5xl text-4xl pt-8 mb-3 poppins font-bold tracking-wide">Meet the Mindful Creators</div>
+            <div className="py-6 px-10">
+                <p className="text-left body border-2 border-black border-t-0 border-b-0 border-r-0 font-medium md:text-lg text-md px-0 md:px-4 py-0 md:py-2 mb-3 mx-80">
+                    We are a team of passionate individuals dedicated to helping
+                    people improve their emotional well-being by creating a platform
+                    that empowers individuals to take control of their emotional health.
+                </p>
+            </div>
             <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl my-5 body">
                 <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
                     <div className="w-40 h-40 rounded-full relative">
