@@ -34,9 +34,6 @@ function MainPage() {
       <div className="bg-black h-1 mt-10"></div>
       <div className="bg-gradient-to-br from-cyan-500 to-yellow-300">
         <div className="headers text-center text-5xl pt-20 mb-8 font-bold">App Highlights</div>
-            {/* <p className="text-xl md:text-2xl text-center md:py-3">
-                An insight to your personal tracker
-            </p> */}
         <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl">
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
             <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
@@ -46,13 +43,13 @@ function MainPage() {
             </div>
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5 ">
             <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
-                <img src="img/goals.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
+                <img src="img/goal.svg" alt="track" className="absolute top-0 left-0 object-cover rounded-full w-auto h-auto p-5"/>
             </div>
             <div className="my-14 pb-6 text-center font-medium">Set Daily Goals</div>
             </div>
             <div className="flex items-center flex-col md:mx-20 py-8 hover:-translate-y-5">
             <div className="w-52 h-52 bg-yellow-100 shadow-2xl rounded-full border-2 border-black relative">
-                <img src="img/reflect.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
+                <img src="img/journal3.svg" alt="track" className="absolute top-0 left-0 w-auto h-auto object-cover rounded-full p-2"/>
             </div>
             <div className="my-14 pb-6 text-center font-medium">Reflect On Your Day</div>
             </div>
@@ -68,38 +65,119 @@ function MainPage() {
                 that empowers individuals to take control of their emotional health.
             </p>
         </div>
-        {/* <div className="bg-teal-100 rounded-md pt-10 mx-10 max-w-9xl"> */}
             <div className="flex flex-col justify-center md:flex-row md:justify-center md:items-stretch text-xl my-5 body">
                 <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
                     <div className="w-40 h-40 rounded-full relative">
                         <img src="img/team/sofia.jpeg" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
                     </div>
                     <div className="mt-8 font-bold text-center">Sofia Uribe</div>
-                    <div className="mt-2 pb-10 text-center text-base">Software Engineer</div>
+                    <div className="mt-2 pb-2 text-center text-base">Software Engineer</div>
+                    <div className="flex">
+                        <div className="w-1/2">
+                            <div className=" w-10 h-10 mx-2">
+                                <a href="https://www.linkedin.com/in/sofuribe/" target="_blank" rel="noopener noreferrer">
+                                    <img src="img/linkedin.svg"
+                                    alt="LinkedIn Logo"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="w-1/2">
+                            <div className=" w-10 h-10 mx-2">
+                                <a href="https://gitlab.com/sofiauribe" target="_blank" rel="noopener noreferrer">
+                                    <img src="img/gitlab.svg"
+                                        alt="Gitlab Logo"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
                     <div className="w-40 h-40 rounded-full relative">
                         <img src="img/team/jackie.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
                     </div>
                     <div className="mt-8 font-bold text-center">Jackie Liu</div>
-                    <div className="mt-2 pb-10 text-center text-base">Software Engineer</div>
+                    <div className="mt-2 pb-2 text-center text-base">Software Engineer</div>
+                    <div className="flex">
+                        <div className="w-1/2">
+                            <div className=" w-10 h-10 mx-2">
+                                <a href="https://www.linkedin.com/in/jwliu24/" target="_blank" rel="noopener noreferrer">
+                                    <img src="img/linkedin.svg"
+                                    alt="LinkedIn Logo"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="w-1/2">
+                            <div className=" w-10 h-10 mx-2">
+                                <a href="https://gitlab.com/jwliu24" target="_blank" rel="noopener noreferrer">
+                                    <img src="img/gitlab.svg"
+                                        alt="Gitlab Logo"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
                     <div className="w-40 h-40 rounded-full relative">
                         <img src="img/team/terence.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
                     </div>
                     <div className="mt-8 font-bold text-center">Terence Wong</div>
-                    <div className="mt-2 pb-10 text-center text-base">Software Engineer</div>
+                    <div className="mt-2 pb-2 text-center text-base">Software Engineer</div>
+                    <div className="flex">
+                        <div className="w-1/2">
+                            <div className=" w-10 h-10 mx-2">
+                                <a href="https://www.linkedin.com/in/terence-s-wong/" target="_blank" rel="noopener noreferrer">
+                                    <img src="img/linkedin.svg"
+                                    alt="LinkedIn Logo"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="w-1/2">
+                            <div className=" w-10 h-10 mx-2">
+                                <a href="https://gitlab.com/terencew17" target="_blank" rel="noopener noreferrer">
+                                    <img src="img/gitlab.svg"
+                                    alt="Gitlab Logo"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div className="flex items-center bg-slate-50 hover:bg-slate-200 shadow-2xl rounded-md border-2 border-yellow-200 p-8 flex-col mx-1 md:mx-4 md:my-0 my-4 hover:-translate-y-5">
                     <div className="w-40 h-40 rounded-full relative">
                         <img src="img/team/brooke.png" alt="track" className="absolute top-0 left-0 w-full h-full object-cover rounded-full"/>
                     </div>
                     <div className="mt-8 font-bold text-center">Brooke Crockett</div>
-                    <div className="mt-2 pb-10 text-center text-base">Software Engineer</div>
+                    <div className="mt-2 pb-2 text-center text-base">Software Engineer</div>
+                    <div className="flex">
+                        <div className="w-1/2">
+                            <div className=" w-10 h-10 mx-2">
+                                <a href="https://www.linkedin.com/in/brooke-crockett6/" target="_blank" rel="noopener noreferrer">
+                                    <img src="img/linkedin.svg"
+                                    alt="LinkedIn Logo"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="w-1/2">
+                            <div className=" w-10 h-10 mx-2">
+                                <a href="https://gitlab.com/brooke.crockett" target="_blank" rel="noopener noreferrer">
+                                    <img src="img/gitlab.svg"
+                                    alt="LinkedIn Logo"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        {/* </div> */}
       </div>
     </div>
   );

@@ -18,7 +18,6 @@ function Nav() {
         <div className="flex justify-between items-center h-16 mx-auto ">
           <h1 >
             <Link to="/" className="w-48 p-2 pl-4 text-3xl font-bold tracking-wider">
-              {/* mooditor */}
               <img className="w-48 pl-4" src="img/mooditor.png" alt="logo" />
             </Link>
           </h1>
@@ -46,6 +45,9 @@ function Nav() {
             </li>
             <li className="p-2 hover:text-emerald-800">
               <Link to="entries">all entries</Link>
+            </li>
+            <li className="p-2 hover:text-emerald-800">
+              <Link to="resources">resources</Link>
             </li>
             <li className="p-2 pr-4 hover:text-emerald-800">
               <button onClick={handleLogout}>logout</button>

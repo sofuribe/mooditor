@@ -62,7 +62,7 @@ function LoginSignup() {
   };
 
   return (
-    <div className="">
+    <div>
       <div className="modal-dialog modal-lg pt-5" style={{ maxWidth: "900px" }}>
         <div
           className="modal-content mt-5"

@@ -7,9 +7,9 @@
 - Terence Wong
 - Brooke Crockett
 
-## Who we are 
+## Who we are
 
-Mooditor is a user-friendly platform for individuals to keep track of their daily mood, goals, and activities. Our mission is to empower individuals to take control of their mental health by providing them with a platform to track and monitor their emotional well-being. Our goal is to make mental health management accessible, convenient, and stigma-free. We aim to help our users develop a deeper understanding of their mental health, identify patterns and make informed decisions about their daily wellbeing. Ultimately, our vision is to help people lead happier, healthier, and more fulfilling lives. 
+Mooditor is a user-friendly platform for individuals to keep track of their daily mood, goals, and activities. Our mission is to empower individuals to take control of their mental health by providing them with a platform to track and monitor their emotional well-being. Our goal is to make mental health management accessible, convenient, and stigma-free. We aim to help our users develop a deeper understanding of their mental health, identify patterns and make informed decisions about their daily wellbeing. Ultimately, our vision is to help people lead happier, healthier, and more fulfilling lives.
 
 ## Design
 
@@ -19,7 +19,9 @@ Mooditor is a user-friendly platform for individuals to keep track of their dail
 ### Schema
 ![schema](/uploads/3c092513cb278885a0c67513f3aadf57/schema.png)
 
+## GHI
 
+- [GHI](docs/ghi.MD)
 
 ## Requirements
 1. Python 3
@@ -44,9 +46,9 @@ In your project directory, type and press enter after each command listed below:
 
 1. Create the volume: ```docker volume create postgres-data```
 2. Build the container and image: ```docker-compose build```
+  * If using an apple computer with a M1 or M2 chip use the following command instead of docker-compose build: ```DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose build```
 3. Run the container: ```docker-compose up```
-4. If using an apple computer with a M1 or M2 chip use the following command instead of docker-compose build:
-```DOCKER_DEFAULT_PLATFORM=linux/amd64 docker-compose build```
+
 
 ![Successful Docker Containers](/uploads/df253454852f9f24e11feac3946e1206/docker.png)
 
@@ -54,11 +56,11 @@ In your project directory, type and press enter after each command listed below:
 To navigate the server, type ```http://localhost:3000```, this will take you to the Home Page.
 
 ## Functionality
-- Signup/Login: Once at the home page, the user will select "create an account" where they will be directed to signup and login. 
+- Signup/Login: Once at the home page, the user will select "create an account" where they will be directed to signup and login.
 - Main Page: After logging in, the user will be redirected to the main page where they can choose to set their goals for the day or select "create entry".
-- Goals: The user is able to input all the goals they want to accomplish for the day and check them off once completed. 
+- Goals: The user is able to input all the goals they want to accomplish for the day and check them off once completed.
 - Entry Form: After selecting "create entry" the user will be redirected to their daily entry form where they can choose their mood for the day, select which activities they performed to boost their wellbeing, and write in a daily journal about how their day went.
-- Calendar: After submitting the daily entry form, the user will be redirected to the main page where they will see their daily entry populate on the calendar with a color that correlates with their mood for that day. The user will be able to look back at previous months, select a past entry, and reflect on what they did that enhanced or diminished their mood that day. 
+- Calendar: After submitting the daily entry form, the user will be redirected to the main page where they will see their daily entry populate on the calendar with a color that correlates with their mood for that day. The user will be able to look back at previous months, select a past entry, and reflect on what they did that enhanced or diminished their mood that day.
 
 ## FastAPI Endpoints
 

@@ -3,7 +3,6 @@ stages:
   - build
   - deploy
 
-# Run flake8 to check for code quality
 lint-test-job:
   image: python:3-bullseye
   stage: test
@@ -11,7 +10,6 @@ lint-test-job:
     - pip install flake8
     - flake8 mooditor_service
 
-# Run the unit tests
 api-unit-test-job:
   image: python:3-bullseye
   stage: test
@@ -25,7 +23,6 @@ api-unit-test-job:
     - export SIGNING_KEY="H&B7G$40W^sl"
     - python -m pytest
 
-# Build the React/JavaScript front-end
 build-front-end-job:
   stage: build
   image: node:lts-bullseye
@@ -43,7 +40,6 @@ build-front-end-job:
     paths:
       - ghi/build/
 
-# Deploy the React/JavaScript front-end to GitLab pages
 pages:
   stage: deploy
   rules:
@@ -64,16 +60,16 @@ build-mooditor-service:
   services:
     - docker:19.03.1-dind
   before_script:
-    - export DOCKER_REGISTRY_USER=$CI_REGISTRY_USER # built-in GitLab Registry User
-    - export DOCKER_REGISTRY_PASSWORD=$CI_REGISTRY_PASSWORD # built-in GitLab Registry Password
-    - export DOCKER_REGISTRY_URL=$CI_REGISTRY # built-in GitLab Registry URL
-    - export COMMIT_HASH=$CI_COMMIT_SHA # Your current commit sha
-    - export IMAGE_NAME_WITH_REGISTRY_PREFIX=$CI_REGISTRY_IMAGE # Your repository prefixed with GitLab Registry URL
-    - docker login -u "$DOCKER_REGISTRY_USER" -p "$DOCKER_REGISTRY_PASSWORD" $DOCKER_REGISTRY_URL # Instructs GitLab to login to its registry
+    - export DOCKER_REGISTRY_USER=$CI_REGISTRY_USER
+    - export DOCKER_REGISTRY_PASSWORD=$CI_REGISTRY_PASSWORD
+    - export DOCKER_REGISTRY_URL=$CI_REGISTRY
+    - export COMMIT_HASH=$CI_COMMIT_SHA
+    - export IMAGE_NAME_WITH_REGISTRY_PREFIX=$CI_REGISTRY_IMAGE
+    - docker login -u "$DOCKER_REGISTRY_USER" -p "$DOCKER_REGISTRY_PASSWORD" $DOCKER_REGISTRY_URL
 
   script:
     - cd mooditor_service
-    - echo "Building..." # MAKE SURE NO SPACE ON EITHER SIDE OF = IN THE FOLLOWING LINE
+    - echo "Building..."
     - export CONTAINER_FULL_IMAGE_NAME_WITH_TAG=$IMAGE_NAME_WITH_REGISTRY_PREFIX/mooditor-1:$COMMIT_HASH
     - docker build -f ./Dockerfile --pull -t built-mooditor-1 .
     - docker tag built-mooditor-1 "$CONTAINER_FULL_IMAGE_NAME_WITH_TAG"
@@ -82,4 +78,4 @@ build-mooditor-service:
     - echo "Deploying on CapRover..."
     - docker run caprover/cli-caprover:v2.1.1 caprover deploy --caproverUrl $CAPROVER_URL --caproverPassword $CAPROVER_PASSWORD --caproverApp $CAPROVER_APP --imageName $CONTAINER_FULL_IMAGE_NAME_WITH_TAG
   only:
-    - main # We want to deploy only to merges to main
+    - main
