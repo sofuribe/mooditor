@@ -20,24 +20,22 @@ function GoalForm ({onClose}) {
     const data = {};
 
     data.goal = goal;
-    data.timestamp = new Date().toISOString();
 
-        const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goals`;
-        const fetchConfig = {
-            method: "post",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-        };
-        const response = await fetch(goalUrl, fetchConfig);
+    const goalUrl = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/goals`;
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(goalUrl, fetchConfig);
 
     if (response.ok) {
-      await response.json();
+      // await response.json();
       setGoal("");
       toast("Great job, you've added a goal for today!")
-      window.location.reload()
     } else {
       console.error("Could not create goal");
     }

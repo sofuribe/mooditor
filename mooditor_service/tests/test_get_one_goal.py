@@ -18,17 +18,13 @@ class GetGoalQueries:
             "user_id": 0,
             "goal": "string",
             "created_on": "2023-04-08",
-            "is_completed": False
+            "is_completed": False,
         }
         result.update(goal)
         return result
 
 
-test_user = {
-    "id": 0,
-    "username": "string",
-    "email": "string"
-}
+test_user = {"id": 0, "username": "string", "email": "string"}
 
 
 def user_override():
@@ -42,20 +38,20 @@ def test_get_goal():
     ] = user_override
 
     json = {
-            "id": 0,
-            "user_id": 0,
-            "goal": "string",
-            "created_on": "2023-04-08",
-            "is_completed": False
-        }
+        "id": 0,
+        "user_id": 0,
+        "goal": "string",
+        "created_on": "2023-04-08",
+        "is_completed": False,
+    }
 
     expected = {
-            "id": 0,
-            "user_id": 0,
-            "goal": "string",
-            "created_on": "2023-04-08",
-            "is_completed": False
-        }
+        "id": 0,
+        "user_id": 0,
+        "goal": "string",
+        "created_on": "2023-04-08",
+        "is_completed": False,
+    }
 
     response = client.post("/goals", json=json)
 
