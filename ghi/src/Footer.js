@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function Footer(){
     return (
-        <footer className=" divide-y">
-            <div className="container flex flex-col justify-between py-6 mx-auto space-y-8 lg:flex-row lg:space-y-0 border-t-4 border-black">
+        <footer className="divide-y border-t-4 border-black">
+            <div className="container flex flex-col justify-between py-6 space-y-8 lg:flex-row lg:space-y-0 ">
                 <div className="lg:w-1/3">
                     <div rel="noopener noreferrer" className="flex justify-center space-x-3 ">
                         <div className=" headers font-bold pt-9 text-4xl tracking-wide">mooditor</div>
